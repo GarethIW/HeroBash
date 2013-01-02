@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8F84E829-0A88-4758-9C0D-FAABD6415968}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HeroBash</RootNamespace>
+    <AssemblyName>HeroBash</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>HeroBash.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\basictiles.xnb">
+      <Link>HeroBashContent\basictiles.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\map.xnb">
+      <Link>HeroBashContent\map.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\blank.xnb">
+      <Link>HeroBashContent\blank.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\gamefont.xnb">
+      <Link>HeroBashContent\gamefont.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\menufont.xnb">
+      <Link>HeroBashContent\menufont.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\logo.xnb">
+      <Link>HeroBashContent\logo.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\hero.xnb">
+      <Link>HeroBashContent\hero.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\Rock-Tiles-Base.xnb">
+      <Link>HeroBashContent\Rock-Tiles-Base.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\Rock-Tiles-Extra.xnb">
+      <Link>HeroBashContent\Rock-Tiles-Extra.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\RockMap.xnb">
+      <Link>HeroBashContent\RockMap.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\minion1.xnb">
+      <Link>HeroBashContent\minion1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\minion2.xnb">
+      <Link>HeroBashContent\minion2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\hearts.xnb">
+      <Link>HeroBashContent\hearts.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\Arrows.xnb">
+      <Link>HeroBashContent\Arrows.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\Buttons.xnb">
+      <Link>HeroBashContent\Buttons.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\projectiles.xnb">
+      <Link>HeroBashContent\projectiles.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\minion3.xnb">
+      <Link>HeroBashContent\minion3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\minion4.xnb">
+      <Link>HeroBashContent\minion4.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\Princess.xnb">
+      <Link>HeroBashContent\Princess.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\SFX\Crush.xnb">
+      <Link>HeroBashContent\SFX\Crush.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\SFX\Fireball.xnb">
+      <Link>HeroBashContent\SFX\Fireball.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\SFX\HeroHurt.xnb">
+      <Link>HeroBashContent\SFX\HeroHurt.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\SFX\Jump.xnb">
+      <Link>HeroBashContent\SFX\Jump.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\background\clouds1.xnb">
+      <Link>HeroBashContent\background\clouds1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\background\clouds2.xnb">
+      <Link>HeroBashContent\background\clouds2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\background\clouds3.xnb">
+      <Link>HeroBashContent\background\clouds3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\background\mountains1.xnb">
+      <Link>HeroBashContent\background\mountains1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\background\mountains2.xnb">
+      <Link>HeroBashContent\background\mountains2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\background\mountains3.xnb">
+      <Link>HeroBashContent\background\mountains3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\background\sky.xnb">
+      <Link>HeroBashContent\background\sky.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\minion5.xnb">
+      <Link>HeroBashContent\minion5.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\SFX\Fall.xnb">
+      <Link>HeroBashContent\SFX\Fall.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\SFX\lose.xnb">
+      <Link>HeroBashContent\SFX\lose.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\SFX\MinionSwordHit.xnb">
+      <Link>HeroBashContent\SFX\MinionSwordHit.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\SFX\SwordStuck.xnb">
+      <Link>HeroBashContent\SFX\SwordStuck.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\SFX\SwordThrow.xnb">
+      <Link>HeroBashContent\SFX\SwordThrow.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\SFX\win.xnb">
+      <Link>HeroBashContent\SFX\win.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\Dirt-Tiles.xnb">
+      <Link>HeroBashContent\Dirt-Tiles.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\DirtMap.xnb">
+      <Link>HeroBashContent\DirtMap.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\Castle-Tiles.xnb">
+      <Link>HeroBashContent\Castle-Tiles.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\CastleMap.xnb">
+      <Link>HeroBashContent\CastleMap.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\topbar.xnb">
+      <Link>HeroBashContent\topbar.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework.Windows, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\MonoGame\MonoGame.Framework\bin\Debug\MonoGame.Framework.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\MonoGame\MonoGame.Framework\bin\Debug\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\HeroBash\HeroBash\AudioController.cs">
+      <Link>AudioController.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\ButtonManager.cs">
+      <Link>ButtonManager.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\GameManager.cs">
+      <Link>GameManager.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Hero.cs">
+      <Link>Hero.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Minion.cs">
+      <Link>Minion.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\MinionManager.cs">
+      <Link>MinionManager.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\ParallaxManager.cs">
+      <Link>ParallaxManager.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Program.cs">
+      <Link>Program.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\ProjectileManager.cs">
+      <Link>ProjectileManager.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\ScreenManager\GameScreen.cs">
+      <Link>ScreenManager\GameScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\ScreenManager\InputState.cs">
+      <Link>ScreenManager\InputState.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\ScreenManager\ScreenManager.cs">
+      <Link>ScreenManager\ScreenManager.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Screens\AboutScreen.cs">
+      <Link>Screens\AboutScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Screens\BackgroundScreen.cs">
+      <Link>Screens\BackgroundScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Screens\GameplayScreen.cs">
+      <Link>Screens\GameplayScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Screens\LoadingScreen.cs">
+      <Link>Screens\LoadingScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Screens\MainMenuScreen.cs">
+      <Link>Screens\MainMenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Screens\MenuEntry.cs">
+      <Link>Screens\MenuEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Screens\MenuScreen.cs">
+      <Link>Screens\MenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Screens\MessageBoxScreen.cs">
+      <Link>Screens\MessageBoxScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Screens\OptionsMenuScreen.cs">
+      <Link>Screens\OptionsMenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Screens\PauseBackgroundScreen.cs">
+      <Link>Screens\PauseBackgroundScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Screens\PauseMenuScreen.cs">
+      <Link>Screens\PauseMenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Screens\PlayerIndexEventArgs.cs">
+      <Link>Screens\PlayerIndexEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\HeroBash.cs">
+      <Link>HeroBash.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TiledLib.MonoWindows\TiledLib.MonoWindows.csproj">
+      <Project>{f311c413-e175-485e-8a93-799ab971ca09}</Project>
+      <Name>TiledLib.MonoWindows</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
