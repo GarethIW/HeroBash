@@ -132,8 +132,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework.Windows8">
-      <HintPath>..\..\..\..\MonoGame\MonoGame.Framework\bin\Debug\MonoGame.Framework.Windows8.dll</HintPath>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\..\..\..\MonoGame\MonoGame.Framework\bin\Windows8\Debug\MonoGame.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">

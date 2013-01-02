@@ -33,10 +33,10 @@ namespace HeroBash
         public override void LoadContent()
         {
             // Create our menu entries.
-            MenuEntry campaignGameMenuEntry = new MenuEntry("START GAME");
-            MenuEntry aboutGameMenuEntry = new MenuEntry("README DOT TXT");
+            MenuEntry campaignGameMenuEntry = new MenuEntry("Start Game");
+            MenuEntry aboutGameMenuEntry = new MenuEntry("Readme.txt");
             MenuEntry optionsMenuEntry = new MenuEntry("OPTIONS");
-            MenuEntry exitMenuEntry = new MenuEntry("EXIT GAME");
+            MenuEntry exitMenuEntry = new MenuEntry("Exit");
 
             // Hook up menu event handlers.
             campaignGameMenuEntry.Selected += CampaignGameMenuEntrySelected;
@@ -67,7 +67,7 @@ namespace HeroBash
         /// </summary>
         void CampaignGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            GameManager.Level = 0;
+            GameManager.Level = 2;
             GameManager.Hero = new Hero();
             LoadingScreen.Load(ScreenManager, false, e.PlayerIndex,
                                new GameplayScreen());

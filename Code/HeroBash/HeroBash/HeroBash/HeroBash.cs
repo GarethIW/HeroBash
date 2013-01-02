@@ -35,6 +35,7 @@ namespace HeroBash
 #if WINDOWS
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
+            
 #endif
             Content.RootDirectory = "HeroBashContent";
 

@@ -370,18 +370,18 @@ namespace HeroBash
             }
             if (gameHero.HP <= 0)
             {
-                spriteBatch.DrawString(gameFont, "Congratulations", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 150)+new Vector2(2,2), Color.Black, 0f, gameFont.MeasureString("Congratulations") / 2, 1f, SpriteEffects.None, 1);
-                spriteBatch.DrawString(gameFont, "You defeated the Hero", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 175) + new Vector2(2, 2), Color.Black, 0f, gameFont.MeasureString("You defeated the Hero") / 2, 1f, SpriteEffects.None, 1);
-                spriteBatch.DrawString(gameFont, "Congratulations", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 150), Color.White, 0f, gameFont.MeasureString("Congratulations") / 2, 1f, SpriteEffects.None, 1);
-                spriteBatch.DrawString(gameFont, "You defeated the Hero", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 175), Color.White, 0f, gameFont.MeasureString("You defeated the Hero") / 2, 1f, SpriteEffects.None, 1);
+                spriteBatch.DrawString(gameFont, "Congratulations!", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 150)+new Vector2(2,2), Color.Black, 0f, gameFont.MeasureString("Congratulations!") / 2, 1f, SpriteEffects.None, 1);
+                spriteBatch.DrawString(gameFont, "You defeated the Hero!", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 175) + new Vector2(2, 2), Color.Black, 0f, gameFont.MeasureString("You defeated the Hero!") / 2, 1f, SpriteEffects.None, 1);
+                spriteBatch.DrawString(gameFont, "Congratulations!", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 150), Color.White, 0f, gameFont.MeasureString("Congratulations!") / 2, 1f, SpriteEffects.None, 1);
+                spriteBatch.DrawString(gameFont, "You defeated the Hero!", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 175), Color.White, 0f, gameFont.MeasureString("You defeated the Hero!") / 2, 1f, SpriteEffects.None, 1);
 
             }
             if (gameHero.ReachedPrincess)
             {
-                spriteBatch.DrawString(gameFont, "Oh No", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 150) + new Vector2(2, 2), Color.Black, 0f, gameFont.MeasureString("Oh No") / 2, 1f, SpriteEffects.None, 1);
-                spriteBatch.DrawString(gameFont, "The Hero rescued the princess", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 175) + new Vector2(2, 2), Color.Black, 0f, gameFont.MeasureString("The Hero rescued the princess") / 2, 1f, SpriteEffects.None, 1);
-                spriteBatch.DrawString(gameFont, "Oh No", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 150), Color.White, 0f, gameFont.MeasureString("Oh No") / 2, 1f, SpriteEffects.None, 1);
-                spriteBatch.DrawString(gameFont, "The Hero rescued the princess", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 175), Color.White, 0f, gameFont.MeasureString("The Hero rescued the princess") / 2, 1f, SpriteEffects.None, 1);
+                spriteBatch.DrawString(gameFont, "Oh no!", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 150) + new Vector2(2, 2), Color.Black, 0f, gameFont.MeasureString("Oh no!") / 2, 1f, SpriteEffects.None, 1);
+                spriteBatch.DrawString(gameFont, "The Hero rescued the Princess!", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 175) + new Vector2(2, 2), Color.Black, 0f, gameFont.MeasureString("The Hero rescued the Princess!") / 2, 1f, SpriteEffects.None, 1);
+                spriteBatch.DrawString(gameFont, "Oh no!", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 150), Color.White, 0f, gameFont.MeasureString("Oh no!") / 2, 1f, SpriteEffects.None, 1);
+                spriteBatch.DrawString(gameFont, "The Hero rescued the Princess!", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 175), Color.White, 0f, gameFont.MeasureString("The Hero rescued the Princess!") / 2, 1f, SpriteEffects.None, 1);
             }
 
             if (gameHero.Position.X < gameCamera.Position.X)
