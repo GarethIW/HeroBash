@@ -43,7 +43,7 @@ namespace HeroBash
                 if(GameManager.Level<2)
                     resumeGameMenuEntry = new MenuEntry("Next Level");
                 else
-                    resumeGameMenuEntry = new MenuEntry("Start Again");
+                    resumeGameMenuEntry = new MenuEntry("New Game++");
             }
             else
                 resumeGameMenuEntry = new MenuEntry("Resume");

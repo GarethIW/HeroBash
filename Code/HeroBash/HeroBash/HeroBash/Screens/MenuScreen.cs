@@ -27,7 +27,7 @@ namespace HeroBash
         #region Fields
 
         // the number of pixels to pad above and below menu entries for touch input
-        const int menuEntryPadding = 10;
+        const int menuEntryPadding = 15;
 
         List<MenuEntry> menuEntries = new List<MenuEntry>();
         int selectedEntry = 0;
@@ -193,7 +193,7 @@ namespace HeroBash
             float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
 
             // start at Y = 175; each X value is generated per entry
-            Vector2 position = new Vector2(0f, ScreenManager.GraphicsDevice.Viewport.Height/3 + 120f);
+            Vector2 position = new Vector2(0f, ScreenManager.GraphicsDevice.Viewport.Height/3 + 140f);
 
             // update each menu entry's location in turn
             for (int i = 0; i < menuEntries.Count; i++)
@@ -205,10 +205,10 @@ namespace HeroBash
 
                 menuEntry.Zoom = 1f;
 
-                if (ScreenState == ScreenState.TransitionOn)
-                    menuEntry.Zoom += transitionOffset * 10f;
-                else
-                    menuEntry.Zoom = 1f - transitionOffset;
+                //if (ScreenState == ScreenState.TransitionOn)
+                //    menuEntry.Zoom += transitionOffset * 10f;
+                //else
+                //    menuEntry.Zoom = 1f - transitionOffset;
 
                 // set the entry's position
                 menuEntry.Position = position;
