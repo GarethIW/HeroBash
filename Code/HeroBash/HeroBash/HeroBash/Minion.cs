@@ -163,7 +163,7 @@ namespace HeroBash
         {
             if (!Active) return;
 
-            spriteBatch.Draw(GameManager.MinionManager.SpriteSheets[Type], (Position + new Vector2(0, 32 * (1f - squishAmount))) - GameManager.Camera.Position, new Rectangle(animFrame * (int)frameSize.X, 0, (int)frameSize.X, (int)frameSize.Y), Color.White * spawnAlpha, 0f, frameSize / 2, new Vector2(1f, squishAmount), Direction.X < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 1);
+            spriteBatch.Draw(GameManager.MinionManager.SpriteSheets[Type], (Position + new Vector2(0, 32 * (1f - squishAmount)) + new Vector2(0,2)) - GameManager.Camera.Position, new Rectangle(animFrame * (int)frameSize.X, 0, (int)frameSize.X, (int)frameSize.Y), Color.White * spawnAlpha, 0f, frameSize / 2, new Vector2(1f, squishAmount), Direction.X < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 1);
         }
 
         bool CollisionCheck()

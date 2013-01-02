@@ -353,6 +353,22 @@
       <Link>HeroBashContent\topbar.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\BASH-Logo.xnb">
+      <Link>HeroBashContent\BASH-Logo.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\distance.xnb">
+      <Link>HeroBashContent\distance.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\HERO-Logo.xnb">
+      <Link>HeroBashContent\HERO-Logo.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\SFX\levelup.xnb">
+      <Link>HeroBashContent\SFX\levelup.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="HeroBash.MonoWindows8_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

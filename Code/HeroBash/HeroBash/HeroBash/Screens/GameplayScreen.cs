@@ -50,6 +50,7 @@ namespace HeroBash
         Texture2D texArrow;
         Texture2D texPrincess;
         Texture2D texTopBar;
+        Texture2D texDistance;
 
         string mapName;
 
@@ -85,6 +86,7 @@ namespace HeroBash
             texArrow = content.Load<Texture2D>("arrows");
             texPrincess = content.Load<Texture2D>("princess");
             texTopBar = content.Load<Texture2D>("topbar");
+            texDistance = content.Load<Texture2D>("distance");
 
             switch (GameManager.Level)
             {
@@ -425,8 +427,18 @@ namespace HeroBash
                 
             }
 
-            spriteBatch.DrawString(gameFont, gameHero.Level.ToString(), HeartsPos + new Vector2(-40, 5) + new Vector2(2,2), Color.Black * 0.4f);
-            spriteBatch.DrawString(gameFont, gameHero.Level.ToString(), HeartsPos + new Vector2(-40, 5), Color.White);
+            spriteBatch.DrawString(gameFont, gameHero.Level.ToString(), HeartsPos + new Vector2(-40, 6) + new Vector2(2,2), Color.Black * 0.4f);
+            spriteBatch.DrawString(gameFont, gameHero.Level.ToString(), HeartsPos + new Vector2(-40, 6), Color.White);
+
+            spriteBatch.Draw(texDistance, new Vector2(19, 17), new Rectangle(0, 0, 32, 23), Color.White);
+
+            Vector2 distanceBarPosition = new Vector2(((ScreenManager.GraphicsDevice.Viewport.Width / 2) - ((gameButtonManager.Buttons.Count * 96) / 2)) / 2, ScreenManager.GraphicsDevice.Viewport.Height - 20);
+            float distanceBarLength = ((ScreenManager.GraphicsDevice.Viewport.Width / 2) - ((gameButtonManager.Buttons.Count * 96) / 2)) - 50;
+            float currentDistance = (distanceBarLength / GameManager.princessPosition.X) * gameHero.Position.X;
+
+            spriteBatch.Draw(texDistance, new Rectangle((int)distanceBarPosition.X - (int)distanceBarLength / 2, (int)distanceBarPosition.Y + 5, (int)distanceBarLength, 5), new Rectangle(64, 27, 23, 5), Color.White);
+            spriteBatch.Draw(texDistance, (distanceBarPosition + new Vector2(distanceBarLength / 2, 0)), new Rectangle(32, 0, 32, 23), Color.White, 0f, new Vector2(16, 12), 1f, SpriteEffects.None, 1);
+            spriteBatch.Draw(texDistance, (distanceBarPosition - new Vector2(distanceBarLength / 2, 0)) + new Vector2(currentDistance, - gameHero.animFrame/4), new Rectangle(0, 0, 32, 23), Color.White, 0f, new Vector2(16, 12), 1f, SpriteEffects.None, 1);
 
             gameButtonManager.Draw(spriteBatch);
 
