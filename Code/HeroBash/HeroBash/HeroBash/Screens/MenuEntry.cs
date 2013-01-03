@@ -160,7 +160,9 @@ namespace HeroBash
 
             Vector2 origin = new Vector2(font.MeasureString(text).X/2, font.LineSpacing / 2);
 
-            spriteBatch.DrawString(font, text, position, color, 0,
+            spriteBatch.DrawString(font, text, position + new Vector2(1,1), Color.Black * 0.4f * screen.TransitionAlpha, 0,
+                                   origin, Zoom, SpriteEffects.None, 0);
+            spriteBatch.DrawString(font, text, position + new Vector2(-1, -1), color, 0,
                                    origin, Zoom, SpriteEffects.None, 0);
         }
 

@@ -473,6 +473,6 @@
   </object>
  </objectgroup>
  <objectgroup name="Princess" width="200" height="15">
-  <object x="12530" y="492" width="59" height="84"/>
+  <object x="12550" y="512" width="51" height="61"/>
  </objectgroup>
 </map>

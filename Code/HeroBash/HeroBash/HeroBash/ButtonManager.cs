@@ -42,6 +42,11 @@ namespace HeroBash
 
         public int SelectedButton = 0;
 
+        public Rectangle pauseButton;
+        public Rectangle heroCamButton;
+
+        public bool pausePressed;
+
         public ButtonManager()
         {
             Initialize();
@@ -56,6 +61,10 @@ namespace HeroBash
             Buttons.Add(new Button(4, 4000, Keys.D5));
 
             Position = new Vector2((GameManager.Camera.Width / 2) - ((Buttons.Count*buttonSize.X)/2), GameManager.Camera.Height - buttonSize.Y);
+
+            pauseButton = new Rectangle((int)(GameManager.Camera.Width - buttonSize.X), (int)(GameManager.Camera.Height - buttonSize.Y), (int)buttonSize.X, (int)buttonSize.Y);
+            heroCamButton = new Rectangle((int)(GameManager.Camera.Width - (buttonSize.X * 2)), (int)(GameManager.Camera.Height - buttonSize.Y), (int)buttonSize.X, (int)buttonSize.Y);
+
         }
 
         public void LoadContent(ContentManager content)
@@ -88,6 +97,17 @@ namespace HeroBash
                 {
                     SelectedButton = Buttons.IndexOf(b);
 
+                    handled = true;
+                }
+
+                if (pauseButton.Contains(new Point((int)tapPos.X, (int)tapPos.Y)))
+                {
+                    pausePressed = true;
+                    handled = true;
+                }
+                if (heroCamButton.Contains(new Point((int)tapPos.X, (int)tapPos.Y)))
+                {
+                    GameManager.CameraFollowingHero = !GameManager.CameraFollowingHero;
                     handled = true;
                 }
 
@@ -125,10 +145,16 @@ namespace HeroBash
                     }
                 }
                 spriteBatch.Draw(GameManager.MinionManager.SpriteSheets[b.MinionType], drawPos + (buttonSize / 2) + new Vector2(5,5), new Rectangle(0, 0, 64, 64), Color.Black*0.4f, 0f, new Vector2(32, 32), 1f, SpriteEffects.None, 1);
-
                 spriteBatch.Draw(GameManager.MinionManager.SpriteSheets[b.MinionType], drawPos + (buttonSize / 2), new Rectangle(0, 0, 64, 64), Color.White, 0f, new Vector2(32,32), 1f, SpriteEffects.None, 1);
                 drawPos += new Vector2(buttonSize.X, 0);
             }
+
+            spriteBatch.Draw(buttonBG, pauseButton, new Rectangle(GameManager.GameIsPaused?(int)buttonSize.X:0, 0, (int)buttonSize.X, (int)buttonSize.Y), Color.White);
+            spriteBatch.Draw(buttonBG, heroCamButton, new Rectangle(GameManager.CameraFollowingHero ? (int)buttonSize.X : 0, 0, (int)buttonSize.X, (int)buttonSize.Y), Color.White);
+            spriteBatch.Draw(buttonBG, pauseButton, new Rectangle(192, 0, 96, 96), Color.White);
+            spriteBatch.Draw(buttonBG, heroCamButton, new Rectangle(288, 0, 96, 96), Color.White);
+
+            
         }
     }
 }

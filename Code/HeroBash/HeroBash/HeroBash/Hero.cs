@@ -30,6 +30,9 @@ namespace HeroBash
 
         public float painAlpha = 0f;
 
+        public float levelUpAlpha = 0f;
+        public float levelUpTransition = 0f;
+
         public double frozenTime = 0;
 
         public bool ReachedPrincess = false;
@@ -39,7 +42,7 @@ namespace HeroBash
 
         double animTime = 50;
         double currentFrameTime = 0;
-        int animFrame = 1;
+        public int animFrame = 1;
         int numFrames = 9;
         bool onGround = true;
 
@@ -194,6 +197,8 @@ namespace HeroBash
             // Levelling
             if (XP >= XPTNL)
             {
+                AudioController.PlaySFX("levelup");
+
                 Level++;
                 MaxHP++;
                 HP++;
@@ -205,11 +210,24 @@ namespace HeroBash
                 XP -= XPTNL;
                 XPTNL = CalculateXPTNL(Level);
 
+                levelUpTransition = 0f;
+                levelUpAlpha = 1f;
+
             }
+
+            levelUpTransition += 0.03f;
+            if (levelUpTransition >= 1f)
+                levelUpAlpha -= 0.02f;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            if (levelUpAlpha >= 0f)
+            {
+                spriteBatch.DrawString(GameManager.Font, "Level Up!", (Position + new Vector2(0, -80f * levelUpTransition) + new Vector2(1,1)) - GameManager.Camera.Position, Color.Black * 0.4f * levelUpAlpha, 0f, GameManager.Font.MeasureString("Level Up!") / 2, levelUpTransition, SpriteEffects.None, 1);
+                spriteBatch.DrawString(GameManager.Font, "Level Up!", (Position + new Vector2(0, -80f * levelUpTransition) + new Vector2(-1, -1)) - GameManager.Camera.Position, Color.White * levelUpAlpha, 0f, GameManager.Font.MeasureString("Level Up!") / 2, levelUpTransition, SpriteEffects.None, 1);
+            }
+
             if (HP <= 0)
             {
                 spriteBatch.Draw(spriteSheet, (Position + new Vector2(0,5)) - GameManager.Camera.Position, new Rectangle(10 * (int)frameSize.X, 0, (int)frameSize.X, (int)frameSize.Y), Color.White, 0f, frameSize / 2, 1f, SpriteEffects.None, 1);
@@ -265,7 +283,7 @@ namespace HeroBash
                 // Check collision
                 if ((Position - m.Position).Length() < 55)
                 {
-                    if ((Position.Y - m.Position.Y) < -40 && Velocity.Y>0f)
+                    if ((Position.Y - m.Position.Y) < -40 && Velocity.Y > 0f && m.spawnAlpha >= 1f)
                     {
                         // Jumped on top of minion
                         m.Squished = true;
