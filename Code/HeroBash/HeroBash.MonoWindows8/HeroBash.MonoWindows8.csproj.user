@@ -11,6 +11,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <RemoteDebugMachine>Surfie</RemoteDebugMachine>
     <UseAuthentication>True</UseAuthentication>
-    <RemoteDebugEnabled>false</RemoteDebugEnabled>
+    <RemoteDebugEnabled>true</RemoteDebugEnabled>
   </PropertyGroup>
 </Project>

@@ -91,16 +91,16 @@ namespace HeroBash
             switch (GameManager.Level)
             {
                 case 0:
-                    gameMap = content.Load<Map>("rockmap");
+                    gameMap = content.Load<Map>("maps/2-1");
                     break;
                 case 1:
-                    gameMap = content.Load<Map>("dirtmap");
+                    gameMap = content.Load<Map>("maps/1-1");
                     break;
                 case 2:
-                    gameMap = content.Load<Map>("castlemap");
+                    gameMap = content.Load<Map>("maps/5-4");
                     break;
-                default:
-                    gameMap = content.Load<Map>("rockmap");
+                case 4:
+                    gameMap = content.Load<Map>("maps/6-1");
                     break;
             }
             gameCamera = new Camera(ScreenManager.GraphicsDevice.Viewport, gameMap);

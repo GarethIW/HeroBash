@@ -289,6 +289,28 @@
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="maps\1-1.tmx">
+      <Name>1-1</Name>
+      <Importer>TmxImporter</Importer>
+      <Processor>TmxProcessor</Processor>
+    </Compile>
+    <Compile Include="maps\2-1.tmx">
+      <Name>2-1</Name>
+      <Importer>TmxImporter</Importer>
+      <Processor>TmxProcessor</Processor>
+    </Compile>
+    <Compile Include="maps\5-4.tmx">
+      <Name>5-4</Name>
+      <Importer>TmxImporter</Importer>
+      <Processor>TmxProcessor</Processor>
+    </Compile>
+    <Compile Include="maps\6-1.tmx">
+      <Name>6-1</Name>
+      <Importer>TmxImporter</Importer>
+      <Processor>TmxProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

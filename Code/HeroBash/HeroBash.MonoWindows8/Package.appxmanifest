@@ -15,9 +15,13 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="HeroBash.MonoWindows8.App">
-      <VisualElements DisplayName="HeroBash.MonoWindows8" Logo="Assets\Logo.png" SmallLogo="Assets\smalllogo.png" Description="HeroBash.MonoWindows8" ForegroundText="light" BackgroundColor="#464646">
+      <VisualElements DisplayName="HeroBash.MonoWindows8" Logo="Assets\Logo.png" SmallLogo="Assets\smalllogo.png" Description="HeroBash.MonoWindows8" ForegroundText="light" BackgroundColor="#000000">
         <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="Assets\splashscreen.png" />
+        <SplashScreen Image="Assets\splashscreen.png" BackgroundColor="#000000" />
+        <InitialRotationPreference>
+          <Rotation Preference="landscape" />
+          <Rotation Preference="landscapeFlipped" />
+        </InitialRotationPreference>
       </VisualElements>
     </Application>
   </Applications>
