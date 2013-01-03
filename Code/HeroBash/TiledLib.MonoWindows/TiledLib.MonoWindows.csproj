@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework.Windows">
-      <HintPath>..\..\..\..\MonoGame\MonoGame.Framework\bin\Debug\MonoGame.Framework.Windows.dll</HintPath>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\..\..\..\MonoGame\MonoGame.Framework\bin\WindowsGL\Debug\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

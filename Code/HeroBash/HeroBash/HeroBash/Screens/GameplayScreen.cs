@@ -50,6 +50,7 @@ namespace HeroBash
         Texture2D texArrow;
         Texture2D texPrincess;
         Texture2D texTopBar;
+        Texture2D texDistance;
 
         string mapName;
 
@@ -85,20 +86,21 @@ namespace HeroBash
             texArrow = content.Load<Texture2D>("arrows");
             texPrincess = content.Load<Texture2D>("princess");
             texTopBar = content.Load<Texture2D>("topbar");
+            texDistance = content.Load<Texture2D>("distance");
 
             switch (GameManager.Level)
             {
                 case 0:
-                    gameMap = content.Load<Map>("rockmap");
+                    gameMap = content.Load<Map>("maps/1-1");
                     break;
                 case 1:
-                    gameMap = content.Load<Map>("dirtmap");
+                    gameMap = content.Load<Map>("maps/2-1");
                     break;
                 case 2:
-                    gameMap = content.Load<Map>("castlemap");
+                    gameMap = content.Load<Map>("maps/6-1");
                     break;
-                default:
-                    gameMap = content.Load<Map>("rockmap");
+                case 3:
+                    gameMap = content.Load<Map>("maps/5-4");
                     break;
             }
             gameCamera = new Camera(ScreenManager.GraphicsDevice.Viewport, gameMap);
@@ -177,6 +179,13 @@ namespace HeroBash
 
             if (IsActive)
             {
+                GameManager.GameIsPaused = false;
+
+                if (GameManager.CameraFollowingHero)
+                {
+                    gameCamera.Target = gameHero.Position + new Vector2(-300, (-gameCamera.Height/2)+100);
+                }
+
                 gameCamera.Update(ScreenManager.GraphicsDevice.Viewport);
                 gameHero.Update(gameTime);
                 gameMinionManager.Update(gameTime);
@@ -194,6 +203,7 @@ namespace HeroBash
                     }
                 }
             }
+            else GameManager.GameIsPaused = true;
 
             floatingHeartPos -= new Vector2(0, 1f);
 
@@ -222,24 +232,26 @@ namespace HeroBash
             GamePadState gamePadState = input.CurrentGamePadStates[playerIndex];
 
             PlayerIndex player;
-            if (input.IsPauseGame(ControllingPlayer))
+            if (input.IsPauseGame(ControllingPlayer) || gameButtonManager.pausePressed)
             {
+                gameButtonManager.pausePressed = false;
                 PauseBackgroundScreen pauseBG = new PauseBackgroundScreen();
                 ScreenManager.AddScreen(pauseBG, ControllingPlayer);
                 ScreenManager.AddScreen(new PauseMenuScreen(pauseBG), ControllingPlayer);
-                
             }
         
             if(IsActive)
             {
                 if (input.MouseDragging)
                 {
+                    if(input.MouseDelta.Length()>40) GameManager.CameraFollowingHero = false;
                     gameCamera.Target -= input.MouseDelta;
                     //gameCamera.cl
                 }
 
                 if (input.DragGesture.HasValue)
                 {
+                    if (input.DragGesture.Value.Delta.Length() > 40) GameManager.CameraFollowingHero = false;
                     gameCamera.Target -= input.DragGesture.Value.Delta;
                 }
 
@@ -370,18 +382,18 @@ namespace HeroBash
             }
             if (gameHero.HP <= 0)
             {
-                spriteBatch.DrawString(gameFont, "Congratulations", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 150)+new Vector2(2,2), Color.Black, 0f, gameFont.MeasureString("Congratulations") / 2, 1f, SpriteEffects.None, 1);
-                spriteBatch.DrawString(gameFont, "You defeated the Hero", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 175) + new Vector2(2, 2), Color.Black, 0f, gameFont.MeasureString("You defeated the Hero") / 2, 1f, SpriteEffects.None, 1);
-                spriteBatch.DrawString(gameFont, "Congratulations", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 150), Color.White, 0f, gameFont.MeasureString("Congratulations") / 2, 1f, SpriteEffects.None, 1);
-                spriteBatch.DrawString(gameFont, "You defeated the Hero", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 175), Color.White, 0f, gameFont.MeasureString("You defeated the Hero") / 2, 1f, SpriteEffects.None, 1);
+                spriteBatch.DrawString(gameFont, "Congratulations!", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 150)+new Vector2(2,2), Color.Black, 0f, gameFont.MeasureString("Congratulations!") / 2, 1f, SpriteEffects.None, 1);
+                spriteBatch.DrawString(gameFont, "You defeated the Hero!", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 175) + new Vector2(2, 2), Color.Black, 0f, gameFont.MeasureString("You defeated the Hero!") / 2, 1f, SpriteEffects.None, 1);
+                spriteBatch.DrawString(gameFont, "Congratulations!", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 150), Color.White, 0f, gameFont.MeasureString("Congratulations!") / 2, 1f, SpriteEffects.None, 1);
+                spriteBatch.DrawString(gameFont, "You defeated the Hero!", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 175), Color.White, 0f, gameFont.MeasureString("You defeated the Hero!") / 2, 1f, SpriteEffects.None, 1);
 
             }
             if (gameHero.ReachedPrincess)
             {
-                spriteBatch.DrawString(gameFont, "Oh No", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 150) + new Vector2(2, 2), Color.Black, 0f, gameFont.MeasureString("Oh No") / 2, 1f, SpriteEffects.None, 1);
-                spriteBatch.DrawString(gameFont, "The Hero rescued the princess", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 175) + new Vector2(2, 2), Color.Black, 0f, gameFont.MeasureString("The Hero rescued the princess") / 2, 1f, SpriteEffects.None, 1);
-                spriteBatch.DrawString(gameFont, "Oh No", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 150), Color.White, 0f, gameFont.MeasureString("Oh No") / 2, 1f, SpriteEffects.None, 1);
-                spriteBatch.DrawString(gameFont, "The Hero rescued the princess", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 175), Color.White, 0f, gameFont.MeasureString("The Hero rescued the princess") / 2, 1f, SpriteEffects.None, 1);
+                spriteBatch.DrawString(gameFont, "Oh no!", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 150) + new Vector2(2, 2), Color.Black, 0f, gameFont.MeasureString("Oh no!") / 2, 1f, SpriteEffects.None, 1);
+                spriteBatch.DrawString(gameFont, "The Hero rescued the Princess!", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 175) + new Vector2(2, 2), Color.Black, 0f, gameFont.MeasureString("The Hero rescued the Princess!") / 2, 1f, SpriteEffects.None, 1);
+                spriteBatch.DrawString(gameFont, "Oh no!", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 150), Color.White, 0f, gameFont.MeasureString("Oh no!") / 2, 1f, SpriteEffects.None, 1);
+                spriteBatch.DrawString(gameFont, "The Hero rescued the Princess!", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, 175), Color.White, 0f, gameFont.MeasureString("The Hero rescued the Princess!") / 2, 1f, SpriteEffects.None, 1);
             }
 
             if (gameHero.Position.X < gameCamera.Position.X)
@@ -425,8 +437,18 @@ namespace HeroBash
                 
             }
 
-            spriteBatch.DrawString(gameFont, gameHero.Level.ToString(), HeartsPos + new Vector2(-40, 5) + new Vector2(2,2), Color.Black * 0.4f);
-            spriteBatch.DrawString(gameFont, gameHero.Level.ToString(), HeartsPos + new Vector2(-40, 5), Color.White);
+            spriteBatch.DrawString(gameFont, gameHero.Level.ToString(), HeartsPos + new Vector2(-40, 6) + new Vector2(2,2), Color.Black * 0.4f);
+            spriteBatch.DrawString(gameFont, gameHero.Level.ToString(), HeartsPos + new Vector2(-40, 6), Color.White);
+
+            spriteBatch.Draw(texDistance, new Vector2(19, 17), new Rectangle(0, 0, 32, 23), Color.White);
+
+            Vector2 distanceBarPosition = new Vector2(((ScreenManager.GraphicsDevice.Viewport.Width / 2) - ((gameButtonManager.Buttons.Count * 96) / 2)) / 2, ScreenManager.GraphicsDevice.Viewport.Height - 20);
+            float distanceBarLength = ((ScreenManager.GraphicsDevice.Viewport.Width / 2) - ((gameButtonManager.Buttons.Count * 96) / 2)) - 50;
+            float currentDistance = (distanceBarLength / GameManager.princessPosition.X) * gameHero.Position.X;
+
+            spriteBatch.Draw(texDistance, new Rectangle((int)distanceBarPosition.X - (int)distanceBarLength / 2, (int)distanceBarPosition.Y + 5, (int)distanceBarLength, 5), new Rectangle(64, 27, 23, 5), Color.White);
+            spriteBatch.Draw(texDistance, (distanceBarPosition + new Vector2(distanceBarLength / 2, 0)), new Rectangle(32, 0, 32, 23), Color.White, 0f, new Vector2(16, 12), 1f, SpriteEffects.None, 1);
+            spriteBatch.Draw(texDistance, (distanceBarPosition - new Vector2(distanceBarLength / 2, 0)) + new Vector2(currentDistance, - gameHero.animFrame/4), new Rectangle(0, 0, 32, 23), Color.White, 0f, new Vector2(16, 12), 1f, SpriteEffects.None, 1);
 
             gameButtonManager.Draw(spriteBatch);
 

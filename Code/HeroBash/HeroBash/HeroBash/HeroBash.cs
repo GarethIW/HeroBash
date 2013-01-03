@@ -29,12 +29,19 @@ namespace HeroBash
         public HeroBash()
         {
             graphics = new GraphicsDeviceManager(this);
+
+            IsMouseVisible = true;
+
 #if WINDOWS_PHONE || WINRT
             graphics.IsFullScreen = true;
 #endif
 #if WINDOWS
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
+            
+
+            
+            
 #endif
             Content.RootDirectory = "HeroBashContent";
 
@@ -55,7 +62,7 @@ namespace HeroBash
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            graphics.ApplyChanges();
             base.Initialize();
         }
 

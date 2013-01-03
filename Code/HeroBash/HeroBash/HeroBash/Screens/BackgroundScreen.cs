@@ -28,6 +28,14 @@ namespace HeroBash
         ContentManager content;
         Texture2D texBG;
         Texture2D texLogo;
+        Texture2D texHero;
+        Texture2D texBash;
+
+        Vector2 heroPos;
+        Vector2 bashPos;
+
+        bool logoBashed = false;
+        float whiteFlashAlpha = 1f;
 
         ParallaxManager parallaxManager;
 
@@ -60,8 +68,14 @@ namespace HeroBash
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "HeroBashContent");
 
-            texBG = content.Load<Texture2D>("blank");
+            texBG = content.Load<Texture2D>("blank-white");
             texLogo = content.Load<Texture2D>("logo");
+            texHero = content.Load<Texture2D>("hero-logo");
+            texBash = content.Load<Texture2D>("bash-logo");
+
+            heroPos = new Vector2(0, 0);
+            bashPos = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width, 0);
+            
 
             parallaxManager = new ParallaxManager(ScreenManager.GraphicsDevice.Viewport);
             parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/sky"), Vector2.Zero, 0f));
@@ -101,6 +115,20 @@ namespace HeroBash
             scrollPos += new Vector2(5f, 0f);
             parallaxManager.Update(gameTime, scrollPos);
 
+            if (!logoBashed)
+            {
+                heroPos += new Vector2(10, 0);
+                bashPos += new Vector2(-10, 0);
+
+                if (heroPos.X >= ScreenManager.GraphicsDevice.Viewport.Width / 2)
+                {
+                    logoBashed = true;
+                }
+            }
+
+            if (logoBashed && whiteFlashAlpha > 0f)
+                whiteFlashAlpha -= 0.05f;
+
             base.Update(gameTime, otherScreenHasFocus, false);
         }
 
@@ -120,10 +148,25 @@ namespace HeroBash
               //               Color.White * TransitionAlpha * (0.5f + (0.5f * TransitionPosition)));
             parallaxManager.Draw(spriteBatch);
 
-            spriteBatch.Draw(texLogo, new Vector2(viewport.Width/2, viewport.Height/3), null,
-                             Color.White * TransitionAlpha, 0f, new Vector2(texLogo.Width / 2, texLogo.Height / 2), 1f + (TransitionPosition * 10f), SpriteEffects.None, 1);
+            if (!logoBashed)
+            {
+                spriteBatch.Draw(texHero, heroPos + new Vector2(0, viewport.Height / 3), null,
+                             Color.White * TransitionAlpha, 0f, new Vector2(texHero.Width, texHero.Height / 2), 1f, SpriteEffects.None, 1);
+                spriteBatch.Draw(texBash, bashPos + new Vector2(0, viewport.Height / 3), null,
+                             Color.White * TransitionAlpha, 0f, new Vector2(0, texBash.Height / 2), 1f, SpriteEffects.None, 1);
+            }
+            else
+            {
+                spriteBatch.Draw(texLogo, new Vector2(viewport.Width / 2, viewport.Height / 3), null,
+                             Color.White * TransitionAlpha, 0f, new Vector2(texLogo.Width / 2, texLogo.Height / 2), 1f, SpriteEffects.None, 1);
+
+                spriteBatch.Draw(texBG, fullscreen, null, Color.White * whiteFlashAlpha);
+
+            }
 
             spriteBatch.End();
+
+            ScreenManager.FadeBackBufferToBlack(1f-TransitionAlpha);
         }
 
 

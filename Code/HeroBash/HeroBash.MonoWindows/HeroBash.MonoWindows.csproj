@@ -72,10 +72,6 @@
       <Link>HeroBashContent\Rock-Tiles-Extra.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\RockMap.xnb">
-      <Link>HeroBashContent\RockMap.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\minion1.xnb">
       <Link>HeroBashContent\minion1.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -188,33 +184,55 @@
       <Link>HeroBashContent\Dirt-Tiles.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\DirtMap.xnb">
-      <Link>HeroBashContent\DirtMap.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\Castle-Tiles.xnb">
       <Link>HeroBashContent\Castle-Tiles.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\CastleMap.xnb">
-      <Link>HeroBashContent\CastleMap.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\topbar.xnb">
       <Link>HeroBashContent\topbar.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\BASH-Logo.xnb">
+      <Link>HeroBashContent\BASH-Logo.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\blank-white.xnb">
+      <Link>HeroBashContent\blank-white.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\HERO-Logo.xnb">
+      <Link>HeroBashContent\HERO-Logo.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\distance.xnb">
+      <Link>HeroBashContent\distance.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\SFX\levelup.xnb">
+      <Link>HeroBashContent\SFX\levelup.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\1-1.xnb">
+      <Link>HeroBashContent\Maps\1-1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\2-1.xnb">
+      <Link>HeroBashContent\Maps\2-1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\5-4.xnb">
+      <Link>HeroBashContent\Maps\5-4.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\6-1.xnb">
+      <Link>HeroBashContent\Maps\6-1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework.Windows, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\MonoGame\MonoGame.Framework\bin\Debug\MonoGame.Framework.Windows.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\MonoGame\MonoGame.Framework\bin\Debug\OpenTK.dll</HintPath>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\..\..\..\MonoGame\MonoGame.Framework\bin\WindowsGL\Debug\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
