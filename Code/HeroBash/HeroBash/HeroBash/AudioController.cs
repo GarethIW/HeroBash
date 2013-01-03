@@ -26,6 +26,7 @@ namespace HeroBash
             SFX.Add("swordthrow", content.Load<SoundEffect>("sfx/swordthrow"));
             SFX.Add("win", content.Load<SoundEffect>("sfx/win"));
             SFX.Add("lose", content.Load<SoundEffect>("sfx/lose"));
+            SFX.Add("levelup", content.Load<SoundEffect>("sfx/levelup"));
         }
 
         public static void PlaySFX(string key)
