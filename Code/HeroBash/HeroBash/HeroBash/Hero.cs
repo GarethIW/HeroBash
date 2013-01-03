@@ -283,7 +283,7 @@ namespace HeroBash
                 // Check collision
                 if ((Position - m.Position).Length() < 55)
                 {
-                    if ((Position.Y - m.Position.Y) < -40 && Velocity.Y>0f)
+                    if ((Position.Y - m.Position.Y) < -40 && Velocity.Y > 0f && m.spawnAlpha >= 1f)
                     {
                         // Jumped on top of minion
                         m.Squished = true;

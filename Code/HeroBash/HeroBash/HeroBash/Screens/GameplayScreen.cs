@@ -91,16 +91,16 @@ namespace HeroBash
             switch (GameManager.Level)
             {
                 case 0:
-                    gameMap = content.Load<Map>("maps/2-1");
-                    break;
-                case 1:
                     gameMap = content.Load<Map>("maps/1-1");
                     break;
-                case 2:
-                    gameMap = content.Load<Map>("maps/5-4");
+                case 1:
+                    gameMap = content.Load<Map>("maps/2-1");
                     break;
-                case 4:
+                case 2:
                     gameMap = content.Load<Map>("maps/6-1");
+                    break;
+                case 3:
+                    gameMap = content.Load<Map>("maps/5-4");
                     break;
             }
             gameCamera = new Camera(ScreenManager.GraphicsDevice.Viewport, gameMap);
@@ -179,6 +179,13 @@ namespace HeroBash
 
             if (IsActive)
             {
+                GameManager.GameIsPaused = false;
+
+                if (GameManager.CameraFollowingHero)
+                {
+                    gameCamera.Target = gameHero.Position + new Vector2(-300, (-gameCamera.Height/2)+100);
+                }
+
                 gameCamera.Update(ScreenManager.GraphicsDevice.Viewport);
                 gameHero.Update(gameTime);
                 gameMinionManager.Update(gameTime);
@@ -196,6 +203,7 @@ namespace HeroBash
                     }
                 }
             }
+            else GameManager.GameIsPaused = true;
 
             floatingHeartPos -= new Vector2(0, 1f);
 
@@ -224,24 +232,26 @@ namespace HeroBash
             GamePadState gamePadState = input.CurrentGamePadStates[playerIndex];
 
             PlayerIndex player;
-            if (input.IsPauseGame(ControllingPlayer))
+            if (input.IsPauseGame(ControllingPlayer) || gameButtonManager.pausePressed)
             {
+                gameButtonManager.pausePressed = false;
                 PauseBackgroundScreen pauseBG = new PauseBackgroundScreen();
                 ScreenManager.AddScreen(pauseBG, ControllingPlayer);
                 ScreenManager.AddScreen(new PauseMenuScreen(pauseBG), ControllingPlayer);
-                
             }
         
             if(IsActive)
             {
                 if (input.MouseDragging)
                 {
+                    if(input.MouseDelta.Length()>40) GameManager.CameraFollowingHero = false;
                     gameCamera.Target -= input.MouseDelta;
                     //gameCamera.cl
                 }
 
                 if (input.DragGesture.HasValue)
                 {
+                    if (input.DragGesture.Value.Delta.Length() > 40) GameManager.CameraFollowingHero = false;
                     gameCamera.Target -= input.DragGesture.Value.Delta;
                 }
 
