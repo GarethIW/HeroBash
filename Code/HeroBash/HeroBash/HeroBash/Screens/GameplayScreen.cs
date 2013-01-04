@@ -91,7 +91,7 @@ namespace HeroBash
             switch (GameManager.Level)
             {
                 case 0:
-                    gameMap = content.Load<Map>("maps/1-1");
+                    gameMap = content.Load<Map>("maps/5-4");
                     break;
                 case 1:
                     gameMap = content.Load<Map>("maps/2-1");
@@ -100,6 +100,9 @@ namespace HeroBash
                     gameMap = content.Load<Map>("maps/6-1");
                     break;
                 case 3:
+                    gameMap = content.Load<Map>("maps/5-1");
+                    break;
+                case 4:
                     gameMap = content.Load<Map>("maps/5-4");
                     break;
             }
