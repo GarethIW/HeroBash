@@ -497,7 +497,7 @@ namespace HeroBash
             y = -1;
             for (x = -1; x <= 1; x++)
             {
-                Point tilePos = new Point((int)((Position.X + (x * ((frameSize.X / 2))) + (x * -10)) / GameManager.Map.TileWidth), (int)((Position.Y + (y * ((frameSize.Y / 2) - 60))) / GameManager.Map.TileHeight));
+                Point tilePos = new Point((int)((Position.X + (x * ((frameSize.X / 2))) + (x * -10)) / GameManager.Map.TileWidth), (int)((Position.Y + (y * ((frameSize.Y / 2) - 63))) / GameManager.Map.TileHeight));
 
                 if (tilePos.X < tileLayer.Tiles.GetLowerBound(0) || tilePos.X > tileLayer.Tiles.GetUpperBound(0)) continue;
                 if (tilePos.Y < tileLayer.Tiles.GetLowerBound(1) || tilePos.Y > tileLayer.Tiles.GetUpperBound(1)) continue;

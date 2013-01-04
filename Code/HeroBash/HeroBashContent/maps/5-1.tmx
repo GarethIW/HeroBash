@@ -214,7 +214,7 @@
     <property name="MustJump" value="True"/>
    </properties>
   </object>
-  <object type="Full" x="1497" y="552" width="37" height="64">
+  <object type="Full" x="1510" y="551" width="20" height="61">
    <properties>
     <property name="MustJump" value="False"/>
    </properties>
