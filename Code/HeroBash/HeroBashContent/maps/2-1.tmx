@@ -78,7 +78,7 @@
     <property name="MustJump" value="True"/>
    </properties>
   </object>
-  <object type="Full" x="419" y="626" width="30" height="49">
+  <object type="Full" x="406" y="626" width="30" height="49">
    <properties>
     <property name="MustJump" value="False"/>
    </properties>
