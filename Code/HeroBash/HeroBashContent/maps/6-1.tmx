@@ -383,6 +383,11 @@
     <property name="MustJump" value="False"/>
    </properties>
   </object>
+  <object type="Full" x="4990" y="879" width="55" height="61">
+   <properties>
+    <property name="MustJump" value="True"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Princess" width="150" height="16">
   <object x="9536" y="707" width="36" height="60"/>

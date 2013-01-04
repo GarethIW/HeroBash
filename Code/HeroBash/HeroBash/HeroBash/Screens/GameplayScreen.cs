@@ -91,7 +91,7 @@ namespace HeroBash
             switch (GameManager.Level)
             {
                 case 0:
-                    gameMap = content.Load<Map>("maps/5-4");
+                    gameMap = content.Load<Map>("maps/1-1");
                     break;
                 case 1:
                     gameMap = content.Load<Map>("maps/2-1");
@@ -124,7 +124,7 @@ namespace HeroBash
             gameHero.LoadContent(content);
             
 
-            gameCamera.Target = gameHero.Position;
+            gameCamera.Position = gameHero.Position;
 
             //GameManager.Hero = gameHero;
 
@@ -205,6 +205,8 @@ namespace HeroBash
                         ScreenManager.AddScreen(new PauseMenuScreen(pauseBG), ControllingPlayer);
                     }
                 }
+
+                gameButtonManager.Update(gameTime);
             }
             else GameManager.GameIsPaused = true;
 
@@ -213,7 +215,7 @@ namespace HeroBash
             if (gameHero.painAlpha == 1f)
                 floatingHeartPos = HeartsPos + new Vector2((40 * (gameHero.HP)), 0);
 
-            gameButtonManager.Update(gameTime);
+            
 
             gameParallaxManager.Update(gameTime, gameCamera.Position);
         }
