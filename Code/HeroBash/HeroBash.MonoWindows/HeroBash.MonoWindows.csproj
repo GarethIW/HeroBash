@@ -236,6 +236,10 @@
       <Link>HeroBashContent\SFX\freeze.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\overworld.xnb">
+      <Link>HeroBashContent\Maps\overworld.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +311,9 @@
     </Compile>
     <Compile Include="..\HeroBash\HeroBash\Screens\OptionsMenuScreen.cs">
       <Link>Screens\OptionsMenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Screens\OverworldScreen.cs">
+      <Link>Screens\OverworldScreen.cs</Link>
     </Compile>
     <Compile Include="..\HeroBash\HeroBash\Screens\PauseBackgroundScreen.cs">
       <Link>Screens\PauseBackgroundScreen.cs</Link>
