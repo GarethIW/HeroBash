@@ -247,25 +247,25 @@ namespace HeroBash
             if (onGround)
             {
                 spriteBatch.Draw(spriteSheet, (Position + new Vector2(0, 6)) - GameManager.Camera.Position, new Rectangle(animFrame * (int)frameSize.X, 0, (int)frameSize.X, (int)frameSize.Y), Color.White * spawnAlpha, 0f, frameSize / 2, 1f, SpriteEffects.None, 1);
+                if (frozenTime > 0)
+                {
+                    spriteBatch.Draw(spriteSheet, (Position + new Vector2(0, 6) + new Vector2((int)(randomNumber.NextDouble() * 4f) - 2f, 0)) - GameManager.Camera.Position, new Rectangle(animFrame * (int)frameSize.X, 65, (int)frameSize.X, (int)frameSize.Y), new Color(100, 100, 255) * 0.8f, 0f, frameSize / 2, 1.1f, SpriteEffects.None, 1);
+                }
                 if (painAlpha > 0f)
                 {
                     spriteBatch.Draw(spriteSheet, (Position + new Vector2(0, 6)) - GameManager.Camera.Position, new Rectangle(animFrame * (int)frameSize.X, 65, (int)frameSize.X, (int)frameSize.Y), Color.White * painAlpha, 0f, frameSize / 2, 1f, SpriteEffects.None, 1);
-                }
-                if (frozenTime > 0)
-                {
-                    spriteBatch.Draw(spriteSheet, (Position + new Vector2(0, 6)) - GameManager.Camera.Position, new Rectangle(animFrame * (int)frameSize.X, 65, (int)frameSize.X, (int)frameSize.Y), new Color(200,200,255) * 0.8f, 0f, frameSize / 2, 1f, SpriteEffects.None, 1);
                 }
             }
             else
             {
                 spriteBatch.Draw(spriteSheet, (Position + new Vector2(0, 6)) - GameManager.Camera.Position, new Rectangle(0 * (int)frameSize.X, 0, (int)frameSize.X, (int)frameSize.Y), Color.White * spawnAlpha, 0f, frameSize / 2, 1f, SpriteEffects.None, 1);
+                if (frozenTime > 0)
+                {
+                    spriteBatch.Draw(spriteSheet, (Position + new Vector2(0, 6)+new Vector2((int)(randomNumber.NextDouble() * 4f)-2f,0)) - GameManager.Camera.Position, new Rectangle(0 * (int)frameSize.X, 65, (int)frameSize.X, (int)frameSize.Y), new Color(100, 100, 255) * 0.8f, 0f, frameSize / 2, 1.1f, SpriteEffects.None, 1);
+                }
                 if (painAlpha > 0f)
                 {
                     spriteBatch.Draw(spriteSheet, (Position + new Vector2(0, 6)) - GameManager.Camera.Position, new Rectangle(0 * (int)frameSize.X, 65, (int)frameSize.X, (int)frameSize.Y), Color.White * painAlpha, 0f, frameSize / 2, 1f, SpriteEffects.None, 1);
-                }
-                if (frozenTime > 0)
-                {
-                    spriteBatch.Draw(spriteSheet, (Position + new Vector2(0, 6)) - GameManager.Camera.Position, new Rectangle(0 * (int)frameSize.X, 65, (int)frameSize.X, (int)frameSize.Y), new Color(200, 200, 255) * 0.8f, 0f, frameSize / 2, 1f, SpriteEffects.None, 1);
                 }
             }
         }
@@ -497,7 +497,7 @@ namespace HeroBash
             y = -1;
             for (x = -1; x <= 1; x++)
             {
-                Point tilePos = new Point((int)((Position.X + (x * ((frameSize.X / 2))) + (x * -10)) / GameManager.Map.TileWidth), (int)((Position.Y + (y * ((frameSize.Y / 2) - 50))) / GameManager.Map.TileHeight));
+                Point tilePos = new Point((int)((Position.X + (x * ((frameSize.X / 2))) + (x * -10)) / GameManager.Map.TileWidth), (int)((Position.Y + (y * ((frameSize.Y / 2) - 60))) / GameManager.Map.TileHeight));
 
                 if (tilePos.X < tileLayer.Tiles.GetLowerBound(0) || tilePos.X > tileLayer.Tiles.GetUpperBound(0)) continue;
                 if (tilePos.Y < tileLayer.Tiles.GetLowerBound(1) || tilePos.Y > tileLayer.Tiles.GetUpperBound(1)) continue;

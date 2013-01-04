@@ -377,6 +377,14 @@
       <Link>HeroBashContent\Maps\6-1.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\5-1.xnb">
+      <Link>HeroBashContent\Maps\5-1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\SFX\freeze.xnb">
+      <Link>HeroBashContent\SFX\freeze.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="HeroBash.MonoWindows8_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
