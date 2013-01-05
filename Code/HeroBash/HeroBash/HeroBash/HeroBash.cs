@@ -39,7 +39,7 @@ namespace HeroBash
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
             
-
+            
             
             
 #endif
