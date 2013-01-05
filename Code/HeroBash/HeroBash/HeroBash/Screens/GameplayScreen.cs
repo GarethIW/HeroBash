@@ -88,24 +88,9 @@ namespace HeroBash
             texTopBar = content.Load<Texture2D>("topbar");
             texDistance = content.Load<Texture2D>("distance");
 
-            switch (GameManager.Level)
-            {
-                case 0:
-                    gameMap = content.Load<Map>("maps/1-1");
-                    break;
-                case 1:
-                    gameMap = content.Load<Map>("maps/2-1");
-                    break;
-                case 2:
-                    gameMap = content.Load<Map>("maps/6-1");
-                    break;
-                case 3:
-                    gameMap = content.Load<Map>("maps/5-1");
-                    break;
-                case 4:
-                    gameMap = content.Load<Map>("maps/5-4");
-                    break;
-            }
+            
+            gameMap = content.Load<Map>("maps/" + GameManager.CurrentStage + "-" + GameManager.CurrentLevel);
+                  
             gameCamera = new Camera(ScreenManager.GraphicsDevice.Viewport, gameMap);
 
             gameMinionManager = new MinionManager();
@@ -200,9 +185,10 @@ namespace HeroBash
                     if (finishGameTimer >= 3000 && !shownFinishScreen)
                     {
                         shownFinishScreen = true;
-                        PauseBackgroundScreen pauseBG = new PauseBackgroundScreen();
-                        ScreenManager.AddScreen(pauseBG, ControllingPlayer);
-                        ScreenManager.AddScreen(new PauseMenuScreen(pauseBG), ControllingPlayer);
+                        //PauseBackgroundScreen pauseBG = new PauseBackgroundScreen();
+                        //ScreenManager.AddScreen(pauseBG, ControllingPlayer);
+                        //ScreenManager.AddScreen(new PauseMenuScreen(pauseBG), ControllingPlayer);
+                        LoadingScreen.Load(ScreenManager, false, null, new OverworldScreen());
                     }
                 }
 
@@ -231,7 +217,7 @@ namespace HeroBash
                 throw new ArgumentNullException("input");
 
             // Look up inputs for the active player profile.
-            int playerIndex = (int)ControllingPlayer.Value;
+            int playerIndex = 0;
 
             KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
             GamePadState gamePadState = input.CurrentGamePadStates[playerIndex];

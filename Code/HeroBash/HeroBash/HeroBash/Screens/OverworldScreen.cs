@@ -28,6 +28,10 @@ namespace HeroBash
     class OverworldLocation
     {
         public Vector2 Position;
+        public int Stage;
+        public int Level;
+        public bool Available = false;
+        public Vector2 ArrowPos = Vector2.Zero;
         public List<OverworldLocation> LinkedLocations = new List<OverworldLocation>();
     }
 
@@ -56,9 +60,7 @@ namespace HeroBash
         #region Initialization
 
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
+     
         public OverworldScreen()
         {
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
@@ -66,13 +68,6 @@ namespace HeroBash
         }
 
 
-        /// <summary>
-        /// Loads graphics content for this screen. The background texture is quite
-        /// big, so we use our own local ContentManager to load it. This allows us
-        /// to unload before going from the menus into the game itself, wheras if we
-        /// used the shared ContentManager provided by the Game class, the content
-        /// would remain loaded forever.
-        /// </summary>
         public override void LoadContent()
         {
             if (content == null)
@@ -80,7 +75,7 @@ namespace HeroBash
 
             overworldMap = content.Load<Map>("maps/overworld");
             overworldCamera = new Camera(ScreenManager.GraphicsDevice.Viewport, overworldMap);
-            overworldCamera.Target = new Vector2(0, (((overworldMap.Height / 2) * overworldMap.TileHeight)+(overworldMap.TileHeight/2)) - (overworldCamera.Height / 2));
+            //overworldCamera.Position = new Vector2(0, (((overworldMap.Height / 2) * overworldMap.TileHeight)+(overworldMap.TileHeight/2)) - (overworldCamera.Height / 2));
 
             texBG = content.Load<Texture2D>("blank-white");
             texDistance = content.Load<Texture2D>("distance");
@@ -99,18 +94,52 @@ namespace HeroBash
 
                 locPos.Y = ((overworldMap.Height * overworldMap.TileHeight) / 2) - (((numLocs - 1) * (overworldMap.TileHeight * locationSpacing)) / 2);
 
-                for (int i = 1; i <= numLocs; i++)
+                for (int level = 0; level < numLocs; level++)
                 {
                     OverworldLocation loc = new OverworldLocation();
                     loc.Position = locPos;
+                    loc.Stage = stage;
+                    loc.Level = level;
                     Locations.Add(loc);
 
                     locPos.Y += overworldMap.TileHeight * locationSpacing;
+
+                    if (loc.Stage == GameManager.CurrentStage && loc.Level + 1 == GameManager.CurrentLevel)
+                    {
+                        overworldCamera.Target = loc.Position - new Vector2(200, (overworldCamera.Height / 2));
+                        princessPos = loc.Position;
+                    }
                 }
 
                 locPos.X += overworldMap.TileWidth * locationSpacing;
                 
             }
+
+            foreach (OverworldLocation sourceLoc in Locations)
+            {
+                foreach (OverworldLocation loc in Locations)
+                {
+                    if (loc.Stage == sourceLoc.Stage + 1)
+                    {
+                        if (loc.Stage <= 4)
+                        {
+                            if (loc.Level == sourceLoc.Level || loc.Level == sourceLoc.Level + 1)
+                            {
+                                sourceLoc.LinkedLocations.Add(loc);
+                            }
+                        }
+                        else
+                        {
+                            if (loc.Level == sourceLoc.Level || loc.Level == sourceLoc.Level - 1)
+                            {
+                                sourceLoc.LinkedLocations.Add(loc);
+                            }
+                        }
+                    }
+                }
+            }
+
+            
         }
 
 
@@ -128,19 +157,60 @@ namespace HeroBash
         #region Update and Draw
 
 
-        /// <summary>
-        /// Updates the background screen. Unlike most screens, this should not
-        /// transition off even if it has been covered by another screen: it is
-        /// supposed to be covered, after all! This overload forces the
-        /// coveredByOtherScreen parameter to false in order to stop the base
-        /// Update method wanting to transition off.
-        /// </summary>
         public override void Update(GameTime gameTime, bool otherScreenHasFocus,
                                                        bool coveredByOtherScreen)
         {
             overworldCamera.Update(ScreenManager.GraphicsDevice.Viewport);
 
+            OverworldLocation currentLoc = null;
+
+            foreach (OverworldLocation loc in Locations)
+            {
+                if (loc.Stage == GameManager.CurrentStage && loc.Level + 1 == GameManager.CurrentLevel)
+                {
+                    currentLoc = loc;
+                    overworldCamera.Target = loc.Position - new Vector2(200, (overworldCamera.Height / 2));
+                }
+                foreach (OverworldLocation ll in loc.LinkedLocations) ll.Available = false;
+            }
+
+
+            foreach (OverworldLocation ll in currentLoc.LinkedLocations)
+            {
+                ll.Available = true;
+                ll.ArrowPos = ll.Position + new Vector2(0, -(((float)Math.Sin(gameTime.TotalGameTime.Milliseconds)) * 10f));
+            }
+              
+
             base.Update(gameTime, otherScreenHasFocus, false);
+        }
+
+        public override void HandleInput(InputState input)
+        {
+            OverworldLocation currentLoc = null;
+            foreach (OverworldLocation loc in Locations)
+            {
+                if (loc.Stage == GameManager.CurrentStage && loc.Level + 1 == GameManager.CurrentLevel)
+                {
+                    currentLoc = loc;
+                }
+            }
+
+            if (input.TapPosition.HasValue)
+            {
+                foreach (OverworldLocation ll in currentLoc.LinkedLocations)
+                {
+                    Rectangle testRect = new Rectangle((int)((ll.Position.X - (locationSize.X / 2) - overworldCamera.Position.X)), (int)((ll.Position.Y - (locationSize.Y / 2) - overworldCamera.Position.Y)), (int)locationSize.X, (int)locationSize.Y);
+                    if(testRect.Contains(new Point((int)input.TapPosition.Value.X,(int)input.TapPosition.Value.Y)))
+                    {
+                        GameManager.CurrentStage = ll.Stage;
+                        GameManager.CurrentLevel = ll.Level + 1;
+                        LoadingScreen.Load(ScreenManager, false, null, new GameplayScreen());
+                    }
+                }
+            }
+
+            base.HandleInput(input);
         }
 
 
@@ -159,7 +229,7 @@ namespace HeroBash
 
             foreach (OverworldLocation loc in Locations)
             {
-                spriteBatch.Draw(texBG, new Rectangle((int)((loc.Position.X - (locationSize.X / 2)) - overworldCamera.Position.X), (int)((loc.Position.Y - (locationSize.Y / 2)) - overworldCamera.Position.Y), (int)locationSize.X, (int)locationSize.Y), null, Color.White * 0.5f);
+                spriteBatch.Draw(texBG, new Rectangle((int)((loc.Position.X - (locationSize.X / 2)) - overworldCamera.Position.X), (int)((loc.Position.Y - (locationSize.Y / 2)) - overworldCamera.Position.Y), (int)locationSize.X, (int)locationSize.Y), null, ((GameManager.CurrentStage==loc.Stage && GameManager.CurrentLevel==loc.Level + 1)?Color.Red:(loc.Available?Color.Yellow:Color.White)) * 0.5f);
             }
 
             spriteBatch.End();

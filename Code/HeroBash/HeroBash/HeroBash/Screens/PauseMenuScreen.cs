@@ -40,7 +40,7 @@ namespace HeroBash
                 resumeGameMenuEntry = new MenuEntry("Try Again");
             else if (GameManager.Hero.HP<=0)
             {
-                if(GameManager.Level<4)
+                if(GameManager.CurrentLevel<4)
                     resumeGameMenuEntry = new MenuEntry("Next Level");
                 else
                     resumeGameMenuEntry = new MenuEntry("New Game++");
@@ -77,9 +77,9 @@ namespace HeroBash
         /// </summary>
         void ResumeGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            if (GameManager.Hero.HP<=0 && GameManager.Level<4) GameManager.Level++;
+            if (GameManager.Hero.HP <= 0 && GameManager.CurrentLevel < 4) GameManager.CurrentLevel++;
             else
-                if (GameManager.Hero.HP <= 0 && GameManager.Level == 4) { GameManager.Level = 0; }
+                if (GameManager.Hero.HP <= 0 && GameManager.CurrentLevel == 4) { GameManager.CurrentLevel = 0; }
 
             
 
@@ -87,7 +87,7 @@ namespace HeroBash
             {
                 if (GameManager.Hero.ReachedPrincess)
                 {
-                    GameManager.Level = 0;
+                    GameManager.CurrentLevel = 0;
                     GameManager.Hero = new Hero();
                 }
 
