@@ -42,9 +42,13 @@ namespace HeroBash
         ContentManager content;
         Texture2D texBG;
         Texture2D texDistance;
+        Texture2D texArrow;
 
         Vector2 heroPos;
         Vector2 princessPos;
+        Vector2 princessStartPos;
+        Vector2 princessTarget;
+        float princessMoveAmount = 0f;
 
         Camera overworldCamera;
         Map overworldMap;
@@ -54,6 +58,11 @@ namespace HeroBash
         int locationSpacing = 3;
 
         List<OverworldLocation> Locations = new List<OverworldLocation>();
+
+        OverworldLocation targetLocation;
+
+        bool princessMoving = false;
+        double princessMovedTime = 0;
 
         #endregion
 
@@ -65,6 +74,8 @@ namespace HeroBash
         {
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
+
+            EnabledGestures = Microsoft.Xna.Framework.Input.Touch.GestureType.Tap;
         }
 
 
@@ -79,6 +90,8 @@ namespace HeroBash
 
             texBG = content.Load<Texture2D>("blank-white");
             texDistance = content.Load<Texture2D>("distance");
+            texArrow = content.Load<Texture2D>("overworld-arrow");
+
 
             heroPos = new Vector2(0, 0);
             princessPos = new Vector2(0, 0);
@@ -106,8 +119,11 @@ namespace HeroBash
 
                     if (loc.Stage == GameManager.CurrentStage && loc.Level + 1 == GameManager.CurrentLevel)
                     {
+                        overworldCamera.Position = loc.Position - new Vector2(200, (overworldCamera.Height / 2));
                         overworldCamera.Target = loc.Position - new Vector2(200, (overworldCamera.Height / 2));
+
                         princessPos = loc.Position;
+                        princessStartPos = loc.Position;
                     }
                 }
 
@@ -178,9 +194,36 @@ namespace HeroBash
             foreach (OverworldLocation ll in currentLoc.LinkedLocations)
             {
                 ll.Available = true;
-                ll.ArrowPos = ll.Position + new Vector2(0, -(((float)Math.Sin(gameTime.TotalGameTime.Milliseconds)) * 10f));
+                ll.ArrowPos = ll.Position + new Vector2(0, -(((float)Math.Sin(gameTime.TotalGameTime.TotalSeconds*6)+1f) * 30f));
             }
-              
+
+            if (princessMoving)
+            {
+                if (princessMoveAmount >= 1f)
+                {
+                    princessMovedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+                    if (princessMovedTime >= 500)
+                    {
+                        if (!this.IsExiting)
+                        {
+                            LoadingScreen.Load(ScreenManager, false, null, new GameplayScreen());
+                        }
+                        else
+                        {
+                            if (TransitionPosition > 0.95f)
+                            {
+                                GameManager.CurrentStage = targetLocation.Stage;
+                                GameManager.CurrentLevel = targetLocation.Level + 1;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    princessMoveAmount += 0.02f;
+                    princessPos = Vector2.Lerp(princessStartPos, princessTarget, princessMoveAmount);
+                }
+            }
 
             base.Update(gameTime, otherScreenHasFocus, false);
         }
@@ -203,9 +246,9 @@ namespace HeroBash
                     Rectangle testRect = new Rectangle((int)((ll.Position.X - (locationSize.X / 2) - overworldCamera.Position.X)), (int)((ll.Position.Y - (locationSize.Y / 2) - overworldCamera.Position.Y)), (int)locationSize.X, (int)locationSize.Y);
                     if(testRect.Contains(new Point((int)input.TapPosition.Value.X,(int)input.TapPosition.Value.Y)))
                     {
-                        GameManager.CurrentStage = ll.Stage;
-                        GameManager.CurrentLevel = ll.Level + 1;
-                        LoadingScreen.Load(ScreenManager, false, null, new GameplayScreen());
+                        targetLocation = ll;
+                        princessTarget = ll.Position;
+                        princessMoving = true;
                     }
                 }
             }
@@ -213,6 +256,7 @@ namespace HeroBash
             base.HandleInput(input);
         }
 
+        
 
         /// <summary>
         /// Draws the background screen.
@@ -230,7 +274,14 @@ namespace HeroBash
             foreach (OverworldLocation loc in Locations)
             {
                 spriteBatch.Draw(texBG, new Rectangle((int)((loc.Position.X - (locationSize.X / 2)) - overworldCamera.Position.X), (int)((loc.Position.Y - (locationSize.Y / 2)) - overworldCamera.Position.Y), (int)locationSize.X, (int)locationSize.Y), null, ((GameManager.CurrentStage==loc.Stage && GameManager.CurrentLevel==loc.Level + 1)?Color.Red:(loc.Available?Color.Yellow:Color.White)) * 0.5f);
+                if (loc.Available && !princessMoving)
+                {
+                    spriteBatch.Draw(texArrow, loc.ArrowPos - overworldCamera.Position, null, Color.White, 0f, new Vector2(32, 64), 1f, SpriteEffects.None, 1);
+                }
             }
+
+            spriteBatch.Draw(texDistance, princessPos - overworldCamera.Position, new Rectangle(32, 0, 32, 23), Color.White, 0f, new Vector2(16, 12), 1f, SpriteEffects.None, 1);
+            
 
             spriteBatch.End();
 
