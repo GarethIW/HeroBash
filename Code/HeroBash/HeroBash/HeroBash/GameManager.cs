@@ -22,6 +22,7 @@ namespace HeroBash
 
         public static SpriteFont Font;
 
+        public static int CurrentPlaythrough;
         public static int CurrentStage;
         public static int CurrentLevel;
 
