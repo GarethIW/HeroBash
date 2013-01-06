@@ -88,7 +88,7 @@ namespace HeroBash
                 Position = SpawnPoint;
                 //Position.X = 0;
                 spawnAlpha = 0f;
-                SpawnTime = 4000;
+                SpawnTime = 4000 + (2*(GameManager.CurrentPlaythrough-1));
             }
 
             HP = MaxHP;

@@ -67,6 +67,7 @@ namespace HeroBash
         /// </summary>
         void CampaignGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
+            GameManager.CurrentPlaythrough = 1;
             GameManager.CurrentStage = 0;
             GameManager.CurrentLevel = 1;
             GameManager.Hero = new Hero();
