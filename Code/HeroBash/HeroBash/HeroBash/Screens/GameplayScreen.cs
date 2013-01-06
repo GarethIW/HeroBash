@@ -190,7 +190,11 @@ namespace HeroBash
                         //PauseBackgroundScreen pauseBG = new PauseBackgroundScreen();
                         //ScreenManager.AddScreen(pauseBG, ControllingPlayer);
                         //ScreenManager.AddScreen(new PauseMenuScreen(pauseBG), ControllingPlayer);
-                        if (GameManager.CurrentStage == 8) GameManager.CurrentStage = 0;
+                        if (GameManager.CurrentStage == 8)
+                        {
+                            GameManager.CurrentPlaythrough++;
+                            GameManager.CurrentStage = 0;
+                        }
                         LoadingScreen.Load(ScreenManager, false, null, new OverworldScreen());
                     }
                 }

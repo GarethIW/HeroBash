@@ -72,6 +72,7 @@ namespace HeroBash
         {
             if (GameManager.Hero.ReachedPrincess)
             {
+                GameManager.CurrentPlaythrough = 1;
                 GameManager.CurrentStage = 0;
                 GameManager.CurrentLevel = 1;
                 GameManager.Hero = new Hero();

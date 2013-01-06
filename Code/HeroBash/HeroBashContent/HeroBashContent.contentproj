@@ -30,13 +30,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="map.tmx">
-      <Name>map</Name>
-      <Importer>TmxImporter</Importer>
-      <Processor>TmxProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="gamefont.spritefont">
       <Name>gamefont</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -67,13 +60,6 @@
       <Name>hero</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="RockMap.tmx">
-      <Name>RockMap</Name>
-      <Importer>TmxImporter</Importer>
-      <Processor>TmxProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -233,20 +219,6 @@
       <Name>win</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="DirtMap.tmx">
-      <Name>DirtMap</Name>
-      <Importer>TmxImporter</Importer>
-      <Processor>TmxProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="CastleMap.tmx">
-      <Name>CastleMap</Name>
-      <Importer>TmxImporter</Importer>
-      <Processor>TmxProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>

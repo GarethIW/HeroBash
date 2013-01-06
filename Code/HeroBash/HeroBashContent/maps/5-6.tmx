@@ -5,11 +5,20 @@
  </tileset>
  <layer name="FG" width="175" height="25">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <objectgroup name="Spawn" width="175" height="25">
   <object x="-6" y="1215" width="64" height="60"/>
+  <object x="702" y="1089" width="64" height="60"/>
+  <object x="1402" y="1221" width="64" height="60"/>
+  <object x="2248" y="961" width="64" height="60"/>
+  <object x="3274" y="961" width="64" height="60"/>
+  <object x="4162" y="1023" width="64" height="60"/>
+  <object x="5828" y="897" width="64" height="60"/>
+  <object x="7560" y="1405" width="64" height="60"/>
+  <object x="9018" y="963" width="64" height="60"/>
+  <object x="10188" y="833" width="64" height="60"/>
  </objectgroup>
  <objectgroup name="Princess" width="175" height="25">
   <object x="11133" y="703" width="62" height="64"/>
@@ -280,7 +289,7 @@
     <property name="MustJump" value="False"/>
    </properties>
   </object>
-  <object type="Full" x="6698" y="878" width="36" height="68">
+  <object type="Full" x="6692" y="878" width="22" height="68">
    <properties>
     <property name="MustJump" value="False"/>
    </properties>
@@ -388,6 +397,16 @@
   <object type="Half" x="5542" y="882" width="34" height="56">
    <properties>
     <property name="MustJump" value="False"/>
+   </properties>
+  </object>
+  <object type="Full" x="4706" y="1138" width="36" height="68">
+   <properties>
+    <property name="MustJump" value="True"/>
+   </properties>
+  </object>
+  <object type="Full" x="3168" y="1134" width="36" height="68">
+   <properties>
+    <property name="MustJump" value="True"/>
    </properties>
   </object>
  </objectgroup>
