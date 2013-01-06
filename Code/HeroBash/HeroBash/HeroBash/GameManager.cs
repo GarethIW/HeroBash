@@ -22,9 +22,13 @@ namespace HeroBash
 
         public static SpriteFont Font;
 
-        public static int Level;
+        public static int CurrentPlaythrough;
+        public static int CurrentStage;
+        public static int CurrentLevel;
 
         public static bool CameraFollowingHero = true;
         public static bool GameIsPaused = false;
+
+        
     }
 }
