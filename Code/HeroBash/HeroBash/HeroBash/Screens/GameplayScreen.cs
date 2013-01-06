@@ -88,23 +88,12 @@ namespace HeroBash
             texTopBar = content.Load<Texture2D>("topbar");
             texDistance = content.Load<Texture2D>("distance");
 
-            switch (GameManager.Level)
-            {
-                case 0:
-                    gameMap = content.Load<Map>("maps/1-1");
-                    break;
-                case 1:
-                    gameMap = content.Load<Map>("maps/2-1");
-                    break;
-                case 2:
-                    gameMap = content.Load<Map>("maps/6-1");
-                    break;
-                case 3:
-                    gameMap = content.Load<Map>("maps/5-4");
-                    break;
-            }
+            
+            gameMap = content.Load<Map>("maps/" + GameManager.CurrentStage + "-" + GameManager.CurrentLevel);
+                  
             gameCamera = new Camera(ScreenManager.GraphicsDevice.Viewport, gameMap);
-
+            gameCamera.ClampRect = new Rectangle(0, 5 * gameMap.TileHeight, gameMap.Width * gameMap.TileWidth, gameMap.Height * gameMap.TileHeight);
+            
             gameMinionManager = new MinionManager();
             gameMinionManager.LoadContent(content);
 
@@ -121,6 +110,7 @@ namespace HeroBash
             gameHero.LoadContent(content);
             
 
+            gameCamera.Position = gameHero.Position;
             gameCamera.Target = gameHero.Position;
 
             //GameManager.Hero = gameHero;
@@ -134,9 +124,9 @@ namespace HeroBash
             gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/clouds1"), new Vector2(0, 50), -0.001f));
             gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/clouds2"), new Vector2(0, 0), -0.005f));
             gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/clouds3"), new Vector2(0, -50), -0.008f));
-            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains3"), new Vector2(0, 300), -0.02f));
-            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains2"), new Vector2(0, 100), -0.04f));
-            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains1"), new Vector2(0, 140), -0.07f));
+            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains3"), new Vector2(0, ScreenManager.GraphicsDevice.Viewport.Height-420), -0.02f));
+            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains2"), new Vector2(0, ScreenManager.GraphicsDevice.Viewport.Height-620), -0.04f));
+            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains1"), new Vector2(0, ScreenManager.GraphicsDevice.Viewport.Height - 580), -0.07f));
             
 
             // Princess
@@ -191,7 +181,25 @@ namespace HeroBash
                 gameMinionManager.Update(gameTime);
                 gameProjectileManager.Update(gameTime);
 
-                if (gameHero.HP <= 0 || gameHero.ReachedPrincess)
+                if (gameHero.HP <= 0)
+                {
+                    finishGameTimer += gameTime.ElapsedGameTime.TotalMilliseconds;
+                    if (finishGameTimer >= 3000 && !shownFinishScreen)
+                    {
+                        shownFinishScreen = true;
+                        //PauseBackgroundScreen pauseBG = new PauseBackgroundScreen();
+                        //ScreenManager.AddScreen(pauseBG, ControllingPlayer);
+                        //ScreenManager.AddScreen(new PauseMenuScreen(pauseBG), ControllingPlayer);
+                        if (GameManager.CurrentStage == 8)
+                        {
+                            GameManager.CurrentPlaythrough++;
+                            GameManager.CurrentStage = 0;
+                        }
+                        LoadingScreen.Load(ScreenManager, false, null, new OverworldScreen());
+                    }
+                }
+
+                if (gameHero.ReachedPrincess)
                 {
                     finishGameTimer += gameTime.ElapsedGameTime.TotalMilliseconds;
                     if (finishGameTimer >= 3000 && !shownFinishScreen)
@@ -200,8 +208,11 @@ namespace HeroBash
                         PauseBackgroundScreen pauseBG = new PauseBackgroundScreen();
                         ScreenManager.AddScreen(pauseBG, ControllingPlayer);
                         ScreenManager.AddScreen(new PauseMenuScreen(pauseBG), ControllingPlayer);
+                        //LoadingScreen.Load(ScreenManager, false, null, new OverworldScreen());
                     }
                 }
+
+                gameButtonManager.Update(gameTime);
             }
             else GameManager.GameIsPaused = true;
 
@@ -210,7 +221,7 @@ namespace HeroBash
             if (gameHero.painAlpha == 1f)
                 floatingHeartPos = HeartsPos + new Vector2((40 * (gameHero.HP)), 0);
 
-            gameButtonManager.Update(gameTime);
+            
 
             gameParallaxManager.Update(gameTime, gameCamera.Position);
         }
@@ -226,7 +237,7 @@ namespace HeroBash
                 throw new ArgumentNullException("input");
 
             // Look up inputs for the active player profile.
-            int playerIndex = (int)ControllingPlayer.Value;
+            int playerIndex = 0;
 
             KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
             GamePadState gamePadState = input.CurrentGamePadStates[playerIndex];
@@ -357,7 +368,7 @@ namespace HeroBash
         {
             // This game has a blue background. Why? Because!
             ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
-                                               Color.DarkGray, 0, 0);
+                                               Color.Black, 0, 0);
 
             // Our player and enemy are both actually just text strings.
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;

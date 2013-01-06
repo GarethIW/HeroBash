@@ -137,6 +137,7 @@ namespace HeroBash
                                 if (GameManager.Hero.frozenTime<=0 && GameManager.Hero.HP > 0 && !GameManager.Hero.ReachedPrincess)
                                 {
                                     GameManager.Hero.frozenTime = 5000;
+                                    AudioController.PlaySFX("freeze", 0f);
                                     //GameManager.Hero.painAlpha = 1f;
                                     //AudioController.PlaySFX("herohurt", ((float)AudioController.randomNumber.NextDouble() * 0.5f) - 0.25f);
                                 }

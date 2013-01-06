@@ -163,6 +163,9 @@
     <Compile Include="..\HeroBash\HeroBash\screens\OptionsMenuScreen.cs">
       <Link>Screens\OptionsMenuScreen.cs</Link>
     </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Screens\OverworldScreen.cs">
+      <Link>Screens\OverworldScreen.cs</Link>
+    </Compile>
     <Compile Include="..\HeroBash\HeroBash\screens\PauseBackgroundScreen.cs">
       <Link>Screens\PauseBackgroundScreen.cs</Link>
     </Compile>
@@ -265,10 +268,6 @@
       <Link>HeroBashContent\BASH-Logo.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\basictiles.xnb">
-      <Link>HeroBashContent\basictiles.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\blank-white.xnb">
       <Link>HeroBashContent\blank-white.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -311,10 +310,6 @@
     </Content>
     <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\logo.xnb">
       <Link>HeroBashContent\logo.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\map.xnb">
-      <Link>HeroBashContent\map.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\menufont.xnb">
@@ -375,6 +370,102 @@
     </Content>
     <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\6-1.xnb">
       <Link>HeroBashContent\Maps\6-1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\5-1.xnb">
+      <Link>HeroBashContent\Maps\5-1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\SFX\freeze.xnb">
+      <Link>HeroBashContent\SFX\freeze.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\overworld.xnb">
+      <Link>HeroBashContent\Maps\overworld.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\1-2.xnb">
+      <Link>HeroBashContent\Maps\1-2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\2-2.xnb">
+      <Link>HeroBashContent\Maps\2-2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\2-3.xnb">
+      <Link>HeroBashContent\Maps\2-3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\3-1.xnb">
+      <Link>HeroBashContent\Maps\3-1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\3-2.xnb">
+      <Link>HeroBashContent\Maps\3-2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\3-3.xnb">
+      <Link>HeroBashContent\Maps\3-3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\3-4.xnb">
+      <Link>HeroBashContent\Maps\3-4.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\4-1.xnb">
+      <Link>HeroBashContent\Maps\4-1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\4-2.xnb">
+      <Link>HeroBashContent\Maps\4-2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\4-3.xnb">
+      <Link>HeroBashContent\Maps\4-3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\4-4.xnb">
+      <Link>HeroBashContent\Maps\4-4.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\4-5.xnb">
+      <Link>HeroBashContent\Maps\4-5.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\5-2.xnb">
+      <Link>HeroBashContent\Maps\5-2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\5-3.xnb">
+      <Link>HeroBashContent\Maps\5-3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\6-2.xnb">
+      <Link>HeroBashContent\Maps\6-2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\6-3.xnb">
+      <Link>HeroBashContent\Maps\6-3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\7-1.xnb">
+      <Link>HeroBashContent\Maps\7-1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\7-2.xnb">
+      <Link>HeroBashContent\Maps\7-2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\maps\8-1.xnb">
+      <Link>HeroBashContent\Maps\8-1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\overworld-arrow.xnb">
+      <Link>HeroBashContent\overworld-arrow.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\Jungle-Tiles.xnb">
+      <Link>HeroBashContent\Jungle-Tiles.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="HeroBash.MonoWindows8_TemporaryKey.pfx" />

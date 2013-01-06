@@ -54,11 +54,11 @@ namespace HeroBash
 
         public void Initialize()
         {
-            Buttons.Add(new Button(0, 2000, Keys.D1));
-            Buttons.Add(new Button(1, 3000, Keys.D2));
-            Buttons.Add(new Button(2, 5000, Keys.D3));
-            Buttons.Add(new Button(3, 8000, Keys.D4));
-            Buttons.Add(new Button(4, 4000, Keys.D5));
+            Buttons.Add(new Button(0, 2000 - (100*(GameManager.CurrentPlaythrough-1)), Keys.D1));
+            Buttons.Add(new Button(1, 3000 - (150 * (GameManager.CurrentPlaythrough - 1)), Keys.D2));
+            Buttons.Add(new Button(2, 5000 - (250 * (GameManager.CurrentPlaythrough - 1)), Keys.D3));
+            Buttons.Add(new Button(3, 8000 - (400 * (GameManager.CurrentPlaythrough - 1)), Keys.D4));
+            Buttons.Add(new Button(4, 4000 - (200 * (GameManager.CurrentPlaythrough - 1)), Keys.D5));
 
             Position = new Vector2((GameManager.Camera.Width / 2) - ((Buttons.Count*buttonSize.X)/2), GameManager.Camera.Height - buttonSize.Y);
 
