@@ -58,6 +58,8 @@
     <Reference Include="Microsoft.Xna.Framework.Input.Touch" />
     <Reference Include="mscorlib" />
     <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -66,6 +68,7 @@
   <ItemGroup>
     <Compile Include="AudioController.cs" />
     <Compile Include="ButtonManager.cs" />
+    <Compile Include="ScoreBoard.cs" />
     <Compile Include="ParallaxManager.cs" />
     <Compile Include="ProjectileManager.cs" />
     <Compile Include="Minion.cs" />
@@ -73,6 +76,11 @@
     <Compile Include="Hero.cs" />
     <Compile Include="MinionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\HighScoresService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <None Include="Properties\AppManifest.xml">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </None>
@@ -97,6 +105,34 @@
     <Compile Include="Screens\PauseMenuScreen.cs" />
     <Compile Include="Screens\PlayerIndexEventArgs.cs" />
     <Compile Include="HeroBash.cs" />
+    <None Include="Service References\HighScoresService\HeroBash.HighScoresService.LastWeek.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBash.HighScoresService.Score.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBash.HighScoresService.WeeklyScore.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService.wsdl" />
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ServiceReferences.ClientConfig">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
@@ -106,6 +142,13 @@
     <Content Include="Background.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </Content>
+    <None Include="Service References\HighScoresService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\HighScoresService\configuration.svcinfo" />
+    <None Include="Service References\HighScoresService\configuration91.svcinfo" />
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService.disco" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\TiledLib\TiledLib.csproj">
@@ -117,6 +160,12 @@
       <Name>HeroBashContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\HighScoresService\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

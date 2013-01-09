@@ -38,9 +38,10 @@ namespace HeroBash
 #if WINDOWS
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
-            
-            
-            
+
+
+            //Window.AllowUserResizing = true;
+            //Window.ClientSizeChanged += Window_ClientSizeChanged;
             
 #endif
             Content.RootDirectory = "HeroBashContent";
@@ -51,6 +52,13 @@ namespace HeroBash
             screenManager = new ScreenManager(this, false);
 #endif
             Components.Add(screenManager);
+        }
+
+        void Window_ClientSizeChanged(object sender, EventArgs e)
+        {
+            //graphics.PreferredBackBufferWidth = Window.ClientBounds.Width;
+            //graphics.PreferredBackBufferHeight = Window.ClientBounds.Height;
+            //graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -76,6 +84,9 @@ namespace HeroBash
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             AudioController.LoadContent(Content);
+
+            GameManager.PlayerName = "Fats";
+            GameManager.PlayerID = new Guid("299E67A8-8571-460D-8C64-103D24FD5D6B");
 
             // TODO: use this.Content to load your game content here
             screenManager.AddScreen(new BackgroundScreen(), null);

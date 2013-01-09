@@ -88,7 +88,7 @@ namespace HeroBash
                 Position = SpawnPoint;
                 //Position.X = 0;
                 spawnAlpha = 0f;
-                SpawnTime = 4000 + (2*(GameManager.CurrentPlaythrough-1));
+                SpawnTime = 4000 + (1000*(2*(GameManager.CurrentPlaythrough-1)));
             }
 
             HP = MaxHP;
@@ -102,7 +102,7 @@ namespace HeroBash
         public void Respawn()
         {
             Vector2 chosenSpawn = Vector2.Zero;
-            float furthestX = 0f;
+            float closest = 9999999f;
 
             var layer = GameManager.Map.Layers.Where(l => l.Name == "Spawn").First();
             if (layer != null)
@@ -113,9 +113,9 @@ namespace HeroBash
                 {
                     Vector2 pos = new Vector2(o.Location.Center.X, o.Location.Center.Y);
 
-                    if (pos.X <= Position.X && pos.X>furthestX)
+                    if (pos.X <= Position.X && (Position - pos).Length() < closest)
                     {
-                        furthestX = pos.X;
+                        closest = (Position - pos).Length();
                         chosenSpawn = pos;
                     }
                 }
@@ -565,6 +565,24 @@ namespace HeroBash
                             if (Position.X > GameManager.Camera.Position.X && Position.X < GameManager.Camera.Position.X + GameManager.Camera.Width)
                                 AudioController.PlaySFX("jump", ((float)AudioController.randomNumber.NextDouble()*0.5f) - 0.25f);
                          }
+                    }
+                }
+            }
+
+            layer = GameManager.Map.Layers.Where(l => l.Name == "InstaDeath").FirstOrDefault();
+            if (layer != null)
+            {
+                MapObjectLayer objectlayer = layer as MapObjectLayer;
+
+                foreach (MapObject o in objectlayer.Objects)
+                {
+                    if (o.Location.Contains(new Point((int)Position.X, (int)(Position.Y + (frameSize.Y / 2)))))
+                    {
+                        Velocity = Vector2.Zero;
+                        Respawn();
+                        HP -= 1;
+                        painAlpha = 1f;
+                        AudioController.PlaySFX("fall", ((float)AudioController.randomNumber.NextDouble() * 0.5f) - 0.25f);
                     }
                 }
             }

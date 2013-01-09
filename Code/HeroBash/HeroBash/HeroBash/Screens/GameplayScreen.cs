@@ -16,6 +16,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using TiledLib;
+using System.ComponentModel;
 #endregion
 
 namespace HeroBash
@@ -120,13 +121,13 @@ namespace HeroBash
             GameManager.ButtonManager = gameButtonManager;
 
             gameParallaxManager = new ParallaxManager(ScreenManager.GraphicsDevice.Viewport);
-            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/sky"), Vector2.Zero, 0f));
-            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/clouds1"), new Vector2(0, 50), -0.001f));
-            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/clouds2"), new Vector2(0, 0), -0.005f));
-            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/clouds3"), new Vector2(0, -50), -0.008f));
-            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains3"), new Vector2(0, ScreenManager.GraphicsDevice.Viewport.Height-420), -0.02f));
-            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains2"), new Vector2(0, ScreenManager.GraphicsDevice.Viewport.Height-620), -0.04f));
-            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains1"), new Vector2(0, ScreenManager.GraphicsDevice.Viewport.Height - 580), -0.07f));
+            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/sky"), Vector2.Zero, 0f, false));
+            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/clouds1"), new Vector2(0, 50), -0.001f, false));
+            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/clouds2"), new Vector2(0, 0), -0.005f, false));
+            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/clouds3"), new Vector2(0, -50), -0.008f, false));
+            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains3"), new Vector2(0, 420), -0.02f, true));
+            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains2"), new Vector2(0, 620), -0.04f, true));
+            gameParallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains1"), new Vector2(0, 580), -0.07f, true));
             
 
             // Princess
@@ -205,12 +206,25 @@ namespace HeroBash
                     if (finishGameTimer >= 3000 && !shownFinishScreen)
                     {
                         shownFinishScreen = true;
+
+                        ScoreBoard.LastSubmittedOverallRank = -1;
+                        ScoreBoard.LastSubmittedWeeklyRank = -1;
+
+#if !WINRT
+                        BackgroundWorker bw = new BackgroundWorker();
+                        bw.DoWork += bw_DoWork;
+                        bw.RunWorkerAsync();
+#endif
+
                         PauseBackgroundScreen pauseBG = new PauseBackgroundScreen();
                         ScreenManager.AddScreen(pauseBG, ControllingPlayer);
                         ScreenManager.AddScreen(new PauseMenuScreen(pauseBG), ControllingPlayer);
                         //LoadingScreen.Load(ScreenManager, false, null, new OverworldScreen());
                     }
                 }
+
+                if (gameHero.HP > 0 && !gameHero.ReachedPrincess)
+                    GameManager.CurrentTime += gameTime.ElapsedGameTime.TotalSeconds;
 
                 gameButtonManager.Update(gameTime);
             }
@@ -224,6 +238,11 @@ namespace HeroBash
             
 
             gameParallaxManager.Update(gameTime, gameCamera.Position);
+        }
+
+        void bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            ScoreBoard.Submit(GameManager.CurrentPlaythrough, GameManager.CurrentStage, gameHero.Level, GameManager.CurrentTime);
         }
 
 
@@ -257,7 +276,6 @@ namespace HeroBash
                 {
                     if(input.MouseDelta.Length()>40) GameManager.CameraFollowingHero = false;
                     gameCamera.Target -= input.MouseDelta;
-                    //gameCamera.cl
                 }
 
                 if (input.DragGesture.HasValue)

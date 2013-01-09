@@ -70,6 +70,7 @@ namespace HeroBash
             GameManager.CurrentPlaythrough = 1;
             GameManager.CurrentStage = 0;
             GameManager.CurrentLevel = 1;
+            GameManager.CurrentTime = 0;
             GameManager.Hero = new Hero();
             //LoadingScreen.Load(ScreenManager, false, e.PlayerIndex,
             //                   new GameplayScreen());

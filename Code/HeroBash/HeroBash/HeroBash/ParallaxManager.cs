@@ -14,12 +14,14 @@ namespace HeroBash
         public Texture2D Texture;
         public Vector2 Position;
         public float ScrollSpeed;
+        public bool PositionFromBottom;
 
-        public ParallaxLayer(Texture2D tex, Vector2 pos, float speed)
+        public ParallaxLayer(Texture2D tex, Vector2 pos, float speed, bool bottom)
         {
             Texture = tex;
             Position = pos;
             ScrollSpeed = speed;
+            PositionFromBottom = bottom;
         }
     }
 
@@ -53,10 +55,12 @@ namespace HeroBash
             foreach (ParallaxLayer l in Layers)
             {
 
-                for (float x = l.Position.X; x < scrollPosition.X + viewport.Width; x += l.Texture.Width)
+                for (float x = l.Position.X; x < scrollPosition.X + spriteBatch.GraphicsDevice.Viewport.Width; x += l.Texture.Width)
                 {
-                    if(l.Position.X +x > -l.Texture.Width)
-                        spriteBatch.Draw(l.Texture, l.Position + new Vector2(x, 0), null, new Color(150, 150, 150));
+                    if (l.Position.X + x > -l.Texture.Width)
+                    {
+                        spriteBatch.Draw(l.Texture, (l.PositionFromBottom?new Vector2(l.Position.X,spriteBatch.GraphicsDevice.Viewport.Height-l.Position.Y):l.Position) + new Vector2(x, 0), null, new Color(150, 150, 150));
+                    }
                 }
                   
             }

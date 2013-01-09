@@ -127,6 +127,9 @@
     <Compile Include="..\HeroBash\HeroBash\ProjectileManager.cs">
       <Link>ProjectileManager.cs</Link>
     </Compile>
+    <Compile Include="..\HeroBash\HeroBash\ScoreBoard.cs">
+      <Link>ScoreBoard.cs</Link>
+    </Compile>
     <Compile Include="..\HeroBash\HeroBash\screenmanager\GameScreen.cs">
       <Link>ScreenManager\GameScreen.cs</Link>
     </Compile>
@@ -179,6 +182,11 @@
       <Link>HeroBash.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\HighScoresService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -468,7 +476,30 @@
       <Link>HeroBashContent\Jungle-Tiles.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="HeroBash.MonoWindows8_TemporaryKey.pfx" />
+    <Content Include="Assets\WideLogo.scale-100.png" />
+    <None Include="Service References\HighScoresService\HeroBash.MonoWindows8.HighScoresService.LastWeek.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBash.MonoWindows8.HighScoresService.Score.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBash.MonoWindows8.HighScoresService.WeeklyScore.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HighScoresService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\HighScoresService\configuration.svcinfo" />
+    <None Include="Service References\HighScoresService\configuration91.svcinfo" />
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService.disco" />
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService.wsdl" />
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TiledLib.MonoWindows8\TiledLib.MonoWindows8.csproj">
@@ -481,7 +512,24 @@
       <HintPath>..\..\..\..\MonoGame\MonoGame.Framework\bin\Windows8\Debug\MonoGame.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\HighScoresService\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>

@@ -25,10 +25,13 @@ namespace HeroBash
         public static int CurrentPlaythrough;
         public static int CurrentStage;
         public static int CurrentLevel;
+        public static double CurrentTime;
 
         public static bool CameraFollowingHero = true;
         public static bool GameIsPaused = false;
 
-        
+        // High scores stuff
+        public static Guid PlayerID;
+        public static string PlayerName;
     }
 }

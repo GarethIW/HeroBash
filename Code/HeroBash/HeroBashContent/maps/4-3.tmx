@@ -15,6 +15,8 @@
   <object x="6272" y="896" width="64" height="60"/>
   <object x="8132" y="1408" width="64" height="60"/>
   <object x="9410" y="1342" width="64" height="60"/>
+  <object x="7299" y="642" width="64" height="60"/>
+  <object x="8582" y="643" width="64" height="60"/>
  </objectgroup>
  <objectgroup name="Princess" width="175" height="25">
   <object x="11136" y="958" width="62" height="64"/>
@@ -400,5 +402,28 @@
     <property name="MustJump" value="True"/>
    </properties>
   </object>
+ </objectgroup>
+ <objectgroup name="InstaDeath" width="175" height="25">
+  <object x="7184" y="1048" width="220" height="75"/>
+  <object x="7238" y="977" width="220" height="75"/>
+  <object x="7307" y="934" width="220" height="75"/>
+  <object x="7360" y="882" width="220" height="75"/>
+  <object x="7427" y="811" width="247" height="114"/>
+  <object x="7640" y="883" width="247" height="114"/>
+  <object x="7802" y="817" width="247" height="114"/>
+  <object x="7874" y="752" width="247" height="114"/>
+  <object x="7995" y="764" width="247" height="114"/>
+  <object x="8065" y="814" width="247" height="114"/>
+  <object x="8234" y="876" width="247" height="114"/>
+  <object x="8444" y="804" width="131" height="114"/>
+  <object x="8545" y="848" width="204" height="129"/>
+  <object x="8700" y="786" width="204" height="129"/>
+  <object x="8773" y="759" width="204" height="129"/>
+  <object x="8829" y="685" width="100" height="128"/>
+  <object x="8922" y="709" width="100" height="128"/>
+  <object x="8922" y="709" width="100" height="128"/>
+  <object x="8999" y="798" width="164" height="120"/>
+  <object x="9141" y="754" width="164" height="120"/>
+  <object x="9256" y="850" width="190" height="93"/>
  </objectgroup>
 </map>

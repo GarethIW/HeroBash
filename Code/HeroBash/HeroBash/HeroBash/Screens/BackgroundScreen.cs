@@ -41,6 +41,10 @@ namespace HeroBash
 
         Vector2 scrollPos;
 
+        ScoreBoard TopTenOverall;
+        ScoreBoard TopTenWeekly;
+        ScoreBoard MyScores;
+
         #endregion
 
         #region Initialization
@@ -78,13 +82,21 @@ namespace HeroBash
             
 
             parallaxManager = new ParallaxManager(ScreenManager.GraphicsDevice.Viewport);
-            parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/sky"), Vector2.Zero, 0f));
-            parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/clouds1"), new Vector2(0, 50), -0.001f));
-            parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/clouds2"), new Vector2(0, 0), -0.005f));
-            parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/clouds3"), new Vector2(0, -50), -0.008f));
-            parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains3"), new Vector2(0, ScreenManager.GraphicsDevice.Viewport.Height - 420), -0.02f));
-            parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains2"), new Vector2(0, ScreenManager.GraphicsDevice.Viewport.Height - 620), -0.04f));
-            parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains1"), new Vector2(0, ScreenManager.GraphicsDevice.Viewport.Height - 580), -0.07f));
+            parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/sky"), Vector2.Zero, 0f,false));
+            parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/clouds1"), new Vector2(0, 50), -0.001f, false));
+            parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/clouds2"), new Vector2(0, 0), -0.005f, false));
+            parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/clouds3"), new Vector2(0, -50), -0.008f, false));
+            parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains3"), new Vector2(0, 420), -0.02f, true));
+            parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains2"), new Vector2(0, 620), -0.04f, true));
+            parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains1"), new Vector2(0, 580), -0.07f, true));
+
+            TopTenOverall = new ScoreBoard(ScoreBoardType.TopTen, ScreenManager.Font);
+            TopTenWeekly = new ScoreBoard(ScoreBoardType.WeeklyTopTen, ScreenManager.Font);
+            MyScores = new ScoreBoard(ScoreBoardType.MyScores, ScreenManager.Font);
+
+            TopTenOverall.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2 - 400, ScreenManager.GraphicsDevice.Viewport.Height - 200);
+            TopTenWeekly.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, ScreenManager.GraphicsDevice.Viewport.Height - 200);
+            MyScores.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2 + 400, ScreenManager.GraphicsDevice.Viewport.Height - 200);
         }
 
 
@@ -163,6 +175,10 @@ namespace HeroBash
                 spriteBatch.Draw(texBG, fullscreen, null, Color.White * whiteFlashAlpha);
 
             }
+
+            TopTenOverall.Draw(spriteBatch);
+            TopTenWeekly.Draw(spriteBatch);
+            MyScores.Draw(spriteBatch);
 
             spriteBatch.End();
 

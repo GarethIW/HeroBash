@@ -316,13 +316,48 @@
       <Link>HeroBashContent\Jungle-Tiles.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Service References\HighScoresService\HeroBash.HighScoresService.LastWeek.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBash.HighScoresService.Score.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBash.HighScoresService.WeeklyScore.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HighScoresService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\HighScoresService\configuration.svcinfo" />
+    <None Include="Service References\HighScoresService\configuration91.svcinfo" />
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService.disco" />
     <None Include="App.config" />
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService.wsdl" />
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
       <HintPath>..\..\..\..\MonoGame\MonoGame.Framework\bin\WindowsGL\Debug\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\HeroBash\HeroBash\AudioController.cs">
@@ -351,6 +386,9 @@
     </Compile>
     <Compile Include="..\HeroBash\HeroBash\ProjectileManager.cs">
       <Link>ProjectileManager.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\ScoreBoard.cs">
+      <Link>ScoreBoard.cs</Link>
     </Compile>
     <Compile Include="..\HeroBash\HeroBash\ScreenManager\GameScreen.cs">
       <Link>ScreenManager\GameScreen.cs</Link>
@@ -403,12 +441,23 @@
     <Compile Include="..\HeroBash\HeroBash\HeroBash.cs">
       <Link>HeroBash.cs</Link>
     </Compile>
+    <Compile Include="Service References\HighScoresService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TiledLib.MonoWindows\TiledLib.MonoWindows.csproj">
       <Project>{f311c413-e175-485e-8a93-799ab971ca09}</Project>
       <Name>TiledLib.MonoWindows</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\HighScoresService\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

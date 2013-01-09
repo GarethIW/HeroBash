@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2c818e55-3889-48e5-944e-c85a3836ac6d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://highscores.team-mango.com/herobashhighscoresservice.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="HeroBashHighScoresService.xsd" MetadataType="Schema" ID="2f8fe581-4fdf-4ff6-a001-af1ddc2d480f" SourceId="1" SourceUrl="http://highscores.team-mango.com/HeroBashHighScoresService.svc?xsd=xsd3" />
+    <MetadataFile FileName="HeroBashHighScoresService1.xsd" MetadataType="Schema" ID="6ceb307d-29d9-45b6-86f3-f92bb574acd9" SourceId="1" SourceUrl="http://highscores.team-mango.com/HeroBashHighScoresService.svc?xsd=xsd1" />
+    <MetadataFile FileName="HeroBashHighScoresService2.xsd" MetadataType="Schema" ID="34ef199b-9e95-496b-adfd-6d94b72ac4d5" SourceId="1" SourceUrl="http://highscores.team-mango.com/HeroBashHighScoresService.svc?xsd=xsd0" />
+    <MetadataFile FileName="HeroBashHighScoresService.disco" MetadataType="Disco" ID="3cc8733d-a9b2-4c30-a43f-878921ead647" SourceId="1" SourceUrl="http://highscores.team-mango.com/HeroBashHighScoresService.svc?disco" />
+    <MetadataFile FileName="HeroBashHighScoresService3.xsd" MetadataType="Schema" ID="6e3a5068-6ddb-4929-ae26-2378ec487aa7" SourceId="1" SourceUrl="http://highscores.team-mango.com/HeroBashHighScoresService.svc?xsd=xsd4" />
+    <MetadataFile FileName="HeroBashHighScoresService4.xsd" MetadataType="Schema" ID="ab2d1a49-a768-4c4d-b45b-b0bf7e1b90d8" SourceId="1" SourceUrl="http://highscores.team-mango.com/HeroBashHighScoresService.svc?xsd=xsd2" />
+    <MetadataFile FileName="HeroBashHighScoresService.wsdl" MetadataType="Wsdl" ID="24e33c01-0377-460b-85cd-823ed6e692ff" SourceId="1" SourceUrl="http://highscores.team-mango.com/HeroBashHighScoresService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

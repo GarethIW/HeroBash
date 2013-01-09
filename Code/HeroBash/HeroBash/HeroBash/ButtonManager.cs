@@ -74,6 +74,11 @@ namespace HeroBash
 
         public void Update(GameTime gameTime)
         {
+            Position = new Vector2((GameManager.Camera.Width / 2) - ((Buttons.Count * buttonSize.X) / 2), GameManager.Camera.Height - buttonSize.Y);
+
+            pauseButton = new Rectangle((int)(GameManager.Camera.Width - buttonSize.X), (int)(GameManager.Camera.Height - buttonSize.Y), (int)buttonSize.X, (int)buttonSize.Y);
+            heroCamButton = new Rectangle((int)(GameManager.Camera.Width - (buttonSize.X * 2)), (int)(GameManager.Camera.Height - buttonSize.Y), (int)buttonSize.X, (int)buttonSize.Y);
+
             foreach (Button b in Buttons)
                 b.Update(gameTime);
         }

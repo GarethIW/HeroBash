@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="5d6d12f0-0540-4dac-beb9-7281a24fc0f7" Publisher="CN=Gareth" Version="1.0.0.0" />
+  <Identity Name="E59E81DC-ABE6-4E47-A9A4-6C6A517DED84" Publisher="CN=Gareth" Version="1.0.0.0" />
   <Properties>
-    <DisplayName>HeroBash.MonoWindows8</DisplayName>
+    <DisplayName>HeroBash</DisplayName>
     <PublisherDisplayName>Gareth</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -15,8 +15,8 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="HeroBash.MonoWindows8.App">
-      <VisualElements DisplayName="HeroBash.MonoWindows8" Logo="Assets\Logo.png" SmallLogo="Assets\smalllogo.png" Description="HeroBash.MonoWindows8" ForegroundText="light" BackgroundColor="#000000">
-        <DefaultTile ShowName="allLogos" />
+      <VisualElements DisplayName="HeroBash" Logo="Assets\Logo.png" SmallLogo="Assets\smalllogo.png" Description="HeroBash" ForegroundText="light" BackgroundColor="#000000">
+        <DefaultTile ShowName="noLogos" WideLogo="Assets\WideLogo.png" ShortName="HeroBash" />
         <SplashScreen Image="Assets\splashscreen.png" BackgroundColor="#000000" />
         <InitialRotationPreference>
           <Rotation Preference="landscape" />
