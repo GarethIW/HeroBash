@@ -240,10 +240,12 @@ namespace HeroBash
             gameParallaxManager.Update(gameTime, gameCamera.Position);
         }
 
+#if !WINRT
         void bw_DoWork(object sender, DoWorkEventArgs e)
         {
             ScoreBoard.Submit(GameManager.CurrentPlaythrough, GameManager.CurrentStage, gameHero.Level, GameManager.CurrentTime);
         }
+#endif
 
 
         /// <summary>

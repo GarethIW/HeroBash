@@ -6,5 +6,5 @@
     cause the file to be unrecognizable by the program.
 -->
 <GenericObjectDataSource DisplayName="LastWeek" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>HeroBash.HighScoresService.LastWeek</TypeInfo>
+   <TypeInfo>HighScoresService.LastWeek</TypeInfo>
 </GenericObjectDataSource>

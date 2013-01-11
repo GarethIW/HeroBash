@@ -41,6 +41,7 @@ namespace HeroBash
 
         ContentManager content;
         Texture2D texBG;
+        Texture2D texScoreBG;
         Texture2D texDistance;
         Texture2D texArrow;
 
@@ -63,6 +64,10 @@ namespace HeroBash
 
         bool princessMoving = false;
         double princessMovedTime = 0;
+
+        ScoreBoard Overall;
+        ScoreBoard Weekly;
+        ScoreBoard MyScores;
 
         #endregion
 
@@ -89,6 +94,7 @@ namespace HeroBash
             //overworldCamera.Position = new Vector2(0, (((overworldMap.Height / 2) * overworldMap.TileHeight)+(overworldMap.TileHeight/2)) - (overworldCamera.Height / 2));
 
             texBG = content.Load<Texture2D>("blank-white");
+            texScoreBG = content.Load<Texture2D>("blank");
             texDistance = content.Load<Texture2D>("distance");
             texArrow = content.Load<Texture2D>("overworld-arrow");
 
@@ -155,7 +161,13 @@ namespace HeroBash
                 }
             }
 
-            
+            Overall = new ScoreBoard(ScoreBoardType.NearbyOverall, ScreenManager.Font, texScoreBG, GameManager.CurrentPlaythrough, GameManager.CurrentStage, GameManager.Hero.Level, GameManager.CurrentTime);
+            Weekly = new ScoreBoard(ScoreBoardType.NearbyWeekly, ScreenManager.Font, texScoreBG, GameManager.CurrentPlaythrough, GameManager.CurrentStage, GameManager.Hero.Level, GameManager.CurrentTime);
+            MyScores = new ScoreBoard(ScoreBoardType.MyNearbyScores, ScreenManager.Font, texScoreBG, GameManager.CurrentPlaythrough, GameManager.CurrentStage, GameManager.Hero.Level, GameManager.CurrentTime);
+
+            Overall.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, 20);
+            Weekly.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, 220);
+            MyScores.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, 420);
         }
 
 
@@ -281,7 +293,10 @@ namespace HeroBash
             }
 
             spriteBatch.Draw(texDistance, princessPos - overworldCamera.Position, new Rectangle(32, 0, 32, 23), Color.White, 0f, new Vector2(16, 12), 1f, SpriteEffects.None, 1);
-            
+
+            Overall.Draw(spriteBatch);
+            Weekly.Draw(spriteBatch);
+            MyScores.Draw(spriteBatch);
 
             spriteBatch.End();
 

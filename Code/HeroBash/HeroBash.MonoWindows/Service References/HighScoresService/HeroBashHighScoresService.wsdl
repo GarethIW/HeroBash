@@ -57,6 +57,18 @@
   <wsdl:message name="IHeroBashHighScores_GetMyPreviousScores_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetMyPreviousScoresResponse" />
   </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetMyNearbyPreviousScoresInGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyNearbyPreviousScoresInGame" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetMyNearbyPreviousScoresInGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyNearbyPreviousScoresInGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetMyNearbyPreviousScores_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyNearbyPreviousScores" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetMyNearbyPreviousScores_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyNearbyPreviousScoresResponse" />
+  </wsdl:message>
   <wsdl:message name="IHeroBashHighScores_AddScore_InputMessage">
     <wsdl:part name="parameters" element="tns:AddScore" />
   </wsdl:message>
@@ -101,6 +113,14 @@
     <wsdl:operation name="GetMyPreviousScores">
       <wsdl:input wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetMyPreviousScores" message="tns:IHeroBashHighScores_GetMyPreviousScores_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetMyPreviousScoresResponse" message="tns:IHeroBashHighScores_GetMyPreviousScores_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNearbyPreviousScoresInGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScoresInGame" message="tns:IHeroBashHighScores_GetMyNearbyPreviousScoresInGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScoresInGameResponse" message="tns:IHeroBashHighScores_GetMyNearbyPreviousScoresInGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNearbyPreviousScores">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScores" message="tns:IHeroBashHighScores_GetMyNearbyPreviousScores_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScoresResponse" message="tns:IHeroBashHighScores_GetMyNearbyPreviousScores_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddScore">
       <wsdl:input wsaw:Action="http://tempuri.org/IHeroBashHighScores/AddScore" message="tns:IHeroBashHighScores_AddScore_InputMessage" />
@@ -178,6 +198,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetMyPreviousScores">
       <soap:operation soapAction="http://tempuri.org/IHeroBashHighScores/GetMyPreviousScores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNearbyPreviousScoresInGame">
+      <soap:operation soapAction="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScoresInGame" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNearbyPreviousScores">
+      <soap:operation soapAction="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScores" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -669,6 +669,12 @@ namespace HeroBash.HighScoresService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroBashHighScores/GetMyPreviousScores", ReplyAction="http://tempuri.org/IHeroBashHighScores/GetMyPreviousScoresResponse")]
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<HighScoresService.Score>> GetMyPreviousScoresAsync(string playerid);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScoresInGame", ReplyAction="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScoresInGameResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<HighScoresService.Score>> GetMyNearbyPreviousScoresInGameAsync(string playerid, int playthrough, int stage, float level, decimal time);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScores", ReplyAction="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScoresResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<HighScoresService.Score>> GetMyNearbyPreviousScoresAsync(string playerid, int scoreId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroBashHighScores/AddScore", ReplyAction="http://tempuri.org/IHeroBashHighScores/AddScoreResponse")]
         System.Threading.Tasks.Task<int> AddScoreAsync(string playername, string playerid, int playthrough, int stage, float level, decimal time);
         
@@ -749,6 +755,14 @@ namespace HeroBash.HighScoresService {
         
         public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<HighScoresService.Score>> GetMyPreviousScoresAsync(string playerid) {
             return base.Channel.GetMyPreviousScoresAsync(playerid);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<HighScoresService.Score>> GetMyNearbyPreviousScoresInGameAsync(string playerid, int playthrough, int stage, float level, decimal time) {
+            return base.Channel.GetMyNearbyPreviousScoresInGameAsync(playerid, playthrough, stage, level, time);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<HighScoresService.Score>> GetMyNearbyPreviousScoresAsync(string playerid, int scoreId) {
+            return base.Channel.GetMyNearbyPreviousScoresAsync(playerid, scoreId);
         }
         
         public System.Threading.Tasks.Task<int> AddScoreAsync(string playername, string playerid, int playthrough, int stage, float level, decimal time) {

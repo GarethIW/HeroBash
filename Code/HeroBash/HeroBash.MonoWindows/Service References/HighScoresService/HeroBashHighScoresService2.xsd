@@ -113,6 +113,39 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetMyNearbyPreviousScoresInGame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="playerid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="playthrough" type="xs:int" />
+        <xs:element minOccurs="0" name="stage" type="xs:int" />
+        <xs:element minOccurs="0" name="level" type="xs:float" />
+        <xs:element minOccurs="0" name="time" type="xs:decimal" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMyNearbyPreviousScoresInGameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/HighScoresService" minOccurs="0" name="GetMyNearbyPreviousScoresInGameResult" nillable="true" type="q9:ArrayOfScore" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMyNearbyPreviousScores">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="playerid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="scoreId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMyNearbyPreviousScoresResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/HighScoresService" minOccurs="0" name="GetMyNearbyPreviousScoresResult" nillable="true" type="q10:ArrayOfScore" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddScore">
     <xs:complexType>
       <xs:sequence>

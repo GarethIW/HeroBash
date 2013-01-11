@@ -27,6 +27,7 @@ namespace HeroBash
 
         ContentManager content;
         Texture2D texBG;
+        Texture2D texScoreBG;
         Texture2D texLogo;
         Texture2D texHero;
         Texture2D texBash;
@@ -73,6 +74,7 @@ namespace HeroBash
                 content = new ContentManager(ScreenManager.Game.Services, "HeroBashContent");
 
             texBG = content.Load<Texture2D>("blank-white");
+            texScoreBG = content.Load<Texture2D>("blank");
             texLogo = content.Load<Texture2D>("logo");
             texHero = content.Load<Texture2D>("hero-logo");
             texBash = content.Load<Texture2D>("bash-logo");
@@ -90,13 +92,13 @@ namespace HeroBash
             parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains2"), new Vector2(0, 620), -0.04f, true));
             parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains1"), new Vector2(0, 580), -0.07f, true));
 
-            TopTenOverall = new ScoreBoard(ScoreBoardType.TopTen, ScreenManager.Font);
-            TopTenWeekly = new ScoreBoard(ScoreBoardType.WeeklyTopTen, ScreenManager.Font);
-            MyScores = new ScoreBoard(ScoreBoardType.MyScores, ScreenManager.Font);
+            TopTenOverall = new ScoreBoard(ScoreBoardType.TopTen, ScreenManager.Font, texScoreBG);
+            TopTenWeekly = new ScoreBoard(ScoreBoardType.WeeklyTopTen, ScreenManager.Font, texScoreBG);
+            MyScores = new ScoreBoard(ScoreBoardType.MyScores, ScreenManager.Font, texScoreBG);
 
-            TopTenOverall.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2 - 400, ScreenManager.GraphicsDevice.Viewport.Height - 200);
-            TopTenWeekly.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, ScreenManager.GraphicsDevice.Viewport.Height - 200);
-            MyScores.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2 + 400, ScreenManager.GraphicsDevice.Viewport.Height - 200);
+            TopTenOverall.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, 20);
+            TopTenWeekly.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, 220);
+            MyScores.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, 420);
         }
 
 

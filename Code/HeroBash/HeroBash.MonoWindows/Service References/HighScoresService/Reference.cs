@@ -749,6 +749,12 @@ namespace HeroBash.HighScoresService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroBashHighScores/GetMyPreviousScores", ReplyAction="http://tempuri.org/IHeroBashHighScores/GetMyPreviousScoresResponse")]
         HighScoresService.Score[] GetMyPreviousScores(string playerid);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScoresInGame", ReplyAction="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScoresInGameResponse")]
+        HighScoresService.Score[] GetMyNearbyPreviousScoresInGame(string playerid, int playthrough, int stage, float level, decimal time);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScores", ReplyAction="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScoresResponse")]
+        HighScoresService.Score[] GetMyNearbyPreviousScores(string playerid, int scoreId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroBashHighScores/AddScore", ReplyAction="http://tempuri.org/IHeroBashHighScores/AddScoreResponse")]
         int AddScore(string playername, string playerid, int playthrough, int stage, float level, decimal time);
         
@@ -813,6 +819,14 @@ namespace HeroBash.HighScoresService {
         
         public HighScoresService.Score[] GetMyPreviousScores(string playerid) {
             return base.Channel.GetMyPreviousScores(playerid);
+        }
+        
+        public HighScoresService.Score[] GetMyNearbyPreviousScoresInGame(string playerid, int playthrough, int stage, float level, decimal time) {
+            return base.Channel.GetMyNearbyPreviousScoresInGame(playerid, playthrough, stage, level, time);
+        }
+        
+        public HighScoresService.Score[] GetMyNearbyPreviousScores(string playerid, int scoreId) {
+            return base.Channel.GetMyNearbyPreviousScores(playerid, scoreId);
         }
         
         public int AddScore(string playername, string playerid, int playthrough, int stage, float level, decimal time) {
