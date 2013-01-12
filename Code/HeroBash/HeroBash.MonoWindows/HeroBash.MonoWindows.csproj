@@ -14,7 +14,7 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -34,6 +34,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>HeroBash.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>HeroBash.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="..\HeroBash\HeroBash\bin\Windows Phone\Debug\HeroBashContent\blank.xnb">
@@ -316,6 +319,7 @@
       <Link>HeroBashContent\Jungle-Tiles.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="HeroBash.ico" />
     <None Include="Service References\HighScoresService\HeroBash.HighScoresService.LastWeek.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -332,7 +336,9 @@
     <None Include="Service References\HighScoresService\configuration.svcinfo" />
     <None Include="Service References\HighScoresService\configuration91.svcinfo" />
     <None Include="Service References\HighScoresService\HeroBashHighScoresService.disco" />
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\HighScoresService\HeroBashHighScoresService.wsdl" />
     <None Include="Service References\HighScoresService\HeroBashHighScoresService.xsd">
       <SubType>Designer</SubType>
@@ -362,6 +368,9 @@
   <ItemGroup>
     <Compile Include="..\HeroBash\HeroBash\AudioController.cs">
       <Link>AudioController.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\BackgroundBox.cs">
+      <Link>BackgroundBox.cs</Link>
     </Compile>
     <Compile Include="..\HeroBash\HeroBash\ButtonManager.cs">
       <Link>ButtonManager.cs</Link>
@@ -405,6 +414,12 @@
     <Compile Include="..\HeroBash\HeroBash\Screens\BackgroundScreen.cs">
       <Link>Screens\BackgroundScreen.cs</Link>
     </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Screens\EnterNameScreen.cs">
+      <Link>Screens\EnterNameScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Screens\GameOverScreen.cs">
+      <Link>Screens\GameOverScreen.cs</Link>
+    </Compile>
     <Compile Include="..\HeroBash\HeroBash\Screens\GameplayScreen.cs">
       <Link>Screens\GameplayScreen.cs</Link>
     </Compile>
@@ -440,6 +455,9 @@
     </Compile>
     <Compile Include="..\HeroBash\HeroBash\HeroBash.cs">
       <Link>HeroBash.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Settings.cs">
+      <Link>Settings.cs</Link>
     </Compile>
     <Compile Include="Service References\HighScoresService\Reference.cs">
       <AutoGen>True</AutoGen>

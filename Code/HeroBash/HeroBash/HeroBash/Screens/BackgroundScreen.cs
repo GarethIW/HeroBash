@@ -35,6 +35,8 @@ namespace HeroBash
         Vector2 heroPos;
         Vector2 bashPos;
 
+        float scoresMargin = 350;
+
         bool logoBashed = false;
         float whiteFlashAlpha = 1f;
 
@@ -45,6 +47,8 @@ namespace HeroBash
         ScoreBoard TopTenOverall;
         ScoreBoard TopTenWeekly;
         ScoreBoard MyScores;
+
+        float scoresOffset;
 
         #endregion
 
@@ -79,9 +83,8 @@ namespace HeroBash
             texHero = content.Load<Texture2D>("hero-logo");
             texBash = content.Load<Texture2D>("bash-logo");
 
-            heroPos = new Vector2(0, 0);
+            heroPos = new Vector2(-scoresMargin, 0);
             bashPos = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width, 0);
-            
 
             parallaxManager = new ParallaxManager(ScreenManager.GraphicsDevice.Viewport);
             parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/sky"), Vector2.Zero, 0f,false));
@@ -92,13 +95,15 @@ namespace HeroBash
             parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains2"), new Vector2(0, 620), -0.04f, true));
             parallaxManager.Layers.Add(new ParallaxLayer(content.Load<Texture2D>("background/mountains1"), new Vector2(0, 580), -0.07f, true));
 
-            TopTenOverall = new ScoreBoard(ScoreBoardType.TopTen, ScreenManager.Font, texScoreBG);
-            TopTenWeekly = new ScoreBoard(ScoreBoardType.WeeklyTopTen, ScreenManager.Font, texScoreBG);
-            MyScores = new ScoreBoard(ScoreBoardType.MyScores, ScreenManager.Font, texScoreBG);
+            TopTenOverall = new ScoreBoard(ScoreBoardType.TopTen, ScreenManager.Font, texScoreBG, texBG);
+            TopTenWeekly = new ScoreBoard(ScoreBoardType.WeeklyTopTen, ScreenManager.Font, texScoreBG, texBG);
+            MyScores = new ScoreBoard(ScoreBoardType.MyScores, ScreenManager.Font, texScoreBG, texBG);
 
-            TopTenOverall.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, 20);
-            TopTenWeekly.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, 220);
-            MyScores.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, 420);
+            scoresOffset = (ScreenManager.GraphicsDevice.Viewport.Height / 2) - 335;
+
+            TopTenOverall.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, scoresOffset+70);
+            TopTenWeekly.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, scoresOffset+265);
+            MyScores.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, scoresOffset+495);
         }
 
 
@@ -134,7 +139,7 @@ namespace HeroBash
                 heroPos += new Vector2(10, 0);
                 bashPos += new Vector2(-10, 0);
 
-                if (heroPos.X >= ScreenManager.GraphicsDevice.Viewport.Width / 2)
+                if (heroPos.X >= (ScreenManager.GraphicsDevice.Viewport.Width-scoresMargin) / 2)
                 {
                     logoBashed = true;
                 }
@@ -171,16 +176,20 @@ namespace HeroBash
             }
             else
             {
-                spriteBatch.Draw(texLogo, new Vector2(viewport.Width / 2, viewport.Height / 3), null,
+                spriteBatch.Draw(texLogo, new Vector2((viewport.Width-scoresMargin) / 2, viewport.Height / 3), null,
                              Color.White * TransitionAlpha, 0f, new Vector2(texLogo.Width / 2, texLogo.Height / 2), 1f, SpriteEffects.None, 1);
 
                 spriteBatch.Draw(texBG, fullscreen, null, Color.White * whiteFlashAlpha);
 
             }
 
-            TopTenOverall.Draw(spriteBatch);
-            TopTenWeekly.Draw(spriteBatch);
-            MyScores.Draw(spriteBatch);
+
+            BackgroundBox.Draw(spriteBatch, texScoreBG, new Rectangle(fullscreen.Width - 430, (int)scoresOffset, 420, 50), Color.White * 0.8f);
+            spriteBatch.DrawString(ScreenManager.Font, "Most Evil Villains", new Vector2(fullscreen.Width - 220, scoresOffset+27), Color.White, 0f, ScreenManager.Font.MeasureString("Most Evil Villians") / 2, 1f, SpriteEffects.None, 1);
+
+            TopTenOverall.Draw(spriteBatch, 1f);
+            TopTenWeekly.Draw(spriteBatch, 1f);
+            MyScores.Draw(spriteBatch, 1f);
 
             spriteBatch.End();
 

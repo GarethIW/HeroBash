@@ -207,19 +207,7 @@ namespace HeroBash
                     {
                         shownFinishScreen = true;
 
-                        ScoreBoard.LastSubmittedOverallRank = -1;
-                        ScoreBoard.LastSubmittedWeeklyRank = -1;
-
-#if !WINRT
-                        BackgroundWorker bw = new BackgroundWorker();
-                        bw.DoWork += bw_DoWork;
-                        bw.RunWorkerAsync();
-#endif
-
-                        PauseBackgroundScreen pauseBG = new PauseBackgroundScreen();
-                        ScreenManager.AddScreen(pauseBG, ControllingPlayer);
-                        ScreenManager.AddScreen(new PauseMenuScreen(pauseBG), ControllingPlayer);
-                        //LoadingScreen.Load(ScreenManager, false, null, new OverworldScreen());
+                        ScreenManager.AddScreen(new GameOverScreen(), ControllingPlayer);
                     }
                 }
 
@@ -240,12 +228,7 @@ namespace HeroBash
             gameParallaxManager.Update(gameTime, gameCamera.Position);
         }
 
-#if !WINRT
-        void bw_DoWork(object sender, DoWorkEventArgs e)
-        {
-            ScoreBoard.Submit(GameManager.CurrentPlaythrough, GameManager.CurrentStage, gameHero.Level, GameManager.CurrentTime);
-        }
-#endif
+
 
 
         /// <summary>

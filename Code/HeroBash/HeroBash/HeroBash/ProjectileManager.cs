@@ -120,7 +120,7 @@ namespace HeroBash
                     }
                     else
                     {
-                        if ((GameManager.Hero.Position - p.Position).Length() < 32f)
+                        if ((GameManager.Hero.Position - p.Position).Length() < 32f && GameManager.Hero.SpawnTime<=0)
                         {
                             if (p.Type == 1)
                             {

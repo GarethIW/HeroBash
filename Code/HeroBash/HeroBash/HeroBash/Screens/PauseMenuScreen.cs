@@ -26,7 +26,7 @@ namespace HeroBash
         /// Constructor fills in the menu contents.
         /// </summary>
         public PauseMenuScreen(PauseBackgroundScreen pauseBG)
-            : base("Pause")
+            : base("Pause", 0)
         {
             BGScreen = pauseBG;
             IsPopup = true;

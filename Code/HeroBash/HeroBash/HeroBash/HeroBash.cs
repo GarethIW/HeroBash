@@ -18,11 +18,9 @@ namespace HeroBash
     /// </summary>
     public class HeroBash : Microsoft.Xna.Framework.Game
     {
+        public static HeroBash Instance;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
-        Map testmap;
-        Camera gameCamera;
 
         ScreenManager screenManager;
 
@@ -38,11 +36,6 @@ namespace HeroBash
 #if WINDOWS
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
-
-
-            //Window.AllowUserResizing = true;
-            //Window.ClientSizeChanged += Window_ClientSizeChanged;
-            
 #endif
             Content.RootDirectory = "HeroBashContent";
 
@@ -71,6 +64,14 @@ namespace HeroBash
         {
             // TODO: Add your initialization logic here
             graphics.ApplyChanges();
+
+#if WINDOWS
+            //EventInput.Initialize(Window);
+            
+#endif
+
+            Instance = this;
+
             base.Initialize();
         }
 
@@ -85,8 +86,8 @@ namespace HeroBash
 
             AudioController.LoadContent(Content);
 
-            GameManager.PlayerName = "Fats";
-            GameManager.PlayerID = new Guid("299E67A8-8571-460D-8C64-103D24FD5D6B");
+            
+            Settings.Load();
 
             // TODO: use this.Content to load your game content here
             screenManager.AddScreen(new BackgroundScreen(), null);

@@ -53,7 +53,7 @@ namespace HeroBash
         /// Constructor.
         /// </summary>
         public OptionsMenuScreen()
-            : base("Options")
+            : base("Options" , 0)
         {
             
         }

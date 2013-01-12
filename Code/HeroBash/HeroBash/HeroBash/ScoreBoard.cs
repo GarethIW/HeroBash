@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using HeroBash.HighScoresService;
 using System.ComponentModel;
+using System.ServiceModel;
 
 namespace HeroBash
 {
@@ -44,6 +45,7 @@ namespace HeroBash
 
         Score[] Scores;
         WeeklyScore[] WeeklyScores;
+        LastWeek[] LastWeekScores;
 
         bool scoresReturned = false;
         bool scoresError = false;
@@ -54,11 +56,12 @@ namespace HeroBash
 
         SpriteFont spriteFont;
         Texture2D texBG;
+        Texture2D texWhite;
 
         public static int LastSubmittedOverallRank = -1;
         public static int LastSubmittedWeeklyRank = -1;
 
-        public ScoreBoard(ScoreBoardType type, SpriteFont font, Texture2D bg)
+        public ScoreBoard(ScoreBoardType type, SpriteFont font, Texture2D bg, Texture2D whitebg)
         {
             Type = type;
             comparingScore = false;
@@ -74,13 +77,14 @@ namespace HeroBash
 #endif
         }
 
-        public ScoreBoard(ScoreBoardType type, SpriteFont font, Texture2D bg, int playthrough, int stage, int level, double time)
+        public ScoreBoard(ScoreBoardType type, SpriteFont font, Texture2D bg, Texture2D whitebg, int playthrough, int stage, int level, double time)
         {
             Type = type;
             comparingScore = true;
 
             spriteFont = font;
             texBG = bg;
+            texWhite = whitebg;
 
             comparePlaythrough = playthrough;
             compareStage = stage;
@@ -94,13 +98,14 @@ namespace HeroBash
             bw.RunWorkerAsync();
 #endif
         }
-        public ScoreBoard(ScoreBoardType type, SpriteFont font, Texture2D bg, int scoreId)
+        public ScoreBoard(ScoreBoardType type, SpriteFont font, Texture2D bg, Texture2D whitebg, int scoreId)
         {
             Type = type;
             comparingScore = false;
 
             spriteFont = font;
             texBG = bg;
+            texWhite = whitebg;
 
             getScoreId = scoreId;
 
@@ -122,48 +127,48 @@ namespace HeroBash
         }
 
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, float alpha)
         {
-            spriteBatch.Draw(texBG, new Rectangle((int)Position.X - 210, (int)Position.Y - 5, 420, 180), null, Color.White * 0.8f);
+            BackgroundBox.Draw(spriteBatch, texBG, new Rectangle((int)Position.X - 210, (int)Position.Y - 5, 420, Type == ScoreBoardType.WeeklyTopTen ? 215 : 180), Color.White * 0.8f);
 
             float xOffset = -200f;
             Vector2 drawPos = Position + new Vector2(xOffset, 0);
 
-            drawPos.Y += 15;
+            drawPos.Y += 17;
 
             //Title
             switch (Type)
             {
                 case ScoreBoardType.NearbyWeekly:
                 case ScoreBoardType.WeeklyTopTen:
-                    DrawString(spriteBatch, "Weekly Global", new Vector2(Position.X, drawPos.Y), true, 1f, 1f);
+                    DrawString(spriteBatch, "Weekly Global", new Vector2(Position.X, drawPos.Y), true, alpha, 1f);
                     break;
                 case ScoreBoardType.MyScores:
                 case ScoreBoardType.MyNearbyScores:
-                    DrawString(spriteBatch, "My Best", new Vector2(Position.X, drawPos.Y), true, 1f, 1f);
+                    DrawString(spriteBatch, "My Best", new Vector2(Position.X, drawPos.Y), true, alpha, 1f);
                     break;
                 default:
-                    DrawString(spriteBatch, "All-Time Global", new Vector2(Position.X, drawPos.Y), true, 1f, 1f);
+                    DrawString(spriteBatch, "All-Time Global", new Vector2(Position.X, drawPos.Y), true, alpha, 1f);
                     break;
             }
 
             drawPos.Y += 24;
 
             if (!scoresReturned)
-                DrawString(spriteBatch, "Fetching scores", new Vector2(Position.X, drawPos.Y), true, 1f);
+                DrawString(spriteBatch, "Fetching scores", new Vector2(Position.X, drawPos.Y), true, alpha);
 
             if(scoresError)
-                DrawString(spriteBatch, "Error!", new Vector2(Position.X, drawPos.Y), true, 1f);
+                DrawString(spriteBatch, "Error!", new Vector2(Position.X, drawPos.Y), true, alpha);
 
             if (scoresReturned && !scoresError)
             {
                 
                 DrawString(spriteBatch, "Rank", drawPos, false, 1f);
-                DrawString(spriteBatch, "Name", drawPos + new Vector2(50,0), false, 1f);
-                DrawString(spriteBatch, "Mode", drawPos + new Vector2(150, 0), false, 1f);
-                DrawString(spriteBatch, "Stage", drawPos + new Vector2(250, 0), false, 1f);
-                DrawString(spriteBatch, "Hero", drawPos + new Vector2(300, 0), false, 1f);
-                DrawString(spriteBatch, "Time", drawPos + new Vector2(350, 0), false, 1f);
+                DrawString(spriteBatch, "Name", drawPos + new Vector2(50, 0), false, alpha);
+                DrawString(spriteBatch, "Mode", drawPos + new Vector2(150, 0), false, alpha);
+                DrawString(spriteBatch, "Stage", drawPos + new Vector2(250, 0), false, alpha);
+                DrawString(spriteBatch, "Hero", drawPos + new Vector2(300, 0), false, alpha);
+                DrawString(spriteBatch, "Time", drawPos + new Vector2(350, 0), false, alpha);
                 drawPos.Y += 12;
 
                 switch (Type)
@@ -173,25 +178,75 @@ namespace HeroBash
                         if(WeeklyScores!=null)
                             foreach (WeeklyScore s in WeeklyScores)
                             {
-                                DrawString(spriteBatch, s.Rank.ToString(), drawPos, false, 1f);
-                                DrawString(spriteBatch, s.PlayerName!=null?s.PlayerName.ToString():GameManager.PlayerName, drawPos + new Vector2(50, 0), false, 1f);
-                                DrawString(spriteBatch, Enum.GetName(typeof(Modes), s.IntScore.Value-1), drawPos + new Vector2(150, 0), false, 1f);
-                                DrawString(spriteBatch, s.ExtraInt.Value>0?s.ExtraInt.ToString():"-", drawPos + new Vector2(250, 0), false, 1f);
-                                DrawString(spriteBatch, "L" + s.FloatScore.ToString(), drawPos + new Vector2(300, 0), false, 1f);
-                                DrawString(spriteBatch, MinutesAndSeconds(s.DecimalScore.Value), drawPos + new Vector2(350, 0), false, 1f);
+                                // Highlighting
+                                if (comparingScore)
+                                {
+                                    if (s.Rank == null)
+                                        spriteBatch.Draw(texWhite, new Rectangle((int)drawPos.X, (int)drawPos.Y - 7, 400, 12), null, Color.Yellow * 0.2f * alpha);
+                                }
+                                else
+                                {
+                                    if(s.ScoreID==getScoreId)
+                                        spriteBatch.Draw(texWhite, new Rectangle((int)drawPos.X, (int)drawPos.Y - 7, 400, 12), null, Color.Yellow * 0.2f * alpha);
+                                }
+
+                                Color textCol = Color.White * alpha;
+                                if (s.ExtraString == GameManager.PlayerID.ToString()) textCol = Color.Gold * alpha;
+
+                                DrawString(spriteBatch, s.Rank.ToString(), drawPos, false, textCol);
+                                DrawString(spriteBatch, s.PlayerName!=null?s.PlayerName.ToString():GameManager.PlayerName, drawPos + new Vector2(50, 0), false, textCol);
+                                DrawString(spriteBatch, Enum.GetName(typeof(Modes), s.IntScore.Value - 1), drawPos + new Vector2(150, 0), false, textCol);
+                                DrawString(spriteBatch, s.ExtraInt.Value > 0 ? s.ExtraInt.ToString() : "-", drawPos + new Vector2(250, 0), false, textCol);
+                                DrawString(spriteBatch, "L" + s.FloatScore.ToString(), drawPos + new Vector2(300, 0), false, textCol);
+                                DrawString(spriteBatch, MinutesAndSeconds(s.DecimalScore.Value), drawPos + new Vector2(350, 0), false, textCol);
                                 drawPos.Y += 12;
+
+                                
                             }
+
+                        if (Type == ScoreBoardType.WeeklyTopTen && LastWeekScores!=null)
+                        {
+                            DrawString(spriteBatch, "Last Week's Top Villain", new Vector2(Position.X, drawPos.Y+10), true, alpha, 0.75f);
+                            drawPos.Y += 25;
+                            foreach (LastWeek s in LastWeekScores)
+                            {
+                                Color textCol = Color.White * alpha;
+                                if (s.ExtraString == GameManager.PlayerID.ToString()) textCol = Color.Gold * alpha;
+
+                                DrawString(spriteBatch, "1", drawPos, false, textCol);
+                                DrawString(spriteBatch, s.PlayerName != null ? s.PlayerName.ToString() : GameManager.PlayerName, drawPos + new Vector2(50, 0), false, textCol);
+                                DrawString(spriteBatch, Enum.GetName(typeof(Modes), s.IntScore.Value - 1), drawPos + new Vector2(150, 0), false, textCol);
+                                DrawString(spriteBatch, s.ExtraInt.Value > 0 ? s.ExtraInt.ToString() : "-", drawPos + new Vector2(250, 0), false, textCol);
+                                DrawString(spriteBatch, "L" + s.FloatScore.ToString(), drawPos + new Vector2(300, 0), false, textCol);
+                                DrawString(spriteBatch, MinutesAndSeconds(s.DecimalScore.Value), drawPos + new Vector2(350, 0), false, textCol);
+                            }
+                        }
                         break;
                     default:
                         if(Scores!=null)
                             foreach (Score s in Scores)
                             {
-                                DrawString(spriteBatch, s.Rank.ToString(), drawPos, false, 1f);
-                                DrawString(spriteBatch, s.PlayerName != null ? s.PlayerName.ToString() : GameManager.PlayerName, drawPos + new Vector2(50, 0), false, 1f);
-                                DrawString(spriteBatch, Enum.GetName(typeof(Modes), s.IntScore.Value-1), drawPos + new Vector2(150, 0), false, 1f);
-                                DrawString(spriteBatch, s.ExtraInt.Value > 0 ? s.ExtraInt.ToString() : "-", drawPos + new Vector2(250, 0), false, 1f);
-                                DrawString(spriteBatch, "L" + s.FloatScore.ToString(), drawPos + new Vector2(300, 0), false, 1f);
-                                DrawString(spriteBatch, MinutesAndSeconds(s.DecimalScore.Value), drawPos + new Vector2(350, 0), false, 1f);
+                                // Highlighting
+                                if (comparingScore)
+                                {
+                                    if (s.Rank == null)
+                                        spriteBatch.Draw(texWhite, new Rectangle((int)drawPos.X, (int)drawPos.Y - 7, 400, 12), null, Color.Yellow * 0.2f * alpha);
+                                }
+                                else
+                                {
+                                    if (s.ScoreID == getScoreId)
+                                        spriteBatch.Draw(texWhite, new Rectangle((int)drawPos.X, (int)drawPos.Y - 7, 400, 12), null, Color.Yellow * 0.2f * alpha);
+                                }
+
+                                Color textCol = Color.White * alpha;
+                                if (s.ExtraString == GameManager.PlayerID.ToString()) textCol = Color.Gold * alpha;
+
+                                DrawString(spriteBatch, s.Rank.ToString(), drawPos, false, textCol);
+                                DrawString(spriteBatch, s.PlayerName != null ? s.PlayerName.ToString() : GameManager.PlayerName, drawPos + new Vector2(50, 0), false, textCol);
+                                DrawString(spriteBatch, Enum.GetName(typeof(Modes), s.IntScore.Value - 1), drawPos + new Vector2(150, 0), false, textCol);
+                                DrawString(spriteBatch, s.ExtraInt.Value > 0 ? s.ExtraInt.ToString() : "-", drawPos + new Vector2(250, 0), false, textCol);
+                                DrawString(spriteBatch, "L" + s.FloatScore.ToString(), drawPos + new Vector2(300, 0), false, textCol);
+                                DrawString(spriteBatch, MinutesAndSeconds(s.DecimalScore.Value), drawPos + new Vector2(350, 0), false, textCol);
                                 drawPos.Y += 12;
                             }
                         break;
@@ -201,6 +256,7 @@ namespace HeroBash
 
         void DrawString(SpriteBatch sb, string s, Vector2 pos, bool centered, float alpha) { DrawString(sb, s, pos, centered, Color.White * alpha, 0.5f); }
         void DrawString(SpriteBatch sb, string s, Vector2 pos, bool centered, float alpha, float scale) { DrawString(sb, s, pos, centered, Color.White * alpha, scale); }
+        void DrawString(SpriteBatch sb, string s, Vector2 pos, bool centered, Color color) { DrawString(sb, s, pos, centered, color, 0.5f); }
         void DrawString(SpriteBatch sb, string s, Vector2 pos, bool centered, Color color, float scale)
         {
             sb.DrawString(spriteFont, s, pos + new Vector2(1, 1), Color.Black * 0.4f * color.ToVector4().W, 0f, spriteFont.MeasureString(s) * new Vector2(centered ? 0.5f : 0f, 0.5f), scale, SpriteEffects.None, 1);
@@ -219,8 +275,9 @@ namespace HeroBash
 
         void FetchScores(object sender, DoWorkEventArgs e)
         {
-
-            HeroBashHighScoresClient service = new HeroBashHighScoresClient();
+            BasicHttpBinding bhb = new BasicHttpBinding();
+            EndpointAddress end = new EndpointAddress("http://highscores.team-mango.com/herobashhighscoresservice.svc");
+            HeroBashHighScoresClient service = new HeroBashHighScoresClient(bhb, end);
 
             try
             {
@@ -237,6 +294,7 @@ namespace HeroBash
                         break;
                     case ScoreBoardType.WeeklyTopTen:
                         WeeklyScores = service.GetTopTenWeeklyScores();
+                        LastWeekScores = service.GetLastWeekScore();
                         break;
                     case ScoreBoardType.NearbyWeekly:
                         if (!comparingScore)
@@ -280,9 +338,15 @@ namespace HeroBash
 
             try
             {
-                HeroBashHighScoresClient service = new HeroBashHighScoresClient();
-                LastSubmittedOverallRank = service.AddScore(GameManager.PlayerName, GameManager.PlayerID.ToString(), playthrough, stage, (float)level, Convert.ToDecimal(time));
-                LastSubmittedWeeklyRank = service.AddWeeklyScore(GameManager.PlayerName, GameManager.PlayerID.ToString(), playthrough, stage, (float)level, Convert.ToDecimal(time));
+                BasicHttpBinding bhb = new BasicHttpBinding();
+                EndpointAddress end = new EndpointAddress("http://highscores.team-mango.com/herobashhighscoresservice.svc");
+                HeroBashHighScoresClient service = new HeroBashHighScoresClient(bhb, end);
+
+                LastSubmittedOverallRank = service.AddScore(GameManager.PlayerName, GameManager.PlayerID.ToString(), playthrough, stage, (float)level, Convert.ToDecimal((int)time));
+                LastSubmittedWeeklyRank = service.AddWeeklyScore(GameManager.PlayerName, GameManager.PlayerID.ToString(), playthrough, stage, (float)level, Convert.ToDecimal((int)time));
+
+                GameOverScreen.overallScoreSubmitted = true;
+                GameOverScreen.weeklyScoreSubmitted = true;
             }
             catch (Exception ex) { }
         }

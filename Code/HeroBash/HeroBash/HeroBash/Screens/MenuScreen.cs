@@ -33,6 +33,8 @@ namespace HeroBash
         int selectedEntry = 0;
         string menuTitle;
 
+        float scoresMargin;
+
         #endregion
 
         #region Properties
@@ -56,10 +58,12 @@ namespace HeroBash
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MenuScreen(string menuTitle)
+        public MenuScreen(string menuTitle, float margin)
         {
             // menus generally only need Tap for menu selection
             EnabledGestures = GestureType.Tap;
+
+            scoresMargin = margin;
 
             this.menuTitle = menuTitle;
 
@@ -201,7 +205,7 @@ namespace HeroBash
                 MenuEntry menuEntry = menuEntries[i];
                 
                 // each entry is to be centered horizontally
-                position.X = ScreenManager.GraphicsDevice.Viewport.Width / 2;// -menuEntry.GetWidth(this) / 2;
+                position.X = (ScreenManager.GraphicsDevice.Viewport.Width - scoresMargin) / 2;// -menuEntry.GetWidth(this) / 2;
 
                 menuEntry.Zoom = 1f;
 

@@ -13,15 +13,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
+using Microsoft.Xna.Framework.Input;
 #endregion
 
 namespace HeroBash
 {
-    /// <summary>
-    /// A popup message box screen, used to display "are you sure?"
-    /// confirmation messages.
-    /// </summary>
-    class MessageBoxScreen : GameScreen
+
+    class EnterNameScreen : GameScreen
     {
         #region Fields
 
@@ -41,6 +39,10 @@ namespace HeroBash
         string okMessage = "Ok";
         string cancelMessage = "Cancel";
 
+        string NewName = "";
+
+        bool shiftPressed = false;
+
         #endregion
 
         #region Initialization
@@ -50,8 +52,8 @@ namespace HeroBash
         /// Constructor automatically includes the standard "A=ok, B=cancel"
         /// usage text prompt.
         /// </summary>
-        public MessageBoxScreen(string message)
-            : this(message, "ok", "cancel")
+        public EnterNameScreen()
+            : this("Ok", "Cancel")
         { }
 
 
@@ -59,17 +61,13 @@ namespace HeroBash
         /// Constructor lets the caller specify whether to include the standard
         /// "A=ok, B=cancel" usage text prompt.
         /// </summary>
-        public MessageBoxScreen(string message, string ok, string cancel)
+        public EnterNameScreen(string ok, string cancel)
         {
-
-            this.message = message;
+            message = "Enter New High Score Name:";
             this.okMessage = ok;
             this.cancelMessage = cancel;
 
             IsPopup = true;
-
-            okRect = new Rectangle(222, 333, 134, 36);
-            cancelRect = new Rectangle(442, 333, 134, 36);
 
             TransitionOnTime = TimeSpan.FromSeconds(0.2);
             TransitionOffTime = TimeSpan.FromSeconds(0.2);
@@ -77,8 +75,70 @@ namespace HeroBash
             IsSerializable = false;
 
             EnabledGestures = GestureType.Tap;
+
+#if WINDOWS
+            //EventInput.CharEntered += new CharEnteredHandler(CharacterEntered);
+            ((OpenTKGameWindow)HeroBash.Instance.Window).OnMangoKeyRelease += new MangoKeyPressHandler(CharacterReleased);
+            ((OpenTKGameWindow)HeroBash.Instance.Window).OnMangoKeyPress += new MangoKeyPressHandler(CharacterEntered);
+
+#endif
         }
 
+#if WINDOWS || MAC || LINUX
+        public void CharacterReleased(object sender, MangoKeyEventArgs e)
+        {
+            string letter = e.KeyPressed.ToString();
+
+            if (letter.Length > 1)
+            {
+                if (letter.Contains("Shift"))
+                    shiftPressed = false;
+            }
+
+        }
+
+        public void CharacterEntered(object sender, MangoKeyEventArgs e)
+        {
+            string letter = e.KeyPressed.ToString();
+
+            if (letter.Length > 1)
+            {
+                if (letter.Contains("Shift"))
+                    shiftPressed = true;
+                if (letter == "Back")
+                {
+                    if (NewName.Length > 0)
+                        NewName = NewName.Remove(NewName.Length - 1, 1);
+                }
+                else if (letter == "Space")
+                    NewName += " ";
+                else if (letter == "OemPeriod")
+                    NewName += ".";
+                else if (letter.StartsWith("D") && letter.Length == 2)
+                {
+                    if (shiftPressed)
+                    {
+                        if (letter.Substring(1, 1) == "1")
+                            NewName += "!";
+                        else
+                            NewName += (letter.Substring(1, 1));
+                    }
+                    else
+                        NewName += (letter.Substring(1, 1));
+                }
+
+            }
+            else
+            {
+                if (shiftPressed)
+                    NewName += letter;
+                else
+                    NewName += letter.ToLower(); ;
+            }
+
+            if (NewName.Length > 8) NewName = NewName.Remove(8);
+        }
+#endif
 
         /// <summary>
         /// Loads graphics content for this screen. This uses the shared ContentManager
@@ -90,7 +150,10 @@ namespace HeroBash
         {
             ContentManager content = ScreenManager.Game.Content;
 
-            bgTexture = content.Load<Texture2D>("messagebox");
+            bgTexture = content.Load<Texture2D>("blank");
+
+            okRect = new Rectangle((ScreenManager.GraphicsDevice.Viewport.Width / 2) - 184, (ScreenManager.GraphicsDevice.Viewport.Height / 2) + 80, 134, 36);
+            cancelRect = new Rectangle((ScreenManager.GraphicsDevice.Viewport.Width / 2) + 50, (ScreenManager.GraphicsDevice.Viewport.Height / 2) + 80, 134, 36);
 
             ScreenManager.Game.ResetElapsedTime();
         }
@@ -119,6 +182,10 @@ namespace HeroBash
                 if (Accepted != null)
                     Accepted(this, new PlayerIndexEventArgs(playerIndex));
 
+                if (NewName.Trim() != string.Empty) GameManager.PlayerName = NewName;
+
+                Settings.Save();
+
                 ExitScreen();
             }
             else if (input.IsMenuCancel(ControllingPlayer, out playerIndex))
@@ -130,31 +197,38 @@ namespace HeroBash
                 ExitScreen();
             }
 
-            foreach (GestureSample gesture in input.Gestures)
-            {
-                if (gesture.GestureType == GestureType.Tap)
-                {
+            //foreach (GestureSample gesture in input.Gestures)
+            //{
+            //    if (gesture.GestureType == GestureType.Tap)
+            //    {
                     // convert the position to a Point that we can test against a Rectangle
-                    Point tapLocation = new Point((int)gesture.Position.X, (int)gesture.Position.Y);
+            if (input.TapPosition != null)
+            {
+                Point tapLocation = new Point((int)input.TapPosition.Value.X, (int)input.TapPosition.Value.Y);
 
-                    if (okRect.Contains(tapLocation))
-                    {
-                        if (Accepted != null)
-                            Accepted(this, new PlayerIndexEventArgs(playerIndex));
+                if (okRect.Contains(tapLocation))
+                {
+                    if (Accepted != null)
+                        Accepted(this, new PlayerIndexEventArgs(playerIndex));
 
-                        ExitScreen();
-                    }
+                    if (NewName.Trim() != string.Empty) GameManager.PlayerName = NewName;
 
-                    if (cancelRect.Contains(tapLocation))
-                    {
-                        if (Cancelled != null)
-                            Cancelled(this, new PlayerIndexEventArgs(playerIndex));
+                    ExitScreen();
+                }
 
-                        ExitScreen();
-                    }
+                if (cancelRect.Contains(tapLocation))
+                {
+                    if (Cancelled != null)
+                        Cancelled(this, new PlayerIndexEventArgs(playerIndex));
+
+                    ExitScreen();
                 }
             }
-        }
+            //    }
+            //}
+
+            
+         }
 
 
         #endregion
@@ -177,8 +251,9 @@ namespace HeroBash
             Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
             Vector2 viewportSize = new Vector2(viewport.Width, viewport.Height);
             Vector2 textSize = font.MeasureString(message);
-            Vector2 textPosition = (viewportSize - textSize) / 2;
-            textPosition.Y -= 30;
+            Vector2 textPosition = (viewportSize) / 2;
+            Vector2 messagePosition = (viewportSize - textSize) / 2;
+            messagePosition.Y -= 100;
 
             // Fade the popup alpha during transitions.
             Color color = Color.White * TransitionAlpha;
@@ -186,10 +261,12 @@ namespace HeroBash
             spriteBatch.Begin();
 
             // Draw the background rectangle.
-            spriteBatch.Draw(bgTexture, viewportSize / 2, null, color, 0f, new Vector2(bgTexture.Width / 2, bgTexture.Height / 2), 1f, SpriteEffects.None, 1);
+            spriteBatch.Draw(bgTexture, new Rectangle(((int)viewportSize.X / 2)-260, ((int)viewportSize.Y/ 2)-150, 520,300) , null, color, 0f, Vector2.Zero, SpriteEffects.None, 1);
 
             // Draw the message box text.
-            spriteBatch.DrawString(font, message, textPosition, color);
+            spriteBatch.DrawString(font, message, messagePosition, color);
+
+            spriteBatch.DrawString(font, NewName, textPosition, Color.Gold * TransitionAlpha, 0f, font.MeasureString(NewName) / 2, 1f, SpriteEffects.None, 1);
 
             spriteBatch.DrawString(font, okMessage, new Vector2(okRect.X + (okRect.Width / 2), okRect.Y + (okRect.Height / 2)), color, 0f, font.MeasureString(okMessage) / 2, 1f, SpriteEffects.None, 1);
             spriteBatch.DrawString(font, cancelMessage, new Vector2(cancelRect.X + (cancelRect.Width / 2), cancelRect.Y + (cancelRect.Height / 2)), color, 0f, font.MeasureString(cancelMessage) / 2, 1f, SpriteEffects.None, 1);

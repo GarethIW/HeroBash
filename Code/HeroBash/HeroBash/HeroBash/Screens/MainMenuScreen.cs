@@ -25,7 +25,7 @@ namespace HeroBash
         /// Constructor fills in the menu contents.
         /// </summary>
         public MainMenuScreen()
-            : base("Main Menu")
+            : base("Main Menu", 350)
         {
             
         }
