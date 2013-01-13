@@ -167,11 +167,7 @@ namespace HeroBash
             Weekly = new ScoreBoard(ScoreBoardType.NearbyWeekly, ScreenManager.Font, texScoreBG, texBG, GameManager.CurrentPlaythrough, GameManager.CurrentStage, GameManager.Hero.Level, GameManager.CurrentTime);
             MyScores = new ScoreBoard(ScoreBoardType.MyNearbyScores, ScreenManager.Font, texScoreBG, texBG, GameManager.CurrentPlaythrough, GameManager.CurrentStage, GameManager.Hero.Level, GameManager.CurrentTime);
 
-            scoresOffset = (ScreenManager.GraphicsDevice.Viewport.Height / 2) - 315;
-
-            Overall.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, scoresOffset + 70);
-            Weekly.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, scoresOffset + 265);
-            MyScores.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, scoresOffset + 460);
+            
         }
 
 
@@ -240,6 +236,12 @@ namespace HeroBash
                     princessPos = Vector2.Lerp(princessStartPos, princessTarget, princessMoveAmount);
                 }
             }
+
+            scoresOffset = (ScreenManager.GraphicsDevice.Viewport.Height / 2) - 315;
+
+            Overall.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, scoresOffset + 70);
+            Weekly.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, scoresOffset + 265);
+            MyScores.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, scoresOffset + 460);
 
             base.Update(gameTime, otherScreenHasFocus, false);
         }

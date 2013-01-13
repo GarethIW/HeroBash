@@ -10,6 +10,12 @@ using System.Threading;
 using HeroBash.HighScoresService;
 using System.ComponentModel;
 using System.ServiceModel;
+using System.Collections.ObjectModel;
+
+#if WINRT
+using Windows.System.Threading;
+using System.Threading.Tasks;
+#endif
 
 namespace HeroBash
 {
@@ -75,6 +81,12 @@ namespace HeroBash
             bw.DoWork += FetchScores;
             bw.RunWorkerAsync();
 #endif
+#if LINUX
+            FetchScores("hello", null);
+#endif
+#if WINRT
+            ThreadPool.RunAsync(async delegate { FetchScores(); });
+#endif
         }
 
         public ScoreBoard(ScoreBoardType type, SpriteFont font, Texture2D bg, Texture2D whitebg, int playthrough, int stage, int level, double time)
@@ -97,6 +109,10 @@ namespace HeroBash
             bw.DoWork += FetchScores;
             bw.RunWorkerAsync();
 #endif
+#if WINRT
+            ThreadPool.RunAsync(async delegate { FetchScores(); });
+#endif
+
         }
         public ScoreBoard(ScoreBoardType type, SpriteFont font, Texture2D bg, Texture2D whitebg, int scoreId)
         {
@@ -115,6 +131,11 @@ namespace HeroBash
             bw.DoWork += FetchScores;
             bw.RunWorkerAsync();
 #endif
+#if WINRT
+            ThreadPool.RunAsync(async delegate { FetchScores(); });
+#endif
+
+
         }
 
 
@@ -275,9 +296,16 @@ namespace HeroBash
 
         void FetchScores(object sender, DoWorkEventArgs e)
         {
+
+
+            scoresError = true;
+            scoresReturned = true;
+
             BasicHttpBinding bhb = new BasicHttpBinding();
             EndpointAddress end = new EndpointAddress("http://highscores.team-mango.com/herobashhighscoresservice.svc");
             HeroBashHighScoresClient service = new HeroBashHighScoresClient(bhb, end);
+
+            
 
             try
             {
@@ -443,11 +471,103 @@ namespace HeroBash
 #endif
 
 #if WINRT
-        void FetchScores()
+        async Task FetchScores()
         {
-            HeroBashHighScoresClient service = new HeroBashHighScoresClient();
+            BasicHttpBinding bhb = new BasicHttpBinding();
+            EndpointAddress end = new EndpointAddress("http://highscores.team-mango.com/herobashhighscoresservice.svc");
+            HeroBashHighScoresClient service = new HeroBashHighScoresClient(bhb, end);
+
+            ObservableCollection<Score> obsScores = null;
+            ObservableCollection<WeeklyScore> obsWeeklyScores = null;
+            ObservableCollection<LastWeek> obsLastWeekScores = null;
+
+            try
+            {
+                switch (Type)
+                {
+                    case ScoreBoardType.TopTen:
+                        obsScores = await service.GetTopTenScoresAsync();
+                        Scores = obsScores.ToArray();
+                        break;
+                    case ScoreBoardType.NearbyOverall:
+                        if (!comparingScore)
+                        {
+                            obsScores = await service.GetNearbyScoresAsync(getScoreId);
+                            Scores = obsScores.ToArray();
+                        }
+                        else
+                        {
+                            obsScores = await service.GetNearbyScoresInGameAsync(comparePlaythrough, compareStage, compareLevel, compareTime);
+                            Scores = obsScores.ToArray();
+                        }
+                        break;
+                    case ScoreBoardType.WeeklyTopTen:
+                        obsWeeklyScores = await service.GetTopTenWeeklyScoresAsync();
+                        WeeklyScores = obsWeeklyScores.ToArray();
+                        obsLastWeekScores = await service.GetLastWeekScoreAsync();
+                        LastWeekScores = obsLastWeekScores.ToArray();
+                        break;
+                    case ScoreBoardType.NearbyWeekly:
+                        if (!comparingScore)
+                        {
+                            obsWeeklyScores = await service.GetNearbyWeeklyScoresAsync(getScoreId);
+                            WeeklyScores = obsWeeklyScores.ToArray();
+                        }
+                        else
+                        {
+                            obsWeeklyScores = await service.GetNearbyWeeklyScoresInGameAsync(comparePlaythrough, compareStage, compareLevel, compareTime);
+                            WeeklyScores = obsWeeklyScores.ToArray();
+                        }
+                        break;
+                    case ScoreBoardType.MyScores:
+                        obsScores = await service.GetMyPreviousScoresAsync(GameManager.PlayerID.ToString());
+                        Scores = obsScores.ToArray();
+                        break;
+                    case ScoreBoardType.MyNearbyScores:
+                        if (!comparingScore)
+                        {
+                           obsScores = await service.GetMyNearbyPreviousScoresAsync(GameManager.PlayerID.ToString(), getScoreId);
+                           Scores = obsScores.ToArray();
+                        }
+                        else
+                        {
+                            obsScores = await service.GetMyNearbyPreviousScoresInGameAsync(GameManager.PlayerID.ToString(), comparePlaythrough, compareStage, compareLevel, compareTime);
+                            Scores = obsScores.ToArray();
+                        }
+                        break;
+                }
+
+                scoresError = false;
+                scoresReturned = true;
+            }
+            catch (Exception ex)
+            {
+                scoresError = true;
+                scoresReturned = true;
+            }
+
 
             
+        }
+
+        public static async Task Submit(int playthrough, int stage, int level, double time)
+        {
+            LastSubmittedOverallRank = -1;
+            LastSubmittedWeeklyRank = -1;
+
+            try
+            {
+                BasicHttpBinding bhb = new BasicHttpBinding();
+                EndpointAddress end = new EndpointAddress("http://highscores.team-mango.com/herobashhighscoresservice.svc");
+                HeroBashHighScoresClient service = new HeroBashHighScoresClient(bhb, end);
+
+                LastSubmittedOverallRank = await service.AddScoreAsync(GameManager.PlayerName, GameManager.PlayerID.ToString(), playthrough, stage, (float)level, Convert.ToDecimal((int)time));
+                LastSubmittedWeeklyRank = await service.AddWeeklyScoreAsync(GameManager.PlayerName, GameManager.PlayerID.ToString(), playthrough, stage, (float)level, Convert.ToDecimal((int)time));
+
+                GameOverScreen.overallScoreSubmitted = true;
+                GameOverScreen.weeklyScoreSubmitted = true;
+            }
+            catch (Exception ex) { }
         }
 #endif
 

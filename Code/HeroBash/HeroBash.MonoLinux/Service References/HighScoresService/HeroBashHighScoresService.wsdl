@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="HeroBashHighScoresService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://highscores.team-mango.com/HeroBashHighScoresService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://highscores.team-mango.com/HeroBashHighScoresService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://highscores.team-mango.com/HeroBashHighScoresService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/HighScoresService" />
+      <xsd:import schemaLocation="http://highscores.team-mango.com/HeroBashHighScoresService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+      <xsd:import schemaLocation="http://highscores.team-mango.com/HeroBashHighScoresService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IHeroBashHighScores_GetNearbyScoresInGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNearbyScoresInGame" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetNearbyScoresInGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNearbyScoresInGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetNearbyScores_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNearbyScores" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetNearbyScores_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNearbyScoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetTopTenScores_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopTenScores" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetTopTenScores_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopTenScoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetNearbyWeeklyScoresInGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNearbyWeeklyScoresInGame" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetNearbyWeeklyScoresInGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNearbyWeeklyScoresInGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetNearbyWeeklyScores_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNearbyWeeklyScores" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetNearbyWeeklyScores_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNearbyWeeklyScoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetTopTenWeeklyScores_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopTenWeeklyScores" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetTopTenWeeklyScores_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopTenWeeklyScoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetLastWeekScore_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastWeekScore" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetLastWeekScore_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastWeekScoreResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetMyPreviousScores_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyPreviousScores" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetMyPreviousScores_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyPreviousScoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetMyNearbyPreviousScoresInGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyNearbyPreviousScoresInGame" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetMyNearbyPreviousScoresInGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyNearbyPreviousScoresInGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetMyNearbyPreviousScores_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyNearbyPreviousScores" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_GetMyNearbyPreviousScores_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyNearbyPreviousScoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_AddScore_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddScore" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_AddScore_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddScoreResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_AddWeeklyScore_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddWeeklyScore" />
+  </wsdl:message>
+  <wsdl:message name="IHeroBashHighScores_AddWeeklyScore_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddWeeklyScoreResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IHeroBashHighScores">
+    <wsdl:operation name="GetNearbyScoresInGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetNearbyScoresInGame" message="tns:IHeroBashHighScores_GetNearbyScoresInGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetNearbyScoresInGameResponse" message="tns:IHeroBashHighScores_GetNearbyScoresInGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNearbyScores">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetNearbyScores" message="tns:IHeroBashHighScores_GetNearbyScores_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetNearbyScoresResponse" message="tns:IHeroBashHighScores_GetNearbyScores_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopTenScores">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetTopTenScores" message="tns:IHeroBashHighScores_GetTopTenScores_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetTopTenScoresResponse" message="tns:IHeroBashHighScores_GetTopTenScores_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNearbyWeeklyScoresInGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetNearbyWeeklyScoresInGame" message="tns:IHeroBashHighScores_GetNearbyWeeklyScoresInGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetNearbyWeeklyScoresInGameResponse" message="tns:IHeroBashHighScores_GetNearbyWeeklyScoresInGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNearbyWeeklyScores">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetNearbyWeeklyScores" message="tns:IHeroBashHighScores_GetNearbyWeeklyScores_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetNearbyWeeklyScoresResponse" message="tns:IHeroBashHighScores_GetNearbyWeeklyScores_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopTenWeeklyScores">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetTopTenWeeklyScores" message="tns:IHeroBashHighScores_GetTopTenWeeklyScores_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetTopTenWeeklyScoresResponse" message="tns:IHeroBashHighScores_GetTopTenWeeklyScores_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastWeekScore">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetLastWeekScore" message="tns:IHeroBashHighScores_GetLastWeekScore_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetLastWeekScoreResponse" message="tns:IHeroBashHighScores_GetLastWeekScore_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyPreviousScores">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetMyPreviousScores" message="tns:IHeroBashHighScores_GetMyPreviousScores_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetMyPreviousScoresResponse" message="tns:IHeroBashHighScores_GetMyPreviousScores_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNearbyPreviousScoresInGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScoresInGame" message="tns:IHeroBashHighScores_GetMyNearbyPreviousScoresInGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScoresInGameResponse" message="tns:IHeroBashHighScores_GetMyNearbyPreviousScoresInGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNearbyPreviousScores">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScores" message="tns:IHeroBashHighScores_GetMyNearbyPreviousScores_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScoresResponse" message="tns:IHeroBashHighScores_GetMyNearbyPreviousScores_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddScore">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroBashHighScores/AddScore" message="tns:IHeroBashHighScores_AddScore_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroBashHighScores/AddScoreResponse" message="tns:IHeroBashHighScores_AddScore_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddWeeklyScore">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroBashHighScores/AddWeeklyScore" message="tns:IHeroBashHighScores_AddWeeklyScore_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroBashHighScores/AddWeeklyScoreResponse" message="tns:IHeroBashHighScores_AddWeeklyScore_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IHeroBashHighScores" type="tns:IHeroBashHighScores">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetNearbyScoresInGame">
+      <soap:operation soapAction="http://tempuri.org/IHeroBashHighScores/GetNearbyScoresInGame" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNearbyScores">
+      <soap:operation soapAction="http://tempuri.org/IHeroBashHighScores/GetNearbyScores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopTenScores">
+      <soap:operation soapAction="http://tempuri.org/IHeroBashHighScores/GetTopTenScores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNearbyWeeklyScoresInGame">
+      <soap:operation soapAction="http://tempuri.org/IHeroBashHighScores/GetNearbyWeeklyScoresInGame" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNearbyWeeklyScores">
+      <soap:operation soapAction="http://tempuri.org/IHeroBashHighScores/GetNearbyWeeklyScores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopTenWeeklyScores">
+      <soap:operation soapAction="http://tempuri.org/IHeroBashHighScores/GetTopTenWeeklyScores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastWeekScore">
+      <soap:operation soapAction="http://tempuri.org/IHeroBashHighScores/GetLastWeekScore" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyPreviousScores">
+      <soap:operation soapAction="http://tempuri.org/IHeroBashHighScores/GetMyPreviousScores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNearbyPreviousScoresInGame">
+      <soap:operation soapAction="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScoresInGame" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNearbyPreviousScores">
+      <soap:operation soapAction="http://tempuri.org/IHeroBashHighScores/GetMyNearbyPreviousScores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddScore">
+      <soap:operation soapAction="http://tempuri.org/IHeroBashHighScores/AddScore" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddWeeklyScore">
+      <soap:operation soapAction="http://tempuri.org/IHeroBashHighScores/AddWeeklyScore" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HeroBashHighScoresService">
+    <wsdl:port name="BasicHttpBinding_IHeroBashHighScores" binding="tns:BasicHttpBinding_IHeroBashHighScores">
+      <soap:address location="http://highscores.team-mango.com/HeroBashHighScoresService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

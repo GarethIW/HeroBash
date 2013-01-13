@@ -33,7 +33,7 @@ namespace HeroBash
 #if WINDOWS_PHONE || WINRT
             graphics.IsFullScreen = true;
 #endif
-#if WINDOWS
+#if WINDOWS || LINUX
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
 #endif
@@ -64,11 +64,6 @@ namespace HeroBash
         {
             // TODO: Add your initialization logic here
             graphics.ApplyChanges();
-
-#if WINDOWS
-            //EventInput.Initialize(Window);
-            
-#endif
 
             Instance = this;
 

@@ -76,15 +76,17 @@ namespace HeroBash
 
             EnabledGestures = GestureType.Tap;
 
-#if WINDOWS
-            //EventInput.CharEntered += new CharEnteredHandler(CharacterEntered);
+#if WINDOWS || LINUX
             ((OpenTKGameWindow)HeroBash.Instance.Window).OnMangoKeyRelease += new MangoKeyPressHandler(CharacterReleased);
             ((OpenTKGameWindow)HeroBash.Instance.Window).OnMangoKeyPress += new MangoKeyPressHandler(CharacterEntered);
+#endif
 
+#if WINRT
+           
 #endif
         }
 
-#if WINDOWS || MAC || LINUX
+#if WINDOWS || MAC || LINUX 
         public void CharacterReleased(object sender, MangoKeyEventArgs e)
         {
             string letter = e.KeyPressed.ToString();

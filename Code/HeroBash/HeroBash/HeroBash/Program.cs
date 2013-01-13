@@ -2,7 +2,7 @@ using System;
 
 namespace HeroBash
 {
-#if WINDOWS || XBOX 
+#if WINDOWS || LINUX || XBOX 
     static class Program
     {
         /// <summary>

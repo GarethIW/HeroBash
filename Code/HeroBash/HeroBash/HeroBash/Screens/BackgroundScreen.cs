@@ -99,11 +99,9 @@ namespace HeroBash
             TopTenWeekly = new ScoreBoard(ScoreBoardType.WeeklyTopTen, ScreenManager.Font, texScoreBG, texBG);
             MyScores = new ScoreBoard(ScoreBoardType.MyScores, ScreenManager.Font, texScoreBG, texBG);
 
-            scoresOffset = (ScreenManager.GraphicsDevice.Viewport.Height / 2) - 335;
+           
 
-            TopTenOverall.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, scoresOffset+70);
-            TopTenWeekly.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, scoresOffset+265);
-            MyScores.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, scoresOffset+495);
+            
         }
 
 
@@ -147,6 +145,11 @@ namespace HeroBash
 
             if (logoBashed && whiteFlashAlpha > 0f)
                 whiteFlashAlpha -= 0.05f;
+
+            scoresOffset = (ScreenManager.GraphicsDevice.Viewport.Height / 2) - 335;
+            TopTenOverall.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, scoresOffset + 70);
+            TopTenWeekly.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, scoresOffset + 265);
+            MyScores.Position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, scoresOffset + 495);
 
             base.Update(gameTime, otherScreenHasFocus, false);
         }

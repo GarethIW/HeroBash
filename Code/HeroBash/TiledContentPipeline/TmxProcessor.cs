@@ -29,6 +29,10 @@ namespace TiledContentPipeline
 				string asset = path.Remove(path.LastIndexOf('.'));
 				path = Path.Combine(Directory.GetCurrentDirectory(), path);
 
+                //if (path.StartsWith("\\")) path = path.Substring(1);
+                //if (asset.StartsWith("\\")) asset = asset.Substring(1);
+
+
 				// build the asset as an external reference
 				OpaqueDataDictionary data = new OpaqueDataDictionary();
 				data.Add("GenerateMipmaps", false);

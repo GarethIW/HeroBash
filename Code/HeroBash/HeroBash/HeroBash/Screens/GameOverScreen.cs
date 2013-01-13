@@ -13,6 +13,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.ComponentModel;
+#if WINRT
+using Windows.System.Threading;
+#endif
 #endregion
 
 namespace HeroBash
@@ -39,6 +42,7 @@ namespace HeroBash
 
         float scoresOffset;
 
+        bool shownENS;
 
         #endregion
 
@@ -76,6 +80,7 @@ namespace HeroBash
             overallScoreSubmitted = false;
             weeklyScoreSubmitted = false;
 
+            shownENS = false;
 
             if (GameManager.PlayerName != "Player")
             {
@@ -84,17 +89,25 @@ namespace HeroBash
                 bw.DoWork += bw_DoWork;
                 bw.RunWorkerAsync();
 #endif
+#if WINRT
+                ThreadPool.RunAsync(async delegate { ScoreBoard.Submit(GameManager.CurrentPlaythrough, GameManager.CurrentStage, GameManager.Hero.Level, GameManager.CurrentTime); });
+#endif
             }
 
-            scoresOffset = (ScreenManager.GraphicsDevice.Viewport.Height / 2) - 315;
+            
            
         }
 
         void ens_Done(object sender, PlayerIndexEventArgs e)
         {
+#if !WINRT
             BackgroundWorker bw = new BackgroundWorker();
             bw.DoWork += bw_DoWork;
             bw.RunWorkerAsync();
+#endif
+#if WINRT
+            ThreadPool.RunAsync(async delegate { ScoreBoard.Submit(GameManager.CurrentPlaythrough, GameManager.CurrentStage, GameManager.Hero.Level, GameManager.CurrentTime); });
+#endif
         }
 
 #if !WINRT
@@ -136,12 +149,14 @@ namespace HeroBash
                     foreach (GameScreen screen in ScreenManager.GetScreens())
                         if (screen.GetType() == typeof(EnterNameScreen)) found = true;
 
-                    if (!found)
+                    if (!found && !shownENS)
                     {
                         EnterNameScreen ens = new EnterNameScreen();
                         ens.Accepted += ens_Done;
                         ens.Cancelled += ens_Done;
                         ScreenManager.AddScreen(ens, null);
+
+                        shownENS = true;
                     }
                 }
             }
@@ -201,6 +216,7 @@ namespace HeroBash
                 }
             }
 
+            scoresOffset = (ScreenManager.GraphicsDevice.Viewport.Height / 2) - 315;
             if (TopTenOverall != null && TopTenOverall.Position.X > ScreenManager.GraphicsDevice.Viewport.Width - 220) TopTenOverall.Position = Vector2.Lerp(TopTenOverall.Position, new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, TopTenOverall.Position.Y), 0.1f);
             if (TopTenWeekly != null && TopTenWeekly.Position.X > ScreenManager.GraphicsDevice.Viewport.Width - 220) TopTenWeekly.Position = Vector2.Lerp(TopTenWeekly.Position, new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, TopTenWeekly.Position.Y), 0.1f);
             if (MyScores != null && MyScores.Position.X > ScreenManager.GraphicsDevice.Viewport.Width - 220) MyScores.Position = Vector2.Lerp(MyScores.Position, new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 220, MyScores.Position.Y), 0.1f);

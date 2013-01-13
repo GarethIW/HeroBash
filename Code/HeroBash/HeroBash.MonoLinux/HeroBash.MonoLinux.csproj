@@ -1,0 +1,491 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{046BB474-7A4E-4D8B-9147-4E8F53E36A7C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HeroBash</RootNamespace>
+    <AssemblyName>HeroBash</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;LINUX</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>HeroBash.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\Arrows.xnb">
+      <Link>HeroBashContent\Arrows.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\background\clouds1.xnb">
+      <Link>HeroBashContent\background\clouds1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\background\clouds2.xnb">
+      <Link>HeroBashContent\background\clouds2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\background\clouds3.xnb">
+      <Link>HeroBashContent\background\clouds3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\background\mountains1.xnb">
+      <Link>HeroBashContent\background\mountains1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\background\mountains2.xnb">
+      <Link>HeroBashContent\background\mountains2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\background\mountains3.xnb">
+      <Link>HeroBashContent\background\mountains3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\background\sky.xnb">
+      <Link>HeroBashContent\background\sky.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\BASH-Logo.xnb">
+      <Link>HeroBashContent\BASH-Logo.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\blank-white.xnb">
+      <Link>HeroBashContent\blank-white.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\blank.xnb">
+      <Link>HeroBashContent\blank.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\Buttons.xnb">
+      <Link>HeroBashContent\Buttons.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\Castle-Tiles.xnb">
+      <Link>HeroBashContent\Castle-Tiles.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\Dirt-Tiles.xnb">
+      <Link>HeroBashContent\Dirt-Tiles.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\distance.xnb">
+      <Link>HeroBashContent\distance.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\gamefont.xnb">
+      <Link>HeroBashContent\gamefont.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\hearts.xnb">
+      <Link>HeroBashContent\hearts.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\HERO-Logo.xnb">
+      <Link>HeroBashContent\HERO-Logo.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\hero.xnb">
+      <Link>HeroBashContent\hero.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\Jungle-Tiles.xnb">
+      <Link>HeroBashContent\Jungle-Tiles.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\logo.xnb">
+      <Link>HeroBashContent\logo.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\1-1.xnb">
+      <Link>HeroBashContent\Maps\1-1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\1-2.xnb">
+      <Link>HeroBashContent\Maps\1-2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\2-1.xnb">
+      <Link>HeroBashContent\Maps\2-1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\2-2.xnb">
+      <Link>HeroBashContent\Maps\2-2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\2-3.xnb">
+      <Link>HeroBashContent\Maps\2-3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\3-1.xnb">
+      <Link>HeroBashContent\Maps\3-1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\3-2.xnb">
+      <Link>HeroBashContent\Maps\3-2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\3-3.xnb">
+      <Link>HeroBashContent\Maps\3-3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\3-4.xnb">
+      <Link>HeroBashContent\Maps\3-4.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\4-1.xnb">
+      <Link>HeroBashContent\Maps\4-1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\4-2.xnb">
+      <Link>HeroBashContent\Maps\4-2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\4-3.xnb">
+      <Link>HeroBashContent\Maps\4-3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\4-4.xnb">
+      <Link>HeroBashContent\Maps\4-4.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\4-5.xnb">
+      <Link>HeroBashContent\Maps\4-5.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\5-1.xnb">
+      <Link>HeroBashContent\Maps\5-1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\5-2.xnb">
+      <Link>HeroBashContent\Maps\5-2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\5-3.xnb">
+      <Link>HeroBashContent\Maps\5-3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\5-4.xnb">
+      <Link>HeroBashContent\Maps\5-4.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\6-1.xnb">
+      <Link>HeroBashContent\Maps\6-1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\6-2.xnb">
+      <Link>HeroBashContent\Maps\6-2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\6-3.xnb">
+      <Link>HeroBashContent\Maps\6-3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\7-1.xnb">
+      <Link>HeroBashContent\Maps\7-1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\7-2.xnb">
+      <Link>HeroBashContent\Maps\7-2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\8-1.xnb">
+      <Link>HeroBashContent\Maps\8-1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\maps\overworld.xnb">
+      <Link>HeroBashContent\Maps\overworld.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\menufont.xnb">
+      <Link>HeroBashContent\menufont.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\minion1.xnb">
+      <Link>HeroBashContent\minion1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\minion2.xnb">
+      <Link>HeroBashContent\minion2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\minion3.xnb">
+      <Link>HeroBashContent\minion3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\minion4.xnb">
+      <Link>HeroBashContent\minion4.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\minion5.xnb">
+      <Link>HeroBashContent\minion5.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\overworld-arrow.xnb">
+      <Link>HeroBashContent\overworld-arrow.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\Princess.xnb">
+      <Link>HeroBashContent\Princess.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\projectiles.xnb">
+      <Link>HeroBashContent\projectiles.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\Rock-Tiles-Base.xnb">
+      <Link>HeroBashContent\Rock-Tiles-Base.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\Rock-Tiles-Extra.xnb">
+      <Link>HeroBashContent\Rock-Tiles-Extra.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\sfx\Crush.xnb">
+      <Link>HeroBashContent\SFX\Crush.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\sfx\Fall.xnb">
+      <Link>HeroBashContent\SFX\Fall.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\sfx\Fireball.xnb">
+      <Link>HeroBashContent\SFX\Fireball.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\sfx\freeze.xnb">
+      <Link>HeroBashContent\SFX\freeze.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\sfx\HeroHurt.xnb">
+      <Link>HeroBashContent\SFX\HeroHurt.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\sfx\Jump.xnb">
+      <Link>HeroBashContent\SFX\Jump.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\sfx\levelup.xnb">
+      <Link>HeroBashContent\SFX\levelup.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\sfx\lose.xnb">
+      <Link>HeroBashContent\SFX\lose.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\sfx\MinionSwordHit.xnb">
+      <Link>HeroBashContent\SFX\MinionSwordHit.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\sfx\SwordStuck.xnb">
+      <Link>HeroBashContent\SFX\SwordStuck.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\sfx\SwordThrow.xnb">
+      <Link>HeroBashContent\SFX\SwordThrow.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\sfx\win.xnb">
+      <Link>HeroBashContent\SFX\win.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\herobash\herobash\bin\windows phone\debug\herobashcontent\topbar.xnb">
+      <Link>HeroBashContent\topbar.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Service References\HighScoresService\HeroBash.HighScoresService.LastWeek.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBash.HighScoresService.LastWeek1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBash.HighScoresService.Score.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBash.HighScoresService.Score1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBash.HighScoresService.WeeklyScore.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBash.HighScoresService.WeeklyScore1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HighScoresService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\HighScoresService\configuration.svcinfo" />
+    <None Include="Service References\HighScoresService\configuration91.svcinfo" />
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService.disco" />
+    <None Include="App.config" />
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService.wsdl" />
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HighScoresService\HeroBashHighScoresService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\HeroBash\HeroBash\AudioController.cs">
+      <Link>AudioController.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\BackgroundBox.cs">
+      <Link>BackgroundBox.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\ButtonManager.cs">
+      <Link>ButtonManager.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\GameManager.cs">
+      <Link>GameManager.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Hero.cs">
+      <Link>Hero.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\HeroBash.cs">
+      <Link>HeroBash.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Minion.cs">
+      <Link>Minion.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\MinionManager.cs">
+      <Link>MinionManager.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\ParallaxManager.cs">
+      <Link>ParallaxManager.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Program.cs">
+      <Link>Program.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\ProjectileManager.cs">
+      <Link>ProjectileManager.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\ScoreBoard.cs">
+      <Link>ScoreBoard.cs</Link>
+    </Compile>
+    <Compile Include="..\herobash\herobash\screenmanager\GameScreen.cs">
+      <Link>ScreenManager\GameScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\herobash\herobash\screenmanager\InputState.cs">
+      <Link>ScreenManager\InputState.cs</Link>
+    </Compile>
+    <Compile Include="..\herobash\herobash\screenmanager\ScreenManager.cs">
+      <Link>ScreenManager\ScreenManager.cs</Link>
+    </Compile>
+    <Compile Include="..\herobash\herobash\screens\AboutScreen.cs">
+      <Link>Screens\AboutScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\herobash\herobash\screens\BackgroundScreen.cs">
+      <Link>Screens\BackgroundScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\herobash\herobash\screens\EnterNameScreen.cs">
+      <Link>Screens\EnterNameScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\herobash\herobash\screens\GameOverScreen.cs">
+      <Link>Screens\GameOverScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\herobash\herobash\screens\GameplayScreen.cs">
+      <Link>Screens\GameplayScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\herobash\herobash\screens\LoadingScreen.cs">
+      <Link>Screens\LoadingScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\herobash\herobash\screens\MainMenuScreen.cs">
+      <Link>Screens\MainMenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\herobash\herobash\screens\MenuEntry.cs">
+      <Link>Screens\MenuEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\herobash\herobash\screens\MenuScreen.cs">
+      <Link>Screens\MenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\herobash\herobash\screens\MessageBoxScreen.cs">
+      <Link>Screens\MessageBoxScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\herobash\herobash\screens\OptionsMenuScreen.cs">
+      <Link>Screens\OptionsMenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\herobash\herobash\screens\OverworldScreen.cs">
+      <Link>Screens\OverworldScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\herobash\herobash\screens\PauseBackgroundScreen.cs">
+      <Link>Screens\PauseBackgroundScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\herobash\herobash\screens\PauseMenuScreen.cs">
+      <Link>Screens\PauseMenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\herobash\herobash\screens\PlayerIndexEventArgs.cs">
+      <Link>Screens\PlayerIndexEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\HeroBash\HeroBash\Settings.cs">
+      <Link>Settings.cs</Link>
+    </Compile>
+    <Compile Include="Service References\HighScoresService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TiledLib.MonoLinux\TiledLib.MonoLinux.csproj">
+      <Project>{d70bc9b4-1f48-4d64-aab4-615b1292fe74}</Project>
+      <Name>TiledLib.MonoLinux</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\..\..\..\MonoGame\MonoGame.Framework\bin\Linux\Debug\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\HighScoresService\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
