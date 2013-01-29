@@ -82,7 +82,7 @@ namespace HeroBash
 #endif
 
 #if WINRT
-           
+            GamePage.Instance.ShowNameEntry();
 #endif
         }
 
@@ -184,6 +184,11 @@ namespace HeroBash
                 if (Accepted != null)
                     Accepted(this, new PlayerIndexEventArgs(playerIndex));
 
+#if WINRT
+                NewName = GamePage.Instance.GetNameEntry();
+                GamePage.Instance.HideNameEntry();
+#endif
+
                 if (NewName.Trim() != string.Empty) GameManager.PlayerName = NewName;
 
                 Settings.Save();
@@ -212,6 +217,11 @@ namespace HeroBash
                 {
                     if (Accepted != null)
                         Accepted(this, new PlayerIndexEventArgs(playerIndex));
+
+#if WINRT
+                    NewName = GamePage.Instance.GetNameEntry();
+                    GamePage.Instance.HideNameEntry();
+#endif
 
                     if (NewName.Trim() != string.Empty) GameManager.PlayerName = NewName;
 

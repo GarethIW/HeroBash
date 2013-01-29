@@ -5,10 +5,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3F3D20EF-64E2-42C1-B825-F5C21A1F5112}</ProjectGuid>
-    <OutputType>AppContainerExe</OutputType>
+    <OutputType>appcontainerexe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HeroBash.MonoWindows8</RootNamespace>
-    <AssemblyName>HeroBash.MonoWindows8</AssemblyName>
+    <RootNamespace>HeroBash</RootNamespace>
+    <AssemblyName>HeroBash</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -124,9 +124,6 @@
     <Compile Include="..\HeroBash\HeroBash\ParallaxManager.cs">
       <Link>ParallaxManager.cs</Link>
     </Compile>
-    <Compile Include="..\HeroBash\HeroBash\Program.cs">
-      <Link>Program.cs</Link>
-    </Compile>
     <Compile Include="..\HeroBash\HeroBash\ProjectileManager.cs">
       <Link>ProjectileManager.cs</Link>
     </Compile>
@@ -193,7 +190,13 @@
     <Compile Include="..\HeroBash\HeroBash\Settings.cs">
       <Link>Settings.cs</Link>
     </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AwaitExtension.cs" />
+    <Compile Include="GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\HighScoresService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -490,13 +493,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\WideLogo.scale-100.png" />
-    <None Include="Service References\HighScoresService\HeroBash.MonoWindows8.HighScoresService.LastWeek.datasource">
+    <Content Include="Fonts\PrStart.ttf" />
+    <None Include="Service References\HighScoresService\HeroBash.HighScoresService.LastWeek.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\HighScoresService\HeroBash.MonoWindows8.HighScoresService.Score.datasource">
+    <None Include="Service References\HighScoresService\HeroBash.HighScoresService.Score.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\HighScoresService\HeroBash.MonoWindows8.HighScoresService.WeeklyScore.datasource">
+    <None Include="Service References\HighScoresService\HeroBash.HighScoresService.WeeklyScore.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\HighScoresService\Reference.svcmap">
@@ -543,8 +547,25 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\HighScoresService\" />
   </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Common\StandardStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

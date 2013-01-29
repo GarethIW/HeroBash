@@ -18,17 +18,17 @@ namespace HeroBash
     }
 #endif
 #if WINRT
-    public static class Program
-    {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        static void Main()
-        {
-            var factory = new MonoGame.Framework.GameFrameworkViewSource<HeroBash>();
-            Windows.ApplicationModel.Core.CoreApplication.Run(factory);
-        }
-    }
+    //public static class Program
+    //{
+    //    /// <summary>
+    //    /// The main entry point for the application.
+    //    /// </summary>
+    //    static void Main()
+    //    {
+    //        var factory = new MonoGame.Framework.GameFrameworkViewSource<HeroBash>();
+    //        Windows.ApplicationModel.Core.CoreApplication.Run(factory);
+    //    }
+    //}
 #endif
 }
 

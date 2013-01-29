@@ -56,6 +56,8 @@ namespace HeroBash
         {
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
+
+            EnabledGestures = Microsoft.Xna.Framework.Input.Touch.GestureType.Tap;
         }
 
 
@@ -82,6 +84,7 @@ namespace HeroBash
 
             shownENS = false;
 
+            GameManager.PlayerName = "Player";
             if (GameManager.PlayerName != "Player")
             {
 #if !WINRT

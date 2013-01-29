@@ -184,7 +184,7 @@ namespace HeroBash
             if (scoresReturned && !scoresError)
             {
                 
-                DrawString(spriteBatch, "Rank", drawPos, false, 1f);
+                DrawString(spriteBatch, "Rank", drawPos, false, alpha);
                 DrawString(spriteBatch, "Name", drawPos + new Vector2(50, 0), false, alpha);
                 DrawString(spriteBatch, "Mode", drawPos + new Vector2(150, 0), false, alpha);
                 DrawString(spriteBatch, "Stage", drawPos + new Vector2(250, 0), false, alpha);

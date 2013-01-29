@@ -14,7 +14,7 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="HeroBash.MonoWindows8.App">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="HeroBash.App">
       <VisualElements DisplayName="HeroBash" Logo="Assets\Logo.png" SmallLogo="Assets\smalllogo.png" Description="HeroBash" ForegroundText="light" BackgroundColor="#000000">
         <DefaultTile ShowName="noLogos" WideLogo="Assets\WideLogo.png" ShortName="HeroBash" />
         <SplashScreen Image="Assets\splashscreen.png" BackgroundColor="#000000" />

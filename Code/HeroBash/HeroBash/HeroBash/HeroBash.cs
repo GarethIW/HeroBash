@@ -32,6 +32,9 @@ namespace HeroBash
 
 #if WINDOWS_PHONE || WINRT
             graphics.IsFullScreen = true;
+
+            Windows.UI.Input.PointerVisualizationSettings.GetForCurrentView().IsContactFeedbackEnabled = false;
+            Windows.UI.Input.PointerVisualizationSettings.GetForCurrentView().IsBarrelButtonFeedbackEnabled = false;
 #endif
 #if WINDOWS || LINUX
             graphics.PreferredBackBufferWidth = 1280;
@@ -83,6 +86,8 @@ namespace HeroBash
 
             
             Settings.Load();
+
+            
 
             // TODO: use this.Content to load your game content here
             screenManager.AddScreen(new BackgroundScreen(), null);
