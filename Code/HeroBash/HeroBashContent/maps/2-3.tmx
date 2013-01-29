@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="125" height="25" tilewidth="64" tileheight="64">
+<map version="1.0" orientation="orthogonal" width="150" height="25" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="Rock-Tiles-Base" tilewidth="64" tileheight="64">
   <image source="Rock-Tiles-Base.png" width="192" height="192"/>
  </tileset>
  <tileset firstgid="10" name="Rock-Tiles-Extra" tilewidth="64" tileheight="64">
   <image source="Rock-Tiles-Extra.png" width="192" height="384"/>
  </tileset>
- <layer name="FG" width="125" height="25">
+ <layer name="FG" width="150" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2Yi27DMAhFs65r92wjrf//rYulIqErcCBxbE/mSihvx+YYTDJNoV51XuzNYJdWHQwVVzAfT8F8PAXz8RTMx1MwH0/BfDwF8/EUzMdTMB9P18Xep3XmH606GDpMOfaj8H4I534Wuz3tXrc71UTsyWrxfplsPiUGdzjujcnpaa+tO1JQidEpY962WuQSnD+k1J8cK8t1nidbcU/jKxUHOCbJPG1pvB+w5eLxTfPsBsbHK7WhKdW1uZp17XrKlXvWRj62HvKXhbeVeWqrxPfAGgMU+hSN1jX0N+U2GiPPaxjLtEbWzl9abG+NeStvK3ONlRaT2vnk3xq+Xfuu9ebw3uIZ5eFtYZ7G2yIONH0u9gX2DfdgfStZC27e2LbEvJe3Zz2X3oW5kteLR9VDEs/S81GrGXvTFt4Sc2kNlcZO+fMinPP+D8T6WppP/0UzHB8R20lbeW+Jc6yPPMw5W76P9YI0n0oIv1tLzynicPRc3cMba1qL4fMac6ltfv9Z2cd2sA3Jn3z+zMp2re+5/xj8nbOyb/nWl96hrY0eBrUtxzx3v5W5ZOgn3u6vst3Td7yPfJ97XspR0ju8/uvBcGxr/S7BPLcO1GBueb5n5n/4Umuz1DAAAA==
+   H4sIAAAAAAAAC+2YDY+DMAiGO3e37b42k9v//61nc2tCCLSg9GOTNyHq7GwtTykYgmtUvS323sA+Wr2QawjV5uoSnKk9qiZXztN+VYsrZ2rfsubK9z1XlBVXzpMLai1XF2DOkwtLy5Vz5JJIw5Xz5JJKytWp1wBdT6lz+N/bPFa5aijHlzNlpzvx289i14fd2g6nmRJfr1jrHYLMb8nPN3Q9mt+nhx17D8RQ0UcTY8dCux7zEMfRY41gRpPieHLzILkP95RebMX3s1pr+J1yOT5VF7SuAXJM3dERCsaptCauyOCcUs/gFOclNw+l+3Ff2ZKrwHcbIQ6XmNJyVTuWHYINxyU/Y2G/YUt5BvZpiu9prnJzk3KW1nGYi1FrY5eEKS1X+L51LON44GIL93v0YQv/lb77aNfdaHEJS8qUJVe5HG4SjDnO6Ui1x+diX8i+URtcN1HWgw1tjJLELg1TllyV1u5aJV65+qJWDkwxY808VyeMJi1TPbmichpqftNzub40ezGu2yhmn0Uzuq4Ro6LWMDVyvMI5sYYryA88x/kbxayFcE5Qo75Zk7+t7WdkrnK5F2WacVD/PYG21Dl+jqTWhYzOzLE0dum3xJk5l3wLK32HLOXCnA9G5GqrafvSckUZ9gV87i9z3DJ23C75V1uTa/3Yw18jciXpz4Kr3J7ZgiutD3J9vCpXf+V4802YOgAA
   </data>
  </layer>
- <objectgroup name="Spawn" width="125" height="25">
+ <objectgroup name="Spawn" width="150" height="25">
   <object x="1" y="1341" width="61" height="65"/>
   <object x="1224" y="1148" width="61" height="65"/>
   <object x="2374" y="1212" width="61" height="65"/>
@@ -19,10 +19,10 @@
   <object x="4865" y="1340" width="61" height="65"/>
   <object x="5832" y="1342" width="61" height="65"/>
  </objectgroup>
- <objectgroup name="Princess" width="125" height="25">
-  <object x="7937" y="769" width="59" height="61"/>
+ <objectgroup name="Princess" width="150" height="25">
+  <object x="9476" y="1024" width="59" height="61"/>
  </objectgroup>
- <objectgroup name="Jumps" width="125" height="25">
+ <objectgroup name="Jumps" width="150" height="25">
   <object type="Full" x="176" y="1389" width="30" height="48">
    <properties>
     <property name="MustJump" value="False"/>
@@ -130,12 +130,12 @@
   </object>
   <object type="Half" x="2341" y="943" width="44" height="42">
    <properties>
-    <property name="MustJump" value="False"/>
+    <property name="MustJump" value="True"/>
    </properties>
   </object>
   <object type="Half" x="2154" y="945" width="44" height="42">
    <properties>
-    <property name="MustJump" value="False"/>
+    <property name="MustJump" value="True"/>
    </properties>
   </object>
   <object type="Half" x="1555" y="821" width="34" height="42">
@@ -180,7 +180,7 @@
   </object>
   <object type="Half" x="3232" y="1012" width="44" height="42">
    <properties>
-    <property name="MustJump" value="False"/>
+    <property name="MustJump" value="True"/>
    </properties>
   </object>
   <object type="Full" x="2939" y="1009" width="43" height="43">
@@ -391,6 +391,21 @@
   <object type="Half" x="3608" y="881" width="28" height="44">
    <properties>
     <property name="MustJump" value="False"/>
+   </properties>
+  </object>
+  <object type="Half" x="7985" y="819" width="33" height="42">
+   <properties>
+    <property name="MustJump" value="True"/>
+   </properties>
+  </object>
+  <object type="Half" x="8491" y="819" width="54" height="57">
+   <properties>
+    <property name="MustJump" value="True"/>
+   </properties>
+  </object>
+  <object type="Half" x="8942" y="950" width="54" height="57">
+   <properties>
+    <property name="MustJump" value="True"/>
    </properties>
   </object>
  </objectgroup>
