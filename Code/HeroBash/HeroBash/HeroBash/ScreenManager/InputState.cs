@@ -90,7 +90,9 @@ namespace HeroBash
 
 
                 CurrentKeyboardStates[i] = Keyboard.GetState((PlayerIndex)i);
+#if !WP8
                 CurrentGamePadStates[i] = GamePad.GetState((PlayerIndex)i);
+#endif
 
                 // Keep track of whether a gamepad has ever been
                 // connected, so we can detect if it is unplugged.

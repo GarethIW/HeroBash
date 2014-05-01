@@ -30,7 +30,7 @@ namespace HeroBash
 
             IsMouseVisible = true;
 
-#if WINDOWS_PHONE || WINRT
+#if WINRT && !WP8
             graphics.IsFullScreen = true;
 
             Windows.UI.Input.PointerVisualizationSettings.GetForCurrentView().IsContactFeedbackEnabled = false;
@@ -44,6 +44,8 @@ namespace HeroBash
 
 #if WINDOWS_PHONE
             screenManager = new ScreenManager(this, true);
+
+            graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
 #else
             screenManager = new ScreenManager(this, false);
 #endif

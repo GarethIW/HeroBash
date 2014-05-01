@@ -6,15 +6,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
+//using System.Threading;
+
 using HeroBash.HighScoresService;
 using System.ComponentModel;
 using System.ServiceModel;
 using System.Collections.ObjectModel;
 
-#if WINRT
-using Windows.System.Threading;
+#if WINRT || WP8
 using System.Threading.Tasks;
+#endif
+#if WINRT 
+using Windows.System.Threading;
 #endif
 
 namespace HeroBash
@@ -292,7 +295,7 @@ namespace HeroBash
             return mins + "'" + secs + "\"";
         }
 
-#if !WINDOWS_PHONE && !WINRT
+#if !WP8 && !WINDOWS_PHONE && !WINRT
 
         void FetchScores(object sender, DoWorkEventArgs e)
         {
@@ -381,79 +384,79 @@ namespace HeroBash
 
 #endif
 
-#if WINDOWS_PHONE
+#if WINDOWS_PHONE && !WINRT
         void FetchScores(object sender, DoWorkEventArgs e)
         {
-            HeroBashHighScoresClient service = new HeroBashHighScoresClient();
+            //HeroBashHighScoresClient service = new HeroBashHighScoresClient();
             
-            service.GetLastWeekScoreCompleted += service_GetLastWeekScoreCompleted;
-            service.GetMyPreviousScoresCompleted += service_GetMyPreviousScoresCompleted;
-            service.GetNearbyScoresCompleted += service_GetNearbyScoresCompleted;
-            service.GetNearbyScoresInGameCompleted += service_GetNearbyScoresInGameCompleted;
-            service.GetNearbyWeeklyScoresCompleted += service_GetNearbyWeeklyScoresCompleted;
-            service.GetNearbyWeeklyScoresInGameCompleted += service_GetNearbyWeeklyScoresInGameCompleted;
-            service.GetTopTenScoresCompleted += service_GetTopTenScoresCompleted;
-            service.GetTopTenWeeklyScoresCompleted += service_GetTopTenWeeklyScoresCompleted;
+            //service.GetLastWeekScoreCompleted += service_GetLastWeekScoreCompleted;
+            //service.GetMyPreviousScoresCompleted += service_GetMyPreviousScoresCompleted;
+            //service.GetNearbyScoresCompleted += service_GetNearbyScoresCompleted;
+            //service.GetNearbyScoresInGameCompleted += service_GetNearbyScoresInGameCompleted;
+            //service.GetNearbyWeeklyScoresCompleted += service_GetNearbyWeeklyScoresCompleted;
+            //service.GetNearbyWeeklyScoresInGameCompleted += service_GetNearbyWeeklyScoresInGameCompleted;
+            //service.GetTopTenScoresCompleted += service_GetTopTenScoresCompleted;
+            //service.GetTopTenWeeklyScoresCompleted += service_GetTopTenWeeklyScoresCompleted;
 
-            switch (Type)
-            {
-                case ScoreBoardType.NearbyOverall:
-                    if (!comparingScore)
-                        service.GetNearbyScoresAsync(getScoreId);
-                    else
-                        service.GetNearbyScoresInGameAsync(comparePlaythrough, compareStage, compareLevel, compareTime);
-                    break;
-                case ScoreBoardType.NearbyWeekly:
-                    if (!comparingScore)
-                        service.GetNearbyWeeklyScoresAsync(getScoreId);
-                    else
-                        service.GetNearbyWeeklyScoresInGameAsync(comparePlaythrough, compareStage, compareLevel, compareTime);
-                    break;
-                case ScoreBoardType.MyScores:
-                    service.GetMyPreviousScoresAsync(GameManager.PlayerID.ToString());
-                    break;
-            }
+            //switch (Type)
+            //{
+            //    case ScoreBoardType.NearbyOverall:
+            //        if (!comparingScore)
+            //            service.GetNearbyScoresAsync(getScoreId);
+            //        else
+            //            service.GetNearbyScoresInGameAsync(comparePlaythrough, compareStage, compareLevel, compareTime);
+            //        break;
+            //    case ScoreBoardType.NearbyWeekly:
+            //        if (!comparingScore)
+            //            service.GetNearbyWeeklyScoresAsync(getScoreId);
+            //        else
+            //            service.GetNearbyWeeklyScoresInGameAsync(comparePlaythrough, compareStage, compareLevel, compareTime);
+            //        break;
+            //    case ScoreBoardType.MyScores:
+            //        service.GetMyPreviousScoresAsync(GameManager.PlayerID.ToString());
+            //        break;
+            //}
         }
 
-        void service_GetTopTenWeeklyScoresCompleted(object sender, GetTopTenWeeklyScoresCompletedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //void service_GetTopTenWeeklyScoresCompleted(object sender, GetTopTenWeeklyScoresCompletedEventArgs e)
+        //{
+        //    //throw new NotImplementedException();
+        //}
 
-        void service_GetTopTenScoresCompleted(object sender, GetTopTenScoresCompletedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //void service_GetTopTenScoresCompleted(object sender, GetTopTenScoresCompletedEventArgs e)
+        //{
+        //    //throw new NotImplementedException();
+        //}
 
-        void service_GetNearbyWeeklyScoresInGameCompleted(object sender, GetNearbyWeeklyScoresInGameCompletedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //void service_GetNearbyWeeklyScoresInGameCompleted(object sender, GetNearbyWeeklyScoresInGameCompletedEventArgs e)
+        //{
+        //    //throw new NotImplementedException();
+        //}
 
-        void service_GetNearbyWeeklyScoresCompleted(object sender, GetNearbyWeeklyScoresCompletedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //void service_GetNearbyWeeklyScoresCompleted(object sender, GetNearbyWeeklyScoresCompletedEventArgs e)
+        //{
+        //    //throw new NotImplementedException();
+        //}
 
-        void service_GetNearbyScoresInGameCompleted(object sender, GetNearbyScoresInGameCompletedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //void service_GetNearbyScoresInGameCompleted(object sender, GetNearbyScoresInGameCompletedEventArgs e)
+        //{
+        //    //throw new NotImplementedException();
+        //}
 
-        void service_GetNearbyScoresCompleted(object sender, GetNearbyScoresCompletedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //void service_GetNearbyScoresCompleted(object sender, GetNearbyScoresCompletedEventArgs e)
+        //{
+        //    //throw new NotImplementedException();
+        //}
 
-        void service_GetMyPreviousScoresCompleted(object sender, GetMyPreviousScoresCompletedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //void service_GetMyPreviousScoresCompleted(object sender, GetMyPreviousScoresCompletedEventArgs e)
+        //{
+        //    //throw new NotImplementedException();
+        //}
 
-        void service_GetLastWeekScoreCompleted(object sender, GetLastWeekScoreCompletedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //void service_GetLastWeekScoreCompleted(object sender, GetLastWeekScoreCompletedEventArgs e)
+        //{
+        //    //throw new NotImplementedException();
+        //}
 
         public static void Submit(int playthrough, int stage, int level, double time)
         {
